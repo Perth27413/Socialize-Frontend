@@ -1,0 +1,5 @@
+#sideBarMain {
+  $nav-height: 50px;
+  height: calc(100vh - #{$nav-height + 30px});
+  padding: 15px 10px 15px;
+}

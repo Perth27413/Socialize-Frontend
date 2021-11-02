@@ -1,0 +1,51 @@
+#navMain {
+  $nav-height: 50px;
+  height: $nav-height;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  #logoBox {
+    display: flex;
+    cursor: pointer;
+    margin: 0 10px 0 0;
+    #logoMain {
+      width: 32px;
+      height: 35px;
+      background-color: #0099FE;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      color: #ffffff;
+      font-weight: bold;
+      margin: 0 1px 0 0;
+    }
+    #logoText {
+      color: #0099FE;
+      font-size: 28px;
+      font-weight: bold;
+      height: 35px;
+    }
+  }
+  #sideBtn {
+    height: $nav-height;
+    width: 40px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    &:hover {
+      color: #0099FE;
+      cursor: pointer;
+    }
+    &.active {
+      border-bottom: 3px solid #0099FE;
+      color: #0099FE;
+      height: #{$nav-height - 3px};
+    }
+    @media screen and (max-width: 1080px) {
+      display: flex;
+    }
+  }
+}
