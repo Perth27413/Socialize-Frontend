@@ -1,3 +1,33 @@
 <div id="sideBarMain">
-  side
+  <div id="menuContainer">
+    <div id="profile">
+      <div class="profile-image">
+        <img class="image" src="../../../assets/image/profile.jpg" alt="prifile">
+      </div>
+      <div class="profile-text">
+        <p class="profile-name">Meaw Hungry</p>
+        <p class="description">UX/UI Designer</p>
+      </div>
+    </div>
+    <div id="menu" >
+      <div class="menu-div" type="button" (click)="selectMenu(i)" [ngClass]="cardActive(i)" *ngFor="let menu of menuList, let i = index">
+        <div class="menu-icon">
+          <i class={{menu.icon}}></i>
+        </div>
+        <div class="menu-name">
+          <p class="text" [ngClass]="cardActive(i)">{{menu.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="logoutContainer">
+    <div id="logout">
+      <div class="logout-icon">
+        <i class="fas fa-sign-out-alt"></i>
+      </div>
+      <div class="logout-name">
+        <p class="logout-text">Log out</p>
+      </div>
+    </div>
+  </div>
 </div>
