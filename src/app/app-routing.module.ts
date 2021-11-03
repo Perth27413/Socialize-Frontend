@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ViewProfileComponent }
 ]
 
 @NgModule({
@@ -14,4 +14,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LayoutComponent, HomeComponent, ProfileComponent]
+export const routingComponents = [LayoutComponent, HomeComponent, ViewProfileComponent]
