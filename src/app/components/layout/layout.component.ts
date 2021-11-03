@@ -23,7 +23,23 @@ export class LayoutComponent implements OnInit {
 
   public checkIsLoginAndNavigateToLogin(): void {
     if (!this.isLogin) {
-      this.router.navigateByUrl('/login')
+      const pathName: string = window.location.pathname
+      switch (pathName) {
+        case '/login':
+          this.router.navigateByUrl(pathName)
+          break;
+        case '/register':
+          this.router.navigateByUrl(pathName)
+          break;
+        default:
+          this.router.navigateByUrl('/login')
+          break;
+      }
+    } else {
+      const pathName: string = window.location.pathname
+      if (pathName === '/login' || pathName === '/register') {
+        this.router.navigateByUrl('/')
+      }
     }
   }
 
