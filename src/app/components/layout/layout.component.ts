@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -7,14 +7,43 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
+  isLogin: boolean = true
   showSideBar: boolean = false
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => { 
+      // get isLogin
+      return false 
+    }
   }
 
-  toggleSideBar(): void {
+  ngOnInit(): void {
+    this.checkIsLoginAndNavigateToLogin()
+  }
+
+  public checkIsLoginAndNavigateToLogin(): void {
+    if (!this.isLogin) {
+      const pathName: string = window.location.pathname
+      switch (pathName) {
+        case '/login':
+          this.router.navigateByUrl(pathName)
+          break;
+        case '/register':
+          this.router.navigateByUrl(pathName)
+          break;
+        default:
+          this.router.navigateByUrl('/login')
+          break;
+      }
+    } else {
+      const pathName: string = window.location.pathname
+      if (pathName === '/login' || pathName === '/register') {
+        this.router.navigateByUrl('/')
+      }
+    }
+  }
+
+  public toggleSideBar(): void {
     this.showSideBar = !this.showSideBar
   }
 
