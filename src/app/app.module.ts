@@ -6,13 +6,14 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './components/nav/nav.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
-
+import { SignInComponent } from './components/sign-in/sign-in.component';
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
     NavComponent,
-    SideBarComponent
+    SideBarComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
