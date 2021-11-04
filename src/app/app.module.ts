@@ -8,6 +8,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
+import { EditproflieComponent } from './components/editproflie/editproflie.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +16,8 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
     NavComponent,
     SideBarComponent,
     ProfileComponent,
-    ViewProfileComponent
+    ViewProfileComponent,
+    EditproflieComponent
   ],
   imports: [
     BrowserModule,
