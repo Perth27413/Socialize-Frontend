@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-profile.component.scss']
 })
 export class ViewProfileComponent implements OnInit {
+  numfile: number = 10
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  // public countMutifile(): void {
+  //   this.numfile = $("#FileInput")[0].numfile;
+  // }
 }
