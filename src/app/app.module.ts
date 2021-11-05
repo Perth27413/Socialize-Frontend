@@ -10,6 +10,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { PostComponent } from './components/post/post.component';
 import { HomeComponent } from './components/home/home.component';
+import { EditproflieComponent } from './components/editproflie/editproflie.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { HomeComponent } from './components/home/home.component';
     ProfileComponent,
     ViewProfileComponent,
     PostComponent,
-    HomeComponent
+    HomeComponent,
+    EditproflieComponent
   ],
   imports: [
     BrowserModule,
