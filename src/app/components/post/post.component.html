@@ -1,23 +1,24 @@
-<div id="post">
+<div id="post" *ngFor="let post of postList, let i = index">
     <div id="content-container">
         <div class="profile-content">
             <div class="image-div">
-                <img class="profile" src="../../../assets/image/profile.jpg" alt="profile">
+                <img class="profile" src={{post.imageProfile}} alt="profile">
             </div>
             <div class="profile-text">
-                <p class="profile-name">Meaw Mouw</p>
-                <p class="description">UX/UI Designer</p>
+                <p class="profile-name">{{post.name}}</p>
+                <p class="description">{{post.decs}}</p>
             </div>
             <div class="more-icon">
                 <i class="fas fa-ellipsis-h"></i>
             </div>
         </div>
         <div class="text-content">
-            <label class="text-desc">วันนี้อากาศแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่ม</label>
+            <label class="text-desc">{{post.textContent}}</label>
         </div>
         <div class="photo-content">
-            <img class="photo" src="../../../assets/image/profile.jpg" alt="photo">
-            <img class="photo" src="../../../assets/image/profile.jpg" alt="photo">
+            <div class="photo-grid" [ngClass]="getPhotoLayoutClassName(post.photoContent.length)">
+                <img class="photo" *ngFor="let photo of post.photoContent, let index = index" [ngClass]="getPhotoClassName(index)" src={{photo.photo}} alt="photo">
+            </div>
         </div>
         <div class="like-container">
             <div class="heart">
@@ -25,7 +26,7 @@
                 <div class="text-like">3</div>
             </div>
             <div class="comment">
-                <div class="icon-comment" (click)="toggleShowComment()"><i class="fas fa-comment"></i></div>
+                <div class="icon-comment" (click)="toggleShowComment(i)"><i class="fas fa-comment"></i></div>
                 <div class="text-comment">4</div>
             </div>
             <div class="date">
@@ -37,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div id="comment-container" *ngIf="isShowComment">
+    <div id="comment-container" *ngIf="post.showComment">
         <div class="show-comment">
             <div class="comment-item">
                 <div class="image-profile">
