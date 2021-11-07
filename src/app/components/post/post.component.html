@@ -26,7 +26,7 @@
                 <div class="text-like">3</div>
             </div>
             <div class="comment">
-                <div class="icon-comment" (click)="toggleShowComment()"><i class="fas fa-comment"></i></div>
+                <div class="icon-comment" (click)="toggleShowComment(i)"><i class="fas fa-comment"></i></div>
                 <div class="text-comment">4</div>
             </div>
             <div class="date">
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div id="comment-container" *ngIf="isShowComment">
+    <div id="comment-container" *ngIf="post.showComment">
         <div class="show-comment">
             <div class="comment-item">
                 <div class="image-profile">
