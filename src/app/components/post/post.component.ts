@@ -16,7 +16,6 @@ export class PostComponent implements OnInit {
       textContent: "วันนี้อากาศแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่ม",
       numOfPhoto: 2,
       photoContent: [
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
         {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"}
       ]
     },{ 
@@ -27,6 +26,7 @@ export class PostComponent implements OnInit {
       numOfPhoto: 1,
       photoContent: [
         {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
+        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"}
       ]
     },{ 
       name: "Meaw Mouw",
@@ -37,8 +37,7 @@ export class PostComponent implements OnInit {
       photoContent: [
         {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
         {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
+        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"}
       ]
     },{ 
       name: "Meaw Mouw",
@@ -49,6 +48,7 @@ export class PostComponent implements OnInit {
       photoContent: [
         {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
         {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
+        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
         {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"}
       ]
     }
@@ -57,6 +57,14 @@ export class PostComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public getPhotoLayoutClassName(pictureLength: number): string {
+    return `grid-${pictureLength}`
+  }
+
+  public getPhotoClassName(index: number) {
+    return `photo-${index + 1}`
   }
 
   gridPhotoLayout(index: number) {

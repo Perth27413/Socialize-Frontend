@@ -15,9 +15,9 @@
         <div class="text-content">
             <label class="text-desc">{{post.textContent}}</label>
         </div>
-        <div class="photo-content" [ngClass]="gridPhotoLayout(i)">
-            <div class="photo-grid photo-grid-3" *ngFor="let photo of post.photoContent" [ngClass]="gridPhotoLayout(i)">
-                <img class="photo" src={{photo.photo}} alt="photo" [ngClass]="gridPhotoLayout(i)">
+        <div class="photo-content">
+            <div class="photo-grid" [ngClass]="getPhotoLayoutClassName(post.photoContent.length)">
+                <img class="photo" *ngFor="let photo of post.photoContent, let index = index" [ngClass]="getPhotoClassName(index)" src={{photo.photo}} alt="photo">
             </div>
         </div>
         <div class="like-container">
