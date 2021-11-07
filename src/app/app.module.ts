@@ -8,6 +8,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
+import { PostComponent } from './components/post/post.component';
+import { HomeComponent } from './components/home/home.component';
 import { EditproflieComponent } from './components/editproflie/editproflie.component';
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { EditproflieComponent } from './components/editproflie/editproflie.compo
     SideBarComponent,
     ProfileComponent,
     ViewProfileComponent,
+    PostComponent,
+    HomeComponent,
     EditproflieComponent
   ],
   imports: [
