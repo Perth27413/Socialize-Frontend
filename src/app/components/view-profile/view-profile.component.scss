@@ -93,4 +93,51 @@
             }
         }
     }
+    @media screen and (max-width: 1080px) {
+        display: flex;
+        justify-content: center;
+        padding-left: 2%;
+        .postBox {
+            width: 295px;
+            .postInput {
+                .postText {
+                    max-width: 295px;
+                    min-width: 295px;
+                    min-height: 50px;
+                    font-size: 12px;
+                }
+            }
+            .options {
+                .option-box {
+                    .icon-box {
+                        label {
+                            width: 25px;
+                            padding-left: 10px;
+                        }
+                        padding-right: 13px;
+                    }
+                    .icon-image {
+                        width: 120px;
+                        height: 35px;
+                        margin: 2px;
+                        border-radius: 5px;
+                        background-color: #E1F2FF;
+                        font-size: 13px;
+                    }
+                }
+                .post-box {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 25%;
+                    border-radius: 15px;
+                    background-color: #0099FE;
+                    color: #FFFFFF;
+                    font-size: 13px;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }

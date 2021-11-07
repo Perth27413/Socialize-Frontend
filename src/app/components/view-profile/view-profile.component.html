@@ -11,7 +11,7 @@
                 <div class="option-box">
                     <div class="icon-box">
                         <label for="FileInput"><i class="fas fa-image input-icon" aria-hidden="true"></i></label>
-                        <input class="uploadFile" type="file" id="FileInput"/>
+                        <input class="uploadFile" type="file" id="FileInput" multiple (change)="countMutifile($event)" />
                     </div>
                     <div class="icon-image" >
                         <div class="icon-bg">
@@ -19,7 +19,7 @@
                                 <label><i class="fas fa-image input-icon" aria-hidden="true"></i></label>
                             </div>
                             <div class="icon-count">
-                                <label>{{1}} photos</label>
+                                <label>{{numfile}} photos</label>
                             </div>
                             <div class="icon-count">
                                 <label class="dis-icons"><i class="fas fa-times input-icon" aria-hidden="true"></i></label>
