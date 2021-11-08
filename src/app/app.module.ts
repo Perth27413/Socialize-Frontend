@@ -13,8 +13,11 @@ import { EditproflieComponent } from './components/editproflie/editproflie.compo
 import { CalendarModule } from 'primeng/calendar';
 import { SignUpComponent } from './components/sigin-up/sign-up.component';
 import { FormsModule } from '@angular/forms';
-import {SliderModule} from 'primeng/slider';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SliderModule } from 'primeng/slider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule } from  '@angular/common/http';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +30,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     PostComponent,
     HomeComponent,
     EditproflieComponent,
-    SignUpComponent
+    SignUpComponent,
+    SignInComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -37,7 +42,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FormsModule,
     SliderModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
