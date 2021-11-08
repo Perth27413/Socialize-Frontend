@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import LoginRequestModel from '../models/User/LoginRequestModel';
+import RegisterRequestModel from '../models/User/RegisterRequestModel';
 import UserModel from '../models/User/UserModel';
 
 @Injectable({
@@ -11,10 +12,6 @@ export class UserService {
   private path: string = 'http://localhost:3000/api/user'
 
   constructor(private cookie: CookieService, private http: HttpClient) { }
-
-  public hello(): void {
-    this.cookie.set('test', 'test')
-  }
 
   public setLogin(userDetails: UserModel): void {
     this.cookie.set('isLogin', 'true')
@@ -32,5 +29,9 @@ export class UserService {
 
   public login(request: LoginRequestModel) {
     return this.http.post<UserModel>(`${this.path}/login`, request)
+  }
+
+  public register(request: RegisterRequestModel) {
+    return this.http.post<UserModel>(`${this.path}/register`, request)
   }
 }

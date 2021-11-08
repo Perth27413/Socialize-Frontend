@@ -6,44 +6,71 @@
     </div>
     <div class="input-box">
       <i class="fas fa-user input-icon" aria-hidden="true"></i>
-      <input class="input-text-box" type="text" placeholder="Username">
+      <input class="input-text-box" type="text" placeholder="Username"
+        [(ngModel)]="registerRequest.username"
+        [ngClass]="{'invalid': validate.userIsValid === false, 'valid': validate.userIsValid}" 
+        (input)="validateOnInput('username')"
+      >
     </div>
     <div class="input-box">
       <i class="fas fa-lock input-icon" aria-hidden="true"></i>
-      <input class="input-text-box" type="password" placeholder="Password">
-    </div>
-    <div class="input-box">
-      <i class="fas fa-lock input-icon" aria-hidden="true"></i>
-      <input class="input-text-box" type="text" placeholder="Repeat Password">
+      <input class="input-text-box" type="password" placeholder="Password"
+        [(ngModel)]="registerRequest.password"
+        [ngClass]="{'invalid': validate.passIsValid === false, 'valid': validate.passIsValid}" 
+        (input)="validateOnInput('password')"
+      >
     </div>
     <div class="input-box">
       <i class="fas fa-envelope input-icon" aria-hidden="true"></i>
-      <input class="input-text-box" type="text" placeholder="Email">
+      <input class="input-text-box" type="email" placeholder="Email"
+        [(ngModel)]="registerRequest.email"
+        [ngClass]="{'invalid': validate.emailIsValid === false, 'valid': validate.emailIsValid}" 
+        (input)="validateOnInput('email')"
+      >
     </div>
     <div class="input-box">
       <i class="fas fa-user input-icon" aria-hidden="true"></i>
-      <input class="input-text-box" type="text" placeholder="First Name">
+      <input class="input-text-box" type="text" placeholder="First Name"
+        [(ngModel)]="registerRequest.firstName"
+        [ngClass]="{'invalid': validate.firstNameIsValid === false, 'valid': validate.firstNameIsValid}" 
+        (input)="validateOnInput('firstName')"
+      >
     </div>
     <div class="input-box">
       <i class="fas fa-user input-icon" aria-hidden="true"></i>
-      <input class="input-text-box" type="text" placeholder="Last Name">
+      <input class="input-text-box" type="text" placeholder="Last Name"
+        [(ngModel)]="registerRequest.lastName"
+        [ngClass]="{'invalid': validate.lastNameIsValid === false, 'valid': validate.lastNameIsValid}" 
+        (input)="validateOnInput('lastName')"
+      >
     </div>
     <div class="input-box">
       <i class="fas fa-mobile-alt input-icon" aria-hidden="true"></i>
-      <input class="input-text-box" type="text" placeholder="Phone Number">
+      <input class="input-text-box" type="text" placeholder="Phone Number"
+        [(ngModel)]="registerRequest.phoneNumber"
+        [ngClass]="{'invalid': validate.phoneIsValid === false, 'valid': validate.phoneIsValid}"
+        (keypress)="numberOnly($event)"
+        maxlength="10"
+        (input)="validateOnInput('phoneNumber')"
+      >
     </div>
     <div class="input-box">
       <p-calendar inputId="basic"
         dateFormat="dd-mm-yy"
         placeholder="Birthday (DD/MM/YYYY)"
-        [(ngModel)]="date"
+        [(ngModel)]="birthDate"
         [style]="{'width':'100%', 'height': '35px'}"
         [inputStyle]="{'height':'35px', 'fontSize': '14px', 'fontWeight': '500', 'color': '#7e7e7e'}"
-        [showIcon]="true">
+        [showIcon]="true"
+        (onSelect)="validateOnInput('birthDay')"
+      >
       </p-calendar>
     </div>
     <div class="button-box">
-      <button id="action-button">Sign up</button>
+      <button class="action-button" (click)="onRegister(1)" *ngIf="!isLoading; else loading">Sign in</button>
+      <ng-template #loading>
+        <button class="action-button loading"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></button>
+      </ng-template>
     </div>
     <div id="orBox">
       <hr class="or-line">

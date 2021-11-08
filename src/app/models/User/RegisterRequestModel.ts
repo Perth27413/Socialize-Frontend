@@ -1,3 +1,5 @@
+declare type Nullable<T> = T | null
+
 class RegisterRequestModel {
   public username: string = String()
   public password: string = String()
@@ -5,7 +7,7 @@ class RegisterRequestModel {
   public firstName: string = String()
   public lastName: string = String()
   public phoneNumber: string = String()
-  public birthDay: Date = new Date()
+  public birthDay: string = String()
   public typeId: number = Number()
 }
 
