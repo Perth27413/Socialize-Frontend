@@ -6,14 +6,27 @@
     </div>
     <div class="input-box">
       <i class="fas fa-user input-icon" aria-hidden="true"></i>
-      <input class="input-text-box" [(ngModel)]="loginRequest.username" type="text" placeholder="Username / Email">
+      <input class="input-text-box" 
+        (input)="validateOnInput('username')"
+        [ngClass]="{'invalid': validate.userIsValid === false, 'valid': validate.userIsValid}" 
+        [(ngModel)]="loginRequest.username" 
+        type="text" 
+        placeholder="Username / Email">
     </div>
     <div class="input-box">
       <i class="fas fa-lock input-icon" aria-hidden="true"></i>
-      <input class="input-text-box" type="password" [(ngModel)]="loginRequest.password" placeholder="Password">
+      <input class="input-text-box"
+        (input)="validateOnInput('password')"
+        [ngClass]="{'invalid': validate.passIsValid === false, 'valid': validate.passIsValid}" 
+        [(ngModel)]="loginRequest.password" 
+        type="password" 
+        placeholder="Password">
     </div>
     <div class="button-box">
-      <button id="action-button" (click)="onLogin()">Sign in</button>
+      <button class="action-button" (click)="onLogin()" *ngIf="!isLoading; else loading">Sign in</button>
+      <ng-template #loading>
+        <button class="action-button loading"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></button>
+      </ng-template>
     </div>
     <div id="orBox">
       <hr class="or-line">
