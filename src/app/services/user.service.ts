@@ -26,6 +26,10 @@ export class UserService {
     window.localStorage.removeItem('user')
   }
 
+  public getLogin(): boolean {
+    return this.cookie.get('isLogin') === 'true'
+  }
+
   public login(request: LoginRequestModel) {
     return this.http.post<UserModel>(`${this.path}/login`, request)
   }

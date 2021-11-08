@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -12,7 +14,7 @@ export class SideBarComponent implements OnInit {
     {icon: 'fas fa-star', name: 'Favorites', isActive: false}
   ]
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
   ngOnInit(): void {}
 
   selectMenu(index: number) {
@@ -47,6 +49,11 @@ export class SideBarComponent implements OnInit {
       'card-active' : this.menuList[index].isActive,
       'text-active' : this.menuList[index].isActive
     }
+  }
+
+  public logout(): void {
+    this.userService.setLogout()
+    this.router.navigateByUrl('/login')
   }
   
 

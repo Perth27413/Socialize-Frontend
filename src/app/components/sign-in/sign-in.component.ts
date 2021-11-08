@@ -40,6 +40,9 @@ export class SignInComponent implements OnInit {
             if (response.id) {
               this.userService.setLogin(response)
               this.notifyService.success('Sign in Successfully')
+              setTimeout(() => {
+                this.router.navigateByUrl('/')
+              }, 1000)
             } else {
               this.notifyService.warning('Username or Email does not exist')
             }
