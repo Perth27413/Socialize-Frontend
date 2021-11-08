@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-
+  date!: Date
+  today: Date = new Date()
   constructor(private router: Router) { }
 
   ngOnInit(): void {

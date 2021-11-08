@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  isLogin: boolean = true
+  isLogin: boolean = false
   showSideBar: boolean = false
 
   constructor(private router: Router) {

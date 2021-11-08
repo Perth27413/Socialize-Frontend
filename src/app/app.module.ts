@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +10,12 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
 import { PostComponent } from './components/post/post.component';
 import { HomeComponent } from './components/home/home.component';
 import { EditproflieComponent } from './components/editproflie/editproflie.component';
+import { CalendarModule } from 'primeng/calendar';
+import { SignUpComponent } from './components/sigin-up/sign-up.component';
+import { FormsModule } from '@angular/forms';
+import {SliderModule} from 'primeng/slider';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,11 +26,16 @@ import { EditproflieComponent } from './components/editproflie/editproflie.compo
     ViewProfileComponent,
     PostComponent,
     HomeComponent,
-    EditproflieComponent
+    EditproflieComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    CalendarModule,
+    FormsModule,
+    SliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
