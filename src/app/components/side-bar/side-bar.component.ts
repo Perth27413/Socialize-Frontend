@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import UserModel from 'src/app/models/User/UserModel';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {
+  userDetails!: UserModel
   menuList: {icon: string, name: string, isActive: boolean}[] = [
     {icon: 'fas fa-home', name: 'Home', isActive: true},
     {icon: 'fas fa-users', name: 'Follows', isActive: false},
@@ -15,7 +17,9 @@ export class SideBarComponent implements OnInit {
   ]
 
   constructor(private userService: UserService, private router: Router) { }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userDetails = this.userService.getUserDetails()
+  }
 
   selectMenu(index: number) {
     console.log(index)

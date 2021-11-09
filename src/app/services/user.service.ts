@@ -27,6 +27,10 @@ export class UserService {
     return this.cookie.get('isLogin') === 'true'
   }
 
+  public getUserDetails(): UserModel {
+    return JSON.parse(window.localStorage.getItem('user')!)
+  }
+
   public login(request: LoginRequestModel) {
     return this.http.post<UserModel>(`${this.path}/login`, request)
   }

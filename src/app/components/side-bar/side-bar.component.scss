@@ -1,11 +1,11 @@
 #sideBarMain {
   $nav-height: 50px;
-  height: calc(100vh - #{$nav-height + 30px});
+  height: calc(100vh - #{$nav-height});
   padding: 15px 10px 15px;
   #menuContainer {
     margin: 0;
     padding: 0;
-    height: 92%;
+    height: calc(100% - 50px);
     border-bottom: 1px solid #CFD0D2;
     #profile {
       display: flex;
@@ -63,17 +63,17 @@
     #menu {
       display: flex;
       flex-direction: column;
-      box-sizing: border-box;
-      margin-top: 22px;
+      margin-top: 20px;
       padding: 0;
+      height: calc(100% - 100px);
+      overflow-y: auto;
       .menu-div {
         display: flex;
-        box-sizing: border-box;
         align-items: center;
         justify-content: start;
-        height: 40px;
-        margin-top: 2px;
-        padding: 0;
+        height: 45px;
+        min-height: 45px;
+        margin: 0 0 2px;
         background-color: white;
         border-radius: 7px;
         .menu-icon {
@@ -115,7 +115,7 @@
   #logoutContainer {
     margin: 0;
     padding-top: 10px;
-    height: 8%;
+    height: 50px;
     #logout {
       display: flex;
       flex-direction: row;
