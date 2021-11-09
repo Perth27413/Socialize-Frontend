@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NotifyService } from 'src/app/services/notify.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -6,45 +7,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-profile.component.scss']
 })
 export class ViewProfileComponent implements OnInit {
-  numfile: number = 0
-  files: any
+  @ViewChild('fileUpload') fileInputRef!: ElementRef
+  files: Array<File> = []
 
-  constructor() { }
+  constructor(private notifyService: NotifyService) { }
 
   ngOnInit(): void {
   }
+  
+  ngAfterViewInit() {
 
-  public countMutifile(events: Event): void {
-    const target = events.target as HTMLInputElement;
-    this.files = target.files as FileList;
-    this.numfile =  this.files.length;
-
-    for (let i = 0; i <  this.files.length; i++) {    
-      let test =  this.files.item(i)?.type
-      if(test != 'image/jpeg' && 'image/png' ) {
-        console.log('invalid file type must be a jpg or png');  
-      } else {
-        console.log('The file type is correct.');
-      }
-    }
   }
 
-  clearPicture(files: any) {
-    files = this.numfile = 0
-    let clearFiles = document.getElementById('FileInput')?.remove()  
-    this.files = clearFiles 
+  public async countMutifile(events: Event): Promise<void> {
+    const target = events.target as HTMLInputElement
+    const fileLists: FileList = target.files as FileList
+    const totalFiles: number = this.files.length + fileLists.length
+    if (totalFiles <= 4) {
+      for (let i = 0; i < fileLists.length; i++) {    
+        let test =  fileLists.item(i)?.type
+        if(test != 'image/jpeg' && 'image/png' ) {
+          await this.notifyService.sweetWarning('อัพได้แค่รูปภาพไอ่เวร')
+        } else {
+          this.files.push(fileLists[i])
+        }
+      }
+    } else {
+      await this.notifyService.sweetWarning('File เกินแล้วไอ่เวร')
+    }
+    this.fileInputRef.nativeElement.value = ''
   }
 
-  uploadFile(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      if (file.type != 'image/jpeg' && 'image/png') {
-        console.log('invalid file type must be a jpg or png');
-        return
-      }
-      else {
-        console.log('The file type is correct.');
-      }
-    }
+  public clearPicture(): void {
+    this.files = []
   }
 }

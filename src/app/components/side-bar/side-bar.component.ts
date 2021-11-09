@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import UserModel from 'src/app/models/User/UserModel';
 import { UserService } from 'src/app/services/user.service';
@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {
+ 
   userDetails!: UserModel
   menuList: {icon: string, name: string, isActive: boolean}[] = [
     {icon: 'fas fa-home', name: 'Home', isActive: true},
@@ -17,48 +18,18 @@ export class SideBarComponent implements OnInit {
   ]
 
   constructor(private userService: UserService, private router: Router) { }
+
   ngOnInit(): void {
     this.userDetails = this.userService.getUserDetails()
   }
 
-  selectMenu(index: number) {
-    console.log(index)
-    switch (index) {
-      case 0:
-        this.menuList[0].isActive = true;
-        this.menuList[1].isActive = false;
-        this.menuList[2].isActive = false;
-        break;
-      case 1:
-        this.menuList[0].isActive = false;
-        this.menuList[1].isActive = true;
-        this.menuList[2].isActive = false;
-        break;
-      case 2:
-        this.menuList[0].isActive = false;
-        this.menuList[1].isActive = false;
-        this.menuList[2].isActive = true;
-        break;
-      default:
-        this.menuList[0].isActive = true;
-        this.menuList[1].isActive = false;
-        this.menuList[2].isActive = false;
-        break;
-    }
-  }
-
-  cardActive(index: number) {
-
-    return {
-      'card-active' : this.menuList[index].isActive,
-      'text-active' : this.menuList[index].isActive
-    }
+  public selectMenu(index: number): void {
+    this.menuList.forEach(item => item.isActive = false)
+    this.menuList[index].isActive = true
   }
 
   public logout(): void {
     this.userService.setLogout()
     this.router.navigateByUrl('/login')
   }
-  
-
 }

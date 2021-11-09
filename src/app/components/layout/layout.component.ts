@@ -14,6 +14,7 @@ export class LayoutComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => { 
       this.isLogin = this.userService.getLogin()
+      console.log(this.isLogin)
       return false 
     }
   }
