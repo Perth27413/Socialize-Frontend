@@ -7658,6 +7658,11 @@
     "nanocolors" "^0.1.12"
     "stable" "^0.1.8"
 
+"sweetalert2@^11.1.10":
+  "integrity" "sha512-Zy/Pdsvf6gJoaqnBaLXYrjElJ85ipe9D5FfcSKxJ0b1PPnTS3B5eC3rFB2pPbo9m1p+LVLBZVvE35JPL2vG6xA=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.1.10.tgz"
+  "version" "11.1.10"
+
 "symbol-observable@4.0.0":
   "integrity" "sha512-b19dMThMV4HVFynSAM1++gBHAbk2Tc/osgLIBZMKsyqh34jb2e8Os7T6ZW/Bt3pJFdBTd2JwAnAAEQV7rSNvcQ=="
   "resolved" "https://registry.npmjs.org/symbol-observable/-/symbol-observable-4.0.0.tgz"

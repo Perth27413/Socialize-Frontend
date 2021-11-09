@@ -38,17 +38,12 @@ export class SignUpComponent implements OnInit {
         const newRequest: RegisterRequestModel = {...this.registerRequest}
         newRequest.password = new Md5().appendStr(newRequest.password).end().toString()
         this.userService.register(newRequest).subscribe((response: UserModel) => {
-          setTimeout(() => {
+          setTimeout(async () => {
             if (response) {
-              this.notifyService.success('Sign up Successfully')
-              setTimeout(() => {
-                this.notifyService.success('Redirect to Login page')
-                setTimeout(() => {
-                  this.router.navigateByUrl('/login')
-                }, 1500)
-              }, 1000)
+              await this.notifyService.sweetSuccess('Sign up Successfully')
+              this.router.navigateByUrl('/login')
             } else {
-              this.notifyService.warning('Sign up failed')
+              this.notifyService.sweetWarning('Sign up failed')
             }
             this.isLoading = false
           }, 1000)

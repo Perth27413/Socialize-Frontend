@@ -6,6 +6,7 @@ import LoginValidateModel from 'src/app/models/Validate/LoginValidateModel';
 import { NotifyService } from 'src/app/services/notify.service';
 import { UserService } from 'src/app/services/user.service';
 import {Md5} from 'ts-md5/dist/md5'
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-sign-in',
@@ -23,6 +24,7 @@ export class SignInComponent implements OnInit {
   constructor(private router: Router, private userService: UserService, private notifyService: NotifyService) { }
 
   ngOnInit(): void {
+    
   }
 
   public goToSignUp(): void {
@@ -36,15 +38,13 @@ export class SignInComponent implements OnInit {
         const newRequest: LoginRequestModel = {...this.loginRequest}
         newRequest.password = new Md5().appendStr(newRequest.password).end().toString()
         this.userService.login(newRequest).subscribe((response: UserModel) => {
-          setTimeout(() => {
+          setTimeout(async () => {
             if (response.id) {
               this.userService.setLogin(response)
-              this.notifyService.success('Sign in Successfully')
-              setTimeout(() => {
-                this.router.navigateByUrl('/')
-              }, 1000)
+              await this.notifyService.sweetSuccess('Sign in Successfully')
+              this.router.navigateByUrl('/')
             } else {
-              this.notifyService.warning('Username or Email does not exist')
+              this.notifyService.sweetWarning('Username or Email does not exist')
             }
             this.isLoading = false
           }, 1000)
