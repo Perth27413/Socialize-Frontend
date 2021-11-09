@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
   isShowComment: boolean = false;
-  test: string = "แมว"
   postList: { name: string, decs: string, imageProfile: string, showComment: boolean, textContent: string, photoContent: { photo: string }[] }[] = [
     { 
       name: "Meaw Mouw",
@@ -67,7 +66,7 @@ export class PostComponent implements OnInit {
     return `photo-${index + 1}`
   }
 
-  toggleShowComment(index: number) {
+  public toggleShowComment(index: number) {
     this.postList[index].showComment = !this.postList[index].showComment
   }
 }

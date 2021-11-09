@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from  '@angular/common/http';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { PopularPeopleComponent } from './components/popular-people/popular-people.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     HomeComponent,
     EditproflieComponent,
     SignUpComponent,
-    SignInComponent
+    SignInComponent,
+    PopularPeopleComponent
   ],
   imports: [
     HttpClientModule,
