@@ -23,7 +23,7 @@
     #mainBox {
       width: calc(100vw - #{$side-bar-width});
       height: calc(100vh - #{$nav-height});
-      overflow-y: auto;
+      overflow-y: overlay;
       background-color: #f1f1f1;
     }
     @media screen and (max-width: 1080px) {

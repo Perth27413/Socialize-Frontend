@@ -1,0 +1,20 @@
+#homeMain {
+  $popular-width: 300px;
+  display: flex;
+  padding: 15px 30px 0 0;
+  #homePost {
+    width: calc(100% - #{$popular-width});
+  }
+  #homePopular {
+    width: $popular-width;
+  }
+  @media screen and (max-width: 980px) {
+    padding: 0;
+    #homePost {
+      width: 100%;
+    }
+    #homePopular {
+      display: none;
+    }
+  }
+}
