@@ -31,7 +31,11 @@ export class PostComponent implements OnInit {
   constructor(private postService: PostService, private userService: UserService, private commentService: CommentService) { }
 
   ngOnInit(): void {
-    this.getPost(1)
+    this.isPostLoading = true
+    setTimeout(() => {
+      this.isPostLoading = false
+      this.getPost(1)
+    }, 2000)
     this.userDetails = this.userService.getUserDetails()
   }
   
