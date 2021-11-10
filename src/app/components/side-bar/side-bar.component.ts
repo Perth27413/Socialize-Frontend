@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import SideBarMenuModel from 'src/app/models/SideBarMenuModel';
 import UserModel from 'src/app/models/User/UserModel';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,19 +12,29 @@ import { UserService } from 'src/app/services/user.service';
 export class SideBarComponent implements OnInit {
  
   userDetails!: UserModel
-  menuList: {icon: string, name: string, isActive: boolean}[] = [
-    {icon: 'fas fa-home', name: 'Home', isActive: true},
-    {icon: 'fas fa-users', name: 'Follows', isActive: false},
-    {icon: 'fas fa-star', name: 'Favorites', isActive: false}
+  menuList: Array<SideBarMenuModel> = [
+    {icon: 'fas fa-home', name: 'Home', isActive: false, path: '/'},
+    {icon: 'fas fa-users', name: 'Follows', isActive: false, path: ''},
+    {icon: 'fas fa-star', name: 'Favorites', isActive: false, path: ''}
   ]
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userDetails = this.userService.getUserDetails()
+    this.checkPath()
+  }
+
+  private checkPath(): void {
+    this.menuList.forEach((item: SideBarMenuModel) => {
+      if (item.path === window.location.pathname) {
+        item.isActive = true
+      }
+    })
   }
 
   public selectMenu(index: number): void {
+    this.router.navigateByUrl(this.menuList[index].path)
     this.menuList.forEach(item => item.isActive = false)
     this.menuList[index].isActive = true
   }
@@ -31,5 +42,10 @@ export class SideBarComponent implements OnInit {
   public logout(): void {
     this.userService.setLogout()
     this.router.navigateByUrl('/login')
+  }
+
+  public onProfileClick(): void {
+    this.router.navigateByUrl('/profile/' + this.userDetails.id)
+    this.menuList.forEach(item => item.isActive = false)
   }
 }
