@@ -2,11 +2,11 @@
   <div id="menuContainer">
     <div id="profile">
       <div class="profile-image">
-        <img class="image" src="../../../assets/image/profile.jpg" alt="profile">
+        <img class="image" src="{{userDetails.profilePicture}}" alt="profile">
       </div>
       <div class="profile-text">
         <p class="profile-name">{{userDetails.firstName}} {{userDetails.lastName}}</p>
-        <p class="description">{{userDetails.details}}</p>
+        <p class="description">{{userDetails.details || 'Hello world'}}</p>
       </div>
     </div>
     <div id="menu" >

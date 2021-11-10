@@ -1,3 +1,4 @@
+import CommentPageModel from "../Comments/CommentPageModel"
 import PostOwnerModel from "./PostOwnerModel"
 
 class PostModel {
@@ -10,6 +11,8 @@ class PostModel {
   public viewed: number = Number()
   public isViewed: boolean = Boolean()
   public owner: PostOwnerModel = new PostOwnerModel
+  public showComment: boolean = false
+  public commentLists: CommentPageModel = new CommentPageModel
 }
 
 export default PostModel
