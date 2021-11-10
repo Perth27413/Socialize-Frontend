@@ -8,7 +8,7 @@
 					</div>
 					<div class="profile-text">
 						<p class="profile-name">{{post.owner.firstName}} {{post.owner.lastName}}</p>
-						<p class="description">{{post.owner.details}}</p>
+						<p class="description">{{post.owner.details || 'Hello World'}}</p>
 					</div>
 					<div class="more-icon">
 						<i class="fas fa-ellipsis-h"></i>
@@ -25,23 +25,24 @@
 				</div>
 				<div class="like-container">
 					<div class="heart">
-						<div class="icon-heart"><i class="fas fa-heart"></i></div>
-						<div class="text-like">3</div>
+						<div class="icon-heart" [ngClass]="{'liked': post.isLiked}" (click)="likePost(i)">
+							<i class="fas fa-heart" aria-hidden="true"></i>
+						</div>
+						<div class="text-like">{{post.liked}}</div>
 					</div>
 					<div class="comment">
-						<div class="icon-comment" (click)="toggleShowComment(i)"><i class="fas fa-comment"></i></div>
-						<div class="text-comment">5</div>
+						<div class="icon-comment" [ngClass]="{'isShow': post.showComment}" (click)="toggleShowComment(i)"><i class="fas fa-comment"></i></div>
 					</div>
 					<div class="date">
-						<label class="text-date">27 OCT 2021</label>
+						<label class="text-date">{{post.date | date: 'dd/MM/yyyy'}}</label>
 					</div>
 					<div class="view">
 						<div class="icon-view"><i class="fas fa-eye"></i></div>
-						<div class="text-view">12K</div>
+						<div class="text-view">{{post.viewed}}</div>
 					</div>
 				</div>
 			</div>
-			<div id="comment-container">
+			<div id="comment-container" *ngIf="post.showComment">
 				<div class="show-comment">
 					<div class="comment-item">
 						<div class="image-profile">
@@ -61,42 +62,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="comment-item">
-						<div class="image-profile">
-							<img class="profile"
-								src="https://www.biography.com/.image/t_share/MTQyMDA0NDgwMzUzNzcyNjA2/mark-zuckerberg_gettyimages-512304736jpg.jpg"
-								alt="profile">
-						</div>
-						<div class="coment-div">
-							<div class="commenter-name">Mark Zuckerberg</div>
-							<div class="content-coment"><label class="text-comment">
-									Cool, I like it! Cool, I like it!
-									Cool, I like it! Cool, I like it!
-									Cool, I like it! Cool, I like it! Cool, I like it! Cool, I like it!
-									Cool, I like it! Cool, I like it! Cool, I like it! Cool, I like it! Cool, I like it! Cool, I like it!
-									Cool, I like it! Cool, I like it! Cool, I like it! Cool, I like it! Cool, I like it! Cool, I like it!
-									Cool, I like it! Cool, I like it! Cool, I like it! Cool, I like it!
-								</label></div>
-						</div>
-						<div class="time-like">
-							<div class="time-ago">8 hours ago</div>
-							<div class="like-comment">
-								<div class="like-icon"><i class="fas fa-heart"></i></div>
-								<div class="number-like">150</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<div class="write-comment">
 					<div class="image">
-						<img class="my-image" src="../../../assets/image/profile.jpg" alt="profile">
+						<img class="my-image" src="{{userDetails.profilePicture}}" alt="profile">
 					</div>
 					<div class="input-comment">
 						<div class="input">
 							<input class="input-text" type="text" placeholder="Write a comment...">
-						</div>
-						<div class="icon-camera">
-							<i class="fas fa-camera"></i>
 						</div>
 					</div>
 				</div>

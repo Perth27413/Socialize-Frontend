@@ -10,6 +10,7 @@ class PostModel {
   public viewed: number = Number()
   public isViewed: boolean = Boolean()
   public owner: PostOwnerModel = new PostOwnerModel
+  public showComment: boolean = false
 }
 
 export default PostModel

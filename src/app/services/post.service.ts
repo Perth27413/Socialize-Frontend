@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import PostLikedRequestModel from '../models/Posts/PostLikedRequestModel';
+import PostLikedResponseModel from '../models/Posts/PostLikedResponseModel';
 import PostPageModel from '../models/Posts/PostPageModel';
 import PostRequestModel from '../models/Posts/PostRequestModel';
 import UserModel from '../models/User/UserModel';
@@ -24,10 +26,11 @@ export class PostService {
   public postLike(postId: number) {
     const userDetails: UserModel = JSON.parse(window.localStorage.getItem('user')!)
     const request: PostLikedRequestModel = {
-      postId: postId,
-      userId: userDetails.id
+      userId: userDetails.id,
+      postId: postId
     }
-    return this.http.post<PostPageModel>(`${this.path}/`, request)
+    return this.http.post<PostLikedResponseModel>(`${this.path}/like`, request)
+    // return this.http.post<string>(`${this.path}/like`, request, { responseType: 'text' as 'json'})
   }
   
 }
