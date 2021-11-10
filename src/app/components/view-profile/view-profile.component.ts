@@ -7,6 +7,7 @@ import { NotifyService } from 'src/app/services/notify.service';
   styleUrls: ['./view-profile.component.scss']
 })
 export class ViewProfileComponent implements OnInit {
+
   @ViewChild('fileUpload') fileInputRef!: ElementRef
   files: Array<File> = []
 
@@ -27,13 +28,13 @@ export class ViewProfileComponent implements OnInit {
       for (let i = 0; i < fileLists.length; i++) {    
         let test =  fileLists.item(i)?.type
         if(test != 'image/jpeg' && 'image/png' ) {
-          await this.notifyService.sweetWarning('อัพได้แค่รูปภาพไอ่เวร')
+          await this.notifyService.sweetWarning('Invalid file type Please check the JPG or PNG file extension.')
         } else {
           this.files.push(fileLists[i])
         }
       }
     } else {
-      await this.notifyService.sweetWarning('File เกินแล้วไอ่เวร')
+      await this.notifyService.sweetWarning('Upload limit of 4 images.')
     }
     this.fileInputRef.nativeElement.value = ''
   }

@@ -8,7 +8,7 @@
     align-items: center;
     padding: 0 20px;
     #post {
-      padding-bottom: 10px;
+      padding-bottom: 5px;
       background-color: white;
       max-width: 600px;
       width: 100%;
@@ -18,17 +18,17 @@
       #content-container {
         border-radius: 15px 15px 0 0;
         margin: 0;
-        padding: 16px 10px 10px 10px;
+        padding: 15px 15px 10px;
         .profile-content {
           display: flex;
-          padding-bottom: 10px;
+          padding-bottom: 5px;
           .image-div {
-            width: 10%;
+            width: 45px;
             display: flex;
             box-sizing: border-box;
             align-items: center;
             justify-content: center;
-            margin: 0;
+            margin: 0 5px 0 0;
             padding: 0;
             .profile {
               height: 45px;
@@ -47,7 +47,7 @@
             box-sizing: border-box;
             padding-left: 2px;
             padding-top: 3px;
-            justify-content: start;
+            justify-content: flex-start;
             margin: 0;
             .profile-name {
               font-size: 16px;
@@ -147,13 +147,21 @@
           .heart {
             display: flex;
             flex-direction: row;
-            justify-content: start;
+            justify-content: flex-start;
             align-items: center;
-            width: 8%;
+            width: fit-content;
+            margin: 0 10px 0 0;
             .icon-heart {
               font-size: 18px;
               font-weight: bold;
-              color: #F34D4D;
+              color: #878787;
+              cursor: pointer;
+              &.liked {
+                color: #F34D4D;
+              }
+              &:hover {
+                filter: brightness(1.3);
+              }
             }
             .text-like {
               font-size: 14px;
@@ -165,16 +173,19 @@
           .comment {
             display: flex;
             flex-direction: row;
-            justify-content: start;
+            justify-content: flex-start;
             align-items: center;
             width: 42%;
             .icon-comment {
               font-size: 18px;
               font-weight: bold;
-              color: #6B6B6B;
+              color: #878787;
               &:hover {
-                color: #878787;
+                filter: brightness(1.3);
                 cursor: pointer;
+              }
+              &.isShow {
+                color: #56bbff;
               }
             }
             .text-comment {
@@ -196,7 +207,7 @@
           .view {
             display: flex;
             flex-direction: row;
-            justify-content: end;
+            justify-content: flex-end;
             align-items: center;
             width: 10%;
             .icon-view {
@@ -227,51 +238,54 @@
           margin: 0;
           .comment-item {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             padding-left: 6px;
             margin-bottom: 10px;
-            justify-content: start;
-            .image-profile {
+            justify-content: flex-start;
+            .main-comment {
               display: flex;
-              justify-content: center;
-              align-items: start;
-              width: 10%;
-              padding: 0;
-              margin: 0;
-              .profile {
-                height: 35px;
+              .image-profile {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
                 width: 35px;
-                border-radius: 5px;
                 padding: 0;
-                margin: 0;
+                margin: 0 5px 0 0;
+                .profile {
+                  height: 35px;
+                  width: 35px;
+                  border-radius: 5px;
+                  padding: 0;
+                  margin: 0;
+                }
               }
-            }
-            .coment-div {
-              width: 65%;
-              padding: 0;
-              margin: 0;
-              .commenter-name {
-                font-size: 14px;
-                font-weight: bold;
-                color: #534F4F;
-                margin: 0;
+              .coment-div {
+                width: 100%;
                 padding: 0;
-              }
-              .content-coment {
-                font-size: 12px;
-                font-weight: normal;
-                color: #000000;
                 margin: 0;
-                padding: 0;
+                .commenter-name {
+                  font-size: 14px;
+                  font-weight: bold;
+                  color: #534F4F;
+                  margin: 0;
+                  padding: 0;
+                }
+                .content-coment {
+                  font-size: 12px;
+                  font-weight: normal;
+                  color: #000000;
+                  margin: 0;
+                  padding: 0;
+                }
               }
             }
             .time-like {
               display: flex;
               flex-direction: row;
-              align-items: end;
-              justify-content: end;
+              align-items: flex-end;
+              justify-content: flex-end;
               padding-right: 6px;
-              width: 25%;
+              width: 100%;
               .time-ago {
                 font-size: 12px;
                 font-weight: normal;
@@ -286,9 +300,16 @@
                 .like-icon {
                   font-size: 12px;
                   font-weight: bold;
-                  color: #F34D4D;
+                  color: #878787;
                   margin: 0;
                   padding: 0;
+                  &.liked {
+                    color: #F34D4D;
+                  }
+                  &:hover {
+                    filter: brightness(1.3);
+                    cursor: pointer;
+                  }
                 }
                 .number-like {
                   padding-left: 4px;
@@ -320,7 +341,7 @@
           .image {
             display: flex;
             justify-content: center;
-            align-items: start;
+            align-items: flex-start;
             width: 10%;
             padding: 0;
             margin: 0;
@@ -336,7 +357,7 @@
             display: flex;
             flex-direction: row;
             box-sizing: border-box;
-            background-color: #FAFAFB;
+            background-color: #ececec;
             border: 1px solid #EFEFEF;
             border-radius: 5px;
             height: 30px;
@@ -344,7 +365,7 @@
             padding-left: 10px;
             padding-right: 10px;
             align-items: center;
-            justify-content: start;
+            justify-content: flex-start;
             .input {
               width: 95%;
               .input-text {
@@ -355,7 +376,7 @@
                 padding: 0;
                 width: 100%;
                 height: 28px;
-                background-color: #FAFAFB;
+                background-color: #ececec;
                 border-width: 0px;
                 border: none;
                 outline: none;

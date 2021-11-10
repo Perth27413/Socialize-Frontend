@@ -2,34 +2,36 @@
     <div class="profileBox">
     </div>
     <div id="postMain">
-        <div class="postBox">
-            <div class="postInput">
-                <textarea class="postText" placeholder="What are you thinking ?"></textarea>
-            </div>
-            <div class="options">
-                <div class="option-box">
-                    <div class="icon-box">
-                        <label for="FileInput" id="fileInput"><i class="fas fa-image input-icon" aria-hidden="true"></i></label>
-                        <input class="uploadFile" #fileUpload type="file" id="FileInput" multiple (change)="countMutifile($event)" />
-                    </div>
-                    <div class="icon-image" *ngIf="files.length">
-                        <div class="icon-bg">
-                            <div class="icon-count">
-                                <label><i class="fas fa-image input-icon" aria-hidden="true"></i></label>
-                            </div>
-                            <div class="icon-count">
-                                <label>{{files.length}} photos</label>
-                            </div>
-                            <div class="icon-count" (click)="clearPicture()">
-                                <label class="dis-icons"><i class="fas fa-times input-icon" aria-hidden="true"></i></label>
+        <div class="postLayout">
+            <div class="postBox">
+                <div class="postInput">
+                    <textarea class="postText" placeholder="What are you thinking ?"></textarea>
+                </div>
+                <div class="options">
+                    <div class="option-box">
+                        <div class="icon-box">
+                            <label for="FileInput" id="fileInput"><i class="fas fa-image input-icon" aria-hidden="true"></i></label>
+                            <input class="uploadFile" #fileUpload type="file" id="FileInput" multiple (change)="countMutifile($event)" />
+                        </div>
+                        <div class="icon-image" *ngIf="files.length">
+                            <div class="icon-bg">
+                                <div class="icon-count">
+                                    <label><i class="fas fa-image input-icon" aria-hidden="true"></i></label>
+                                </div>
+                                <div class="icon-count">
+                                    <label>{{files.length}} photos</label>
+                                </div>
+                                <div class="icon-count" (click)="clearPicture()">
+                                    <label class="dis-icons"><i class="fas fa-times input-icon" aria-hidden="true"></i></label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="post-box">
-                    <div class="post-bg">
-                        <div class="icon-post">
-                            <label>Add post</label>
+                    <div class="post-box">
+                        <div class="post-bg">
+                            <div class="icon-post">
+                                <label>Add post</label>
+                            </div>
                         </div>
                     </div>
                 </div>
