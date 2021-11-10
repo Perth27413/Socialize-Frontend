@@ -233,7 +233,6 @@
           flex-direction: column;
           box-sizing: border-box;
           overflow-y: scroll;
-          max-height: 250px;
           padding: 0;
           margin: 0;
           .comment-item {
@@ -254,7 +253,7 @@
                 .profile {
                   height: 35px;
                   width: 35px;
-                  border-radius: 5px;
+                  border-radius: 8px;
                   padding: 0;
                   margin: 0;
                 }
@@ -335,20 +334,19 @@
           flex-direction: row;
           box-sizing: border-box;
           align-items: center;
-          justify-content: center;
           padding-left: 6px;
           padding-right: 6px;
           .image {
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            width: 10%;
+            width: 35px;
             padding: 0;
-            margin: 0;
+            margin: 0 5px 0 0;
             .my-image {
               height: 35px;
               width: 35px;
-              border-radius: 5px;
+              border-radius: 8px;
               padding: 0;
               margin: 0;
             }
@@ -361,7 +359,7 @@
             border: 1px solid #EFEFEF;
             border-radius: 5px;
             height: 30px;
-            width: 90%;
+            width: 100%;
             padding-left: 10px;
             padding-right: 10px;
             align-items: center;

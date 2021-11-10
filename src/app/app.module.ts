@@ -19,6 +19,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from  '@angular/common/http';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { PopularPeopleComponent } from './components/popular-people/popular-people.component';
+import { LazyLoadingComponent } from './components/lazy-loading/lazy-loading.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PopularPeopleComponent } from './components/popular-people/popular-peop
     EditproflieComponent,
     SignUpComponent,
     SignInComponent,
-    PopularPeopleComponent
+    PopularPeopleComponent,
+    LazyLoadingComponent
   ],
   imports: [
     HttpClientModule,

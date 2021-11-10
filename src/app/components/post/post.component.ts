@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import CommentAddRequestModel from 'src/app/models/Comments/CommentAddRequestModel';
 import CommentLikedResponseModel from 'src/app/models/Comments/CommentLikedResponseModel';
 import CommentModel from 'src/app/models/Comments/CommentModel';
@@ -17,26 +17,64 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
+  @HostListener('window:scroll', ['$event'])
+  @Input() public homeRef!: ElementRef
+  
+  isBottom: boolean = false
   isShowComment: boolean = false
   postList: PostPageModel = new PostPageModel
   userDetails: UserModel = new UserModel
   comment: CommentAddRequestModel = new CommentAddRequestModel
+  currentPage: number = 1
+  isPostLoading: boolean = false
 
   constructor(private postService: PostService, private userService: UserService, private commentService: CommentService) { }
 
   ngOnInit(): void {
-    this.getPost()
+    this.isPostLoading = true
+    setTimeout(() => {
+      this.isPostLoading = false
+      this.getPost(1)
+    }, 2000)
     this.userDetails = this.userService.getUserDetails()
   }
+  
+  ngAfterViewChecked() {
+    this.onScroll()
+  }
 
-  private getPost(): void {
-    this.postService.getPost(1).subscribe((response: PostPageModel) => {
-      this.postList = response
+  private onScroll(): void {
+    try {
+      let currentScroll: number = this.homeRef.nativeElement.scrollTop + this.homeRef.nativeElement.offsetHeight
+      let maxScroll: number = this.homeRef.nativeElement.scrollHeight
+      if (currentScroll >= (maxScroll * 0.6) && !this.isBottom && (this.currentPage !== this.postList.totalPage)) {
+        this.isBottom = true
+        this.isPostLoading = true
+        setTimeout(() => {
+          this.isPostLoading = false
+          this.getPost(this.currentPage + 1)
+        }, 2000)
+      }
+    } catch (error) {
+    }
+  }
+
+  private getPost(page: number): void {
+    this.postService.getPost(page).subscribe((response: PostPageModel) => {
+      this.postList = this.mapPostListFromResonse(response)
+      this.currentPage = response.currentPage
       this.postList.posts.forEach((item: PostModel) => {
         item.showComment = false
         item.commentLists = new CommentPageModel
       })
     })
+  }
+
+  private mapPostListFromResonse(response: PostPageModel): PostPageModel {
+    let newPosts: PostPageModel = response
+    let currentPosts: PostPageModel = this.postList
+    newPosts.posts = currentPosts.posts.concat(newPosts.posts)
+    return newPosts
   }
 
   private getComment(index: number): void {
