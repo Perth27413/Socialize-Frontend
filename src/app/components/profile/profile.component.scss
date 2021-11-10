@@ -90,6 +90,7 @@
                 }
                 .nameBox {
                     padding-top: 10%;
+                    padding-left: 0;
                 }
                 .textName {
                     font-size: 25px;
@@ -100,7 +101,7 @@
                 }
                 .alertBox {
                     display: flex;
-                    width: 300px;
+                    width: 100%;
                     .alert {
                         .alertNumber {
                             font-size: 14px;

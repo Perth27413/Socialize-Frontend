@@ -6,25 +6,25 @@
     </div>
     <div class="profileBox">
         <div class="imgProfile">
-            <img src="https://images.unsplash.com/photo-1608493573324-b055427a503e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=627&q=80" alt="userProfile">
+            <img src="{{userDetails?.profilePicture != null ? userDetails?.profilePicture : userProfile}}" alt="userProfile">
         </div>
         <div class="nameBox">
-            <label class="textName">Meaw Hungry</label>
-            <label class="textDetails">UX/UI Designer | Music | Read a book</label>
+            <label class="textName">{{userDetails.firstName}} {{userDetails.lastName}}</label>
+            <label class="textDetails">{{userDetails?.details ? userDetails?.details : "-"}}</label>
         </div>
         <div class="alertBox">
             <div class="alert">
-                <label class="alertNumber">1</label>
+                <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
                 <label class="alertName">POST</label>
             </div>
                 <div class="lineBox"></div>
             <div class="alert">
-                <label class="alertNumber">2</label>
+                <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
                 <label class="alertName">FOLLOWERS</label>
             </div>
                 <div class="lineBox"></div>
             <div class="alert">
-                <label class="alertNumber">3</label>
+                <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
                 <label class="alertName">FOLLOWING</label>
             </div>
         </div>
