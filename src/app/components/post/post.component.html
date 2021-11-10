@@ -44,21 +44,23 @@
 			</div>
 			<div id="comment-container" *ngIf="post.showComment">
 				<div class="show-comment">
-					<div class="comment-item">
-						<div class="image-profile">
-							<img class="profile"
-								src="https://www.biography.com/.image/t_share/MTQyMDA0NDgwMzUzNzcyNjA2/mark-zuckerberg_gettyimages-512304736jpg.jpg"
-								alt="profile">
-						</div>
-						<div class="coment-div">
-							<div class="commenter-name">Mark Zuckerberg</div>
-							<div class="content-coment"><label class="text-comment">Cool, I like it!</label></div>
+					<div class="comment-item" *ngFor="let comment of post.commentLists.comments; index as commentIndex">
+						<div class="main-comment">
+							<div class="image-profile">
+								<img class="profile"
+									src="{{comment.owner.profilePicture}}"
+									alt="profile">
+							</div>
+							<div class="coment-div">
+								<div class="commenter-name">{{comment.owner.firstName}} {{comment.owner.lastName}}</div>
+								<div class="content-coment"><label class="text-comment">{{comment.contents}}</label></div>
+							</div>
 						</div>
 						<div class="time-like">
-							<div class="time-ago">8 hours ago</div>
+							<div class="time-ago">{{comment.date | date: 'MMM d, y, h:mm:ss a'}}</div>
 							<div class="like-comment">
-								<div class="like-icon"><i class="fas fa-heart"></i></div>
-								<div class="number-like">150</div>
+								<div class="like-icon" (click)="likeComment(i, commentIndex)" [ngClass]="{'liked': comment.isLiked}"><i class="fas fa-heart"></i></div>
+								<div class="number-like">{{comment.liked}}</div>
 							</div>
 						</div>
 					</div>
@@ -69,7 +71,7 @@
 					</div>
 					<div class="input-comment">
 						<div class="input">
-							<input class="input-text" type="text" placeholder="Write a comment...">
+							<input class="input-text" type="text" (keyup.enter)="onCommentEnter(i)" [(ngModel)]="comment.contents" placeholder="Write a comment...">
 						</div>
 					</div>
 				</div>

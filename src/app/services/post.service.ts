@@ -30,7 +30,6 @@ export class PostService {
       postId: postId
     }
     return this.http.post<PostLikedResponseModel>(`${this.path}/like`, request)
-    // return this.http.post<string>(`${this.path}/like`, request, { responseType: 'text' as 'json'})
   }
   
 }

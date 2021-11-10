@@ -238,42 +238,45 @@
           margin: 0;
           .comment-item {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             padding-left: 6px;
             margin-bottom: 10px;
             justify-content: flex-start;
-            .image-profile {
+            .main-comment {
               display: flex;
-              justify-content: center;
-              align-items: flex-start;
-              width: 10%;
-              padding: 0;
-              margin: 0;
-              .profile {
-                height: 35px;
+              .image-profile {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
                 width: 35px;
-                border-radius: 5px;
                 padding: 0;
-                margin: 0;
+                margin: 0 5px 0 0;
+                .profile {
+                  height: 35px;
+                  width: 35px;
+                  border-radius: 5px;
+                  padding: 0;
+                  margin: 0;
+                }
               }
-            }
-            .coment-div {
-              width: 65%;
-              padding: 0;
-              margin: 0;
-              .commenter-name {
-                font-size: 14px;
-                font-weight: bold;
-                color: #534F4F;
-                margin: 0;
+              .coment-div {
+                width: 100%;
                 padding: 0;
-              }
-              .content-coment {
-                font-size: 12px;
-                font-weight: normal;
-                color: #000000;
                 margin: 0;
-                padding: 0;
+                .commenter-name {
+                  font-size: 14px;
+                  font-weight: bold;
+                  color: #534F4F;
+                  margin: 0;
+                  padding: 0;
+                }
+                .content-coment {
+                  font-size: 12px;
+                  font-weight: normal;
+                  color: #000000;
+                  margin: 0;
+                  padding: 0;
+                }
               }
             }
             .time-like {
@@ -282,7 +285,7 @@
               align-items: flex-end;
               justify-content: flex-end;
               padding-right: 6px;
-              width: 25%;
+              width: 100%;
               .time-ago {
                 font-size: 12px;
                 font-weight: normal;
@@ -297,9 +300,16 @@
                 .like-icon {
                   font-size: 12px;
                   font-weight: bold;
-                  color: #F34D4D;
+                  color: #878787;
                   margin: 0;
                   padding: 0;
+                  &.liked {
+                    color: #F34D4D;
+                  }
+                  &:hover {
+                    filter: brightness(1.3);
+                    cursor: pointer;
+                  }
                 }
                 .number-like {
                   padding-left: 4px;
@@ -347,7 +357,7 @@
             display: flex;
             flex-direction: row;
             box-sizing: border-box;
-            background-color: #FAFAFB;
+            background-color: #ececec;
             border: 1px solid #EFEFEF;
             border-radius: 5px;
             height: 30px;
@@ -366,7 +376,7 @@
                 padding: 0;
                 width: 100%;
                 height: 28px;
-                background-color: #FAFAFB;
+                background-color: #ececec;
                 border-width: 0px;
                 border: none;
                 outline: none;

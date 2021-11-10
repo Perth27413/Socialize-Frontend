@@ -3,3 +3,5 @@ class CommentAddRequestModel {
   public postId: number = Number()
   public contents: string = String()
 }
+
+export default CommentAddRequestModel
