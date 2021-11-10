@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import PostPageModel from 'src/app/models/Posts/PostPageModel';
 
 @Component({
   selector: 'app-post',
@@ -6,52 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  isShowComment: boolean = false;
-  postList: { name: string, decs: string, imageProfile: string, showComment: boolean, textContent: string, photoContent: { photo: string }[] }[] = [
-    { 
-      name: "Meaw Mouw",
-      decs: "UX/UI Designer",
-      imageProfile: "https://thumbs.dreamstime.com/b/funny-crazy-cat-evil-white-open-mouth-61209625.jpg",
-      textContent: "วันนี้อากาศแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่ม",
-      photoContent: [
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"}
-      ],
-      showComment: false
-    },{ 
-      name: "Meaw Mouw",
-      decs: "UX/UI Designer",
-      imageProfile: "https://thumbs.dreamstime.com/b/funny-crazy-cat-evil-white-open-mouth-61209625.jpg",
-      textContent: "วันนี้อากาศแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่ม",
-      photoContent: [
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"}
-      ],
-      showComment: false
-    },{ 
-      name: "Meaw Mouw",
-      decs: "UX/UI Designer",
-      imageProfile: "https://thumbs.dreamstime.com/b/funny-crazy-cat-evil-white-open-mouth-61209625.jpg",
-      textContent: "วันนี้อากาศแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่ม",
-      photoContent: [
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"}
-      ],
-      showComment: false
-    },{ 
-      name: "Meaw Mouw",
-      decs: "UX/UI Designer",
-      imageProfile: "https://thumbs.dreamstime.com/b/funny-crazy-cat-evil-white-open-mouth-61209625.jpg",
-      textContent: "วันนี้อากาศแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่ม",
-      photoContent: [
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"}
-      ],
-      showComment: false
-    }
-  ]
+  isShowComment: boolean = false
+  postList: PostPageModel = new PostPageModel
 
   constructor() { }
 
@@ -67,6 +24,6 @@ export class PostComponent implements OnInit {
   }
 
   public toggleShowComment(index: number) {
-    this.postList[index].showComment = !this.postList[index].showComment
+    // this.postList[index].showComment = !this.postList[index].showComment
   }
 }
