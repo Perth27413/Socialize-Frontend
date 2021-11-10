@@ -1,78 +1,9 @@
-#profileMain {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    .bannerBox {
-        .imgBanner img {
-            width: 100%;
-            height: 250px;
-        }
-    }
-    .profileBox {
-        display: flex;
-        justify-content: space-around;
-        padding-top: 10px;
-        .imgProfile {
-            position: absolute;
-            left: 10%;
-            top: 50%;
-            img {
-                width: 150px;
-                height: 150px;
-                border-radius: 50%;
-                border: 5px solid #FFFFFF;
-                box-sizing: border-box;
-                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-            }
-        }
-        .nameBox {
-            display: flex;
-            flex-direction: column;
-            padding-left: 15%;
-        }
-        .textName {
-            font-size: 28px;
-            font-weight: bold;
-            color: #534F4F;
-        }
-        .textDetails {
-            font-size: 14px;
-            color: #939393;
-        }
-        .alertBox {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            width: 480px;
-            height: 50px;
-            background: #ffff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 17px 1px rgba(0, 0, 0, 0.25);
-            &:last-child {
-                padding-left: 15px;
-            }
-            &:first-child {
-                padding-right: 15px;
-            }
-            .alert {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                .alertNumber {
-                    font-size: 20px;
-                    font-weight: bold;
-                    color: #000000;
-                }
-                .alertName {
-                    font-size: 16px;
-                    font-weight: bold;
-                    color: #929292;
-                }
-            }
-            .lineBox {
-                height: 45px;
-                border: 1px solid #CFD0D2;
-            }
-        }
-    }
+#edit-container {
+    height: 857px;
+    width: 632px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
