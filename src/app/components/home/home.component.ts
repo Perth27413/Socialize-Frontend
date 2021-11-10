@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
       if (currentScroll >= (maxScroll * 0.9) && !this.isBottom) {
         this.isBottom = true
       }
-    } catch (err) {}
+    } catch (error) {}
   }
 
 }

@@ -42,9 +42,11 @@ export class PostComponent implements OnInit {
     try {
       let currentScroll: number = this.homeRef.nativeElement.scrollTop + this.homeRef.nativeElement.offsetHeight
       let maxScroll: number = this.homeRef.nativeElement.scrollHeight
-      if (currentScroll >= (maxScroll * 0.9) && !this.isBottom && (this.currentPage)) {
+      if (currentScroll >= (maxScroll * 0.9) && !this.isBottom && (this.currentPage !== this.postList.totalPage)) {
         this.isBottom = true
-        console.log('in if')
+        setTimeout(() => {
+          this.getPost(this.currentPage + 1)
+        }, 1500)
       }
     } catch (error) {
     }
@@ -52,13 +54,20 @@ export class PostComponent implements OnInit {
 
   private getPost(page: number): void {
     this.postService.getPost(page).subscribe((response: PostPageModel) => {
-      this.postList = response
+      this.postList = this.mapPostListFromResonse(response)
       this.currentPage = response.currentPage
       this.postList.posts.forEach((item: PostModel) => {
         item.showComment = false
         item.commentLists = new CommentPageModel
       })
     })
+  }
+
+  private mapPostListFromResonse(response: PostPageModel): PostPageModel {
+    let newPosts: PostPageModel = response
+    let currentPosts: PostPageModel = this.postList
+    newPosts.posts = currentPosts.posts.concat(newPosts.posts)
+    return newPosts
   }
 
   private getComment(index: number): void {
