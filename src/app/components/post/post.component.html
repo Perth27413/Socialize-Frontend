@@ -1,26 +1,26 @@
 <div id="postMain">
   <div id="postBox">
-		<div id="post" *ngFor="let post of postList, let i = index">
+		<div id="post" *ngFor="let post of postList.posts, let i = index">
 			<div id="content-container">
 				<div class="profile-content">
 					<div class="image-div">
-						<img class="profile" src={{post.imageProfile}} alt="profile">
+						<img class="profile" src={{post.owner.profilePicture}} alt="profile">
 					</div>
 					<div class="profile-text">
-						<p class="profile-name">{{post.name}}</p>
-						<p class="description">{{post.decs}}</p>
+						<p class="profile-name">{{post.owner.firstName}} {{post.owner.lastName}}</p>
+						<p class="description">{{post.owner.details}}</p>
 					</div>
 					<div class="more-icon">
 						<i class="fas fa-ellipsis-h"></i>
 					</div>
 				</div>
 				<div class="text-content">
-					<label class="text-desc">{{post.textContent}}</label>
+					<label class="text-desc">{{post.contents}}</label>
 				</div>
 				<div class="photo-content">
-					<div class="photo-grid" [ngClass]="getPhotoLayoutClassName(post.photoContent.length)">
-						<img class="photo" *ngFor="let photo of post.photoContent, let index = index"
-							[ngClass]="getPhotoClassName(index)" src={{photo.photo}} alt="photo">
+					<div class="photo-grid" [ngClass]="getPhotoLayoutClassName(post.picture.length)">
+						<img class="photo" *ngFor="let photo of post.picture, let index = index"
+							[ngClass]="getPhotoClassName(index)" src={{photo}} alt="photo">
 					</div>
 				</div>
 				<div class="like-container">
@@ -30,7 +30,7 @@
 					</div>
 					<div class="comment">
 						<div class="icon-comment" (click)="toggleShowComment(i)"><i class="fas fa-comment"></i></div>
-						<div class="text-comment">4</div>
+						<div class="text-comment">5</div>
 					</div>
 					<div class="date">
 						<label class="text-date">27 OCT 2021</label>
@@ -41,7 +41,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="comment-container" *ngIf="post.showComment">
+			<div id="comment-container">
 				<div class="show-comment">
 					<div class="comment-item">
 						<div class="image-profile">

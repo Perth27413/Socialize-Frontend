@@ -9,7 +9,7 @@ import UserModel from '../models/User/UserModel';
   providedIn: 'root'
 })
 export class UserService {
-  private path: string = 'http://localhost:3000/api/user'
+  private path: string = 'http://socialize.ddns.net:3000/api/user'
 
   constructor(private cookie: CookieService, private http: HttpClient) { }
 
