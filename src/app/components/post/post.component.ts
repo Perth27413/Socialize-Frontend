@@ -26,6 +26,7 @@ export class PostComponent implements OnInit {
   userDetails: UserModel = new UserModel
   comment: CommentAddRequestModel = new CommentAddRequestModel
   currentPage: number = 1
+  isPostLoading: boolean = false
 
   constructor(private postService: PostService, private userService: UserService, private commentService: CommentService) { }
 
@@ -42,11 +43,13 @@ export class PostComponent implements OnInit {
     try {
       let currentScroll: number = this.homeRef.nativeElement.scrollTop + this.homeRef.nativeElement.offsetHeight
       let maxScroll: number = this.homeRef.nativeElement.scrollHeight
-      if (currentScroll >= (maxScroll * 0.9) && !this.isBottom && (this.currentPage !== this.postList.totalPage)) {
+      if (currentScroll >= (maxScroll * 0.6) && !this.isBottom && (this.currentPage !== this.postList.totalPage)) {
         this.isBottom = true
+        this.isPostLoading = true
         setTimeout(() => {
+          this.isPostLoading = false
           this.getPost(this.currentPage + 1)
-        }, 1500)
+        }, 2000)
       }
     } catch (error) {
     }
