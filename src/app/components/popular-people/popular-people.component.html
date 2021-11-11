@@ -1,3 +1,28 @@
 <div id="popularPeopleMain">
-  popular People
+  <div id="popularPeople">
+    <div id="icon">
+      <i class="fas fa-user"></i>
+    </div>
+    <div id="headerText">
+      <label class="topic">Poppular People</label>
+    </div>
+  </div>
+  <div id="rankingPeople">
+    <div id="rowranking"  *ngFor="let pop of popular">
+      <div id="iconRanking1">
+        <img
+          id="image"
+          [src]="pop.icon"
+          alt=""
+        />
+      </div>
+      <div id="detail">
+        <div id="name">{{pop.name}}</div>
+        <div id="position">{{pop.position}}</div>
+      </div>
+      <div id="button">
+        <button id="follow">follow</button>
+      </div>
+    </div>
+  </div>
 </div>
