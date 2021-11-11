@@ -20,6 +20,7 @@ import { HttpClientModule } from  '@angular/common/http';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { PopularPeopleComponent } from './components/popular-people/popular-people.component';
 import { LazyLoadingComponent } from './components/lazy-loading/lazy-loading.component';
+import { StoryComponent } from './components/story/story.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LazyLoadingComponent } from './components/lazy-loading/lazy-loading.com
     SignUpComponent,
     SignInComponent,
     PopularPeopleComponent,
-    LazyLoadingComponent
+    LazyLoadingComponent,
+    StoryComponent
   ],
   imports: [
     HttpClientModule,

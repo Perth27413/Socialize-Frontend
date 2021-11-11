@@ -1,0 +1,30 @@
+<div id="storyMain">
+    <div id="storyBox" #storyBox>
+      <div id="createStoryBox">
+        <div id="userIcon">
+          <img id="image" src="../../../assets/image/profile.jpg" alt="prifile" />
+        </div>
+        <div id="iconBox">
+          <div id="createIcon">
+            <i class="fas fa-plus" id="create"></i>
+          </div>
+        </div>
+      </div>
+      <div class="StoryDay" id="{{i + 1}}" *ngFor="let story of storyList, let i = index">
+        <div id="userIcon">
+          <img id="image" [src]="story.user" />
+        </div>
+        <img id="storyImage" [src]="story.image" />
+      </div>
+    </div>
+    <div id="leftArrowBox">
+      <div id="leftArrow" (click)="leftArrow()" [ngStyle]="{'opacity': leftScroll ? 1 : 0}">
+        <i class="fas fa-arrow-left" id="arrow"></i>
+      </div>
+    </div>
+    <div id="rightArrowBox">
+      <div id="rightArrow" (click)="rightArrow()" [ngStyle]="{'opacity': rightScroll ? 1 : 0}">
+        <i class="fas fa-arrow-right" id="arrow"></i>
+      </div>
+    </div>
+  </div>

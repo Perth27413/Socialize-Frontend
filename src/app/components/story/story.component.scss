@@ -1,0 +1,136 @@
+#storyMain {
+    width: 100%;
+    display: flex;
+    position: relative;
+    #storyBox {
+      width: 98%;
+      height: 215px;
+      margin-top: 1%;
+      display: flex;
+      overflow-x: scroll;
+      position: relative;
+      scroll-behavior: smooth;
+      @media screen and (max-width: 1080px) {
+        margin-top: 4%;
+      }
+  
+      #createStoryBox {
+        width: 160px;
+        height: 100%;
+        margin-left: 2%;
+        border-radius: 5px;
+        display: flex;
+        cursor: pointer;
+        background-color: #e4e4e4;
+        #iconBox {
+          width: 160px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          #createIcon {
+            background-color: #e3eff8;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            font-size: 40px;
+            color: #0099fe;
+          }
+        }
+        #userIcon {
+          margin-top: 177px;
+          display: flex;
+          align-items: flex-end;
+          position: absolute;
+          margin-left: 0.4%;
+          #image {
+            height: 35px;
+            width: 35px;
+            border-radius: 100%;
+          }
+        }
+      }
+      .StoryDay {
+        width: 160px;
+        height: 100%;
+        margin-left: 1%;
+        border-radius: 5px;
+        display: flex;
+        background-color: #e4e4e4;
+        #storyImage {
+          inline-size: -webkit-fill-available;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        #userIcon {
+          width: 6%;
+          margin-top: 177px;
+          display: flex;
+          align-items: flex-end;
+          margin-left: 0.4%;
+          position: absolute;
+          @media screen and (max-width: 1080px) {
+            width: 18%;
+            margin-left: 1.2%;
+          }
+          #image {
+            height: 35px;
+            width: 35px;
+            border-radius: 100%;
+          }
+        }
+      }
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    #leftArrowBox {
+      align-items: center;
+      margin-left: 0.5%;
+      margin-top: 1%;
+      position: absolute;
+      width: 99%;
+      #leftArrow {
+        position: absolute;
+        margin-top: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        height: 55px;
+        width: 55px;
+        border-radius: 100%;
+        background-color: #bbe1fa;
+        transition: all 0.4s ease-in-out;
+      }
+      @media screen and (max-width: 1080px) {
+        display: none;
+      }
+    }
+    #arrow {
+      font-size: 24px;
+      color: #0099fe;
+    }
+    #rightArrowBox {
+      margin-top: 1%;
+      #rightArrow {
+        position: absolute;
+        margin-top: 80px;
+        margin-left: -30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        height: 55px;
+        width: 55px;
+        border-radius: 100%;
+        background-color: #bbe1fa;
+        transition: all 0.4s ease-in-out;
+      }
+      @media screen and (max-width: 1080px) {
+        display: none;
+      }
+    }
+  }
