@@ -1,27 +1,27 @@
 <div id="sideBarMain">
   <div id="menuContainer">
-    <div id="profile">
+    <div id="profile" (click)="onProfileClick()">
       <div class="profile-image">
-        <img class="image" src="../../../assets/image/profile.jpg" alt="prifile">
+        <img class="image" src="{{userDetails.profilePicture}}" alt="profile">
       </div>
       <div class="profile-text">
-        <p class="profile-name">Meaw Hungry</p>
-        <p class="description">UX/UI Designer</p>
+        <p class="profile-name">{{userDetails.firstName}} {{userDetails.lastName}}</p>
+        <p class="description">{{userDetails.details || 'Hello world'}}</p>
       </div>
     </div>
     <div id="menu" >
-      <div class="menu-div" type="button" (click)="selectMenu(i)" [ngClass]="cardActive(i)" *ngFor="let menu of menuList, let i = index">
+      <div class="menu-div" type="button" (click)="selectMenu(i)" [ngClass]="{'card-active': this.menuList[i].isActive}" *ngFor="let menu of menuList, let i = index">
         <div class="menu-icon">
           <i class={{menu.icon}}></i>
         </div>
         <div class="menu-name">
-          <p class="text" [ngClass]="cardActive(i)">{{menu.name}}</p>
+          <p class="text" [ngClass]="{'text-active': this.menuList[i].isActive}">{{menu.name}}</p>
         </div>
       </div>
     </div>
   </div>
   <div id="logoutContainer">
-    <div id="logout">
+    <div id="logout" (click)="logout()">
       <div class="logout-icon">
         <i class="fas fa-sign-out-alt"></i>
       </div>

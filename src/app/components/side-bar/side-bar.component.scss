@@ -1,11 +1,11 @@
 #sideBarMain {
   $nav-height: 50px;
-  height: calc(100vh - #{$nav-height + 30px});
+  height: calc(100vh - #{$nav-height});
   padding: 15px 10px 15px;
   #menuContainer {
     margin: 0;
     padding: 0;
-    height: 92%;
+    height: calc(100% - 50px);
     border-bottom: 1px solid #CFD0D2;
     #profile {
       display: flex;
@@ -17,6 +17,10 @@
       height: 65px;
       margin: 0;
       padding-left: 8px;
+      &:hover {
+        cursor: pointer;
+        background-color: #E1F2FF;
+      }
       .profile-image {
         display: flex;
         box-sizing: border-box;
@@ -57,23 +61,20 @@
         }
       }
     }
-    :hover {
-      cursor: pointer;
-    }
     #menu {
       display: flex;
       flex-direction: column;
-      box-sizing: border-box;
-      margin-top: 22px;
+      margin-top: 20px;
       padding: 0;
+      height: calc(100% - 100px);
+      overflow-y: auto;
       .menu-div {
         display: flex;
-        box-sizing: border-box;
         align-items: center;
         justify-content: start;
-        height: 40px;
-        margin-top: 2px;
-        padding: 0;
+        height: 45px;
+        min-height: 45px;
+        margin: 0 0 2px;
         background-color: white;
         border-radius: 7px;
         .menu-icon {
@@ -96,26 +97,26 @@
             color: #828282;
             font-size: 14px;
             font-weight: bold;
-          }
-          .text.text-active {
-            color: #4DB8FF;
+            &.text-active {
+              color: #4DB8FF;
+            }
           }
         }
         &:hover {
           background-color: #E1F2FF;
           cursor: pointer;
         }
+        &.card-active {
+          background-color: #E1F2FF;
+        }   
       }
-      .menu-div.card-active {
-        background-color: #E1F2FF;
-      }   
     }
 
   }
   #logoutContainer {
     margin: 0;
     padding-top: 10px;
-    height: 8%;
+    height: 50px;
     #logout {
       display: flex;
       flex-direction: row;
@@ -147,9 +148,19 @@
           font-weight: bold;
         }
       }
-    }
-    :hover {
-      cursor: pointer;
+      &:hover {
+        background-color: #92d0ff;
+        color: #ffffff;
+        cursor: pointer;
+        .logout-icon {
+          color: #ffffff;
+        }
+        .logout-name {
+          .logout-text {
+            color: #ffffff;
+          }
+        }
+      }
     }
   }
 }

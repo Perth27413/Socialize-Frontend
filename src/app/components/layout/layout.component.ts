@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,12 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  isLogin: boolean = true
+  isLogin: boolean = this.userService.getLogin()
   showSideBar: boolean = false
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => { 
-      // get isLogin
+      this.isLogin = this.userService.getLogin()
       return false 
     }
   }

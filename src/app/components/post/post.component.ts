@@ -1,4 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import CommentAddRequestModel from 'src/app/models/Comments/CommentAddRequestModel';
+import CommentLikedResponseModel from 'src/app/models/Comments/CommentLikedResponseModel';
+import CommentModel from 'src/app/models/Comments/CommentModel';
+import CommentPageModel from 'src/app/models/Comments/CommentPageModel';
+import PostLikedResponseModel from 'src/app/models/Posts/PostLikedResponseModel';
+import PostModel from 'src/app/models/Posts/PostModel';
+import PostPageModel from 'src/app/models/Posts/PostPageModel';
+import UserModel from 'src/app/models/User/UserModel';
+import { CommentService } from 'src/app/services/comment.service';
+import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-post',
@@ -6,72 +17,119 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  isShowComment: boolean = false;
-  test: string = "แมว"
-  postList: { name: string, decs: string, imageProfile: string, textContent: string, numOfPhoto: number, photoContent: { photo: string }[] }[] = [
-    { 
-      name: "Meaw Mouw",
-      decs: "UX/UI Designer",
-      imageProfile: "https://thumbs.dreamstime.com/b/funny-crazy-cat-evil-white-open-mouth-61209625.jpg",
-      textContent: "วันนี้อากาศแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่ม",
-      numOfPhoto: 2,
-      photoContent: [
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"}
-      ]
-    },{ 
-      name: "Meaw Mouw",
-      decs: "UX/UI Designer",
-      imageProfile: "https://thumbs.dreamstime.com/b/funny-crazy-cat-evil-white-open-mouth-61209625.jpg",
-      textContent: "วันนี้อากาศแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่ม",
-      numOfPhoto: 1,
-      photoContent: [
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-      ]
-    },{ 
-      name: "Meaw Mouw",
-      decs: "UX/UI Designer",
-      imageProfile: "https://thumbs.dreamstime.com/b/funny-crazy-cat-evil-white-open-mouth-61209625.jpg",
-      textContent: "วันนี้อากาศแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่ม",
-      numOfPhoto: 4,
-      photoContent: [
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-      ]
-    },{ 
-      name: "Meaw Mouw",
-      decs: "UX/UI Designer",
-      imageProfile: "https://thumbs.dreamstime.com/b/funny-crazy-cat-evil-white-open-mouth-61209625.jpg",
-      textContent: "วันนี้อากาศแจ่มแจ่มแจ่มแจ่มแจ่มแจ่มแจ่ม",
-      numOfPhoto: 3,
-      photoContent: [
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"},
-        {photo: "https://www.brandbuffet.in.th/wp-content/uploads/2018/04/1-1.jpg"}
-      ]
-    }
-  ]
+  @HostListener('window:scroll', ['$event'])
+  @Input() public homeRef!: ElementRef
+  
+  isBottom: boolean = false
+  isShowComment: boolean = false
+  postList: PostPageModel = new PostPageModel
+  userDetails: UserModel = new UserModel
+  comment: CommentAddRequestModel = new CommentAddRequestModel
+  currentPage: number = 1
+  isPostLoading: boolean = false
 
-  constructor() { }
+  constructor(private postService: PostService, private userService: UserService, private commentService: CommentService) { }
 
   ngOnInit(): void {
+    this.isPostLoading = true
+    setTimeout(() => {
+      this.isPostLoading = false
+      this.getPost(1)
+    }, 2000)
+    this.userDetails = this.userService.getUserDetails()
+  }
+  
+  ngAfterViewChecked() {
+    this.onScroll()
   }
 
-  gridPhotoLayout(index: number) {
-    return {
-      'grid1' : this.postList[index].photoContent.length === 1,
-      'grid2' : this.postList[index].photoContent.length === 2,
-      'grid3' : this.postList[index].photoContent.length === 3,
-      'photo1' : this.postList[index].photoContent.length === 1,
-      'photo2' : this.postList[index].photoContent.length === 2,
-      'photo3' : this.postList[index].photoContent.length === 3,
-      'photo-grid3' : this.postList[index].photoContent.length === 3
+  private onScroll(): void {
+    try {
+      let currentScroll: number = this.homeRef.nativeElement.scrollTop + this.homeRef.nativeElement.offsetHeight
+      let maxScroll: number = this.homeRef.nativeElement.scrollHeight
+      if (currentScroll >= (maxScroll * 0.6) && !this.isBottom && (this.currentPage !== this.postList.totalPage)) {
+        this.isBottom = true
+        this.isPostLoading = true
+        setTimeout(() => {
+          this.isPostLoading = false
+          this.getPost(this.currentPage + 1)
+        }, 2000)
+      }
+    } catch (error) {
     }
   }
 
-  toggleShowComment() {
-    this.isShowComment = !this.isShowComment;
+  private getPost(page: number): void {
+    this.postService.getPost(page).subscribe((response: PostPageModel) => {
+      this.postList = this.mapPostListFromResonse(response)
+      this.currentPage = response.currentPage
+      this.postList.posts.forEach((item: PostModel) => {
+        item.showComment = false
+        item.commentLists = new CommentPageModel
+      })
+    })
+  }
+
+  private mapPostListFromResonse(response: PostPageModel): PostPageModel {
+    let newPosts: PostPageModel = response
+    let currentPosts: PostPageModel = this.postList
+    newPosts.posts = currentPosts.posts.concat(newPosts.posts)
+    return newPosts
+  }
+
+  private getComment(index: number): void {
+    const post: PostModel = this.postList.posts[index]
+    this.commentService.getComment(post.id).subscribe((response: CommentPageModel) => {
+      this.postList.posts[index].commentLists = response
+    })
+  }
+
+  private addComment(index: number): void {
+    this.commentService.addComment(this.comment).subscribe((response: CommentPageModel) => {
+      this.postList.posts[index].commentLists = response
+      this.comment = new CommentAddRequestModel
+    })
+  }
+
+  public getPhotoLayoutClassName(pictureLength: number): string {
+    return `grid-${pictureLength}`
+  }
+
+  public getPhotoClassName(index: number) {
+    return `photo-${index + 1}`
+  }
+
+  public async toggleShowComment(index: number) {
+    this.postList.posts[index].showComment = !this.postList.posts[index].showComment
+    if (this.postList.posts[index].showComment) {
+      this.getComment(index)
+    }
+  }
+
+  public onCommentEnter(index: number) {
+    const postId: number = this.postList.posts[index].id
+    if (this.comment.contents.length > 0) {
+      this.comment.postId = postId
+      this.addComment(index)
+    }
+  }
+
+  public likePost(index: number): void {
+    this.postService.postLike(this.postList.posts[index].id).subscribe((response: PostLikedResponseModel) => {
+      if (response) {
+        this.postList.posts[index].liked = response.liked
+        this.postList.posts[index].isLiked = response.isLiked
+      }
+    })
+  }
+
+  public likeComment(postIndex: number, commentIndex: number): void {
+    const comment: CommentModel = this.postList.posts[postIndex].commentLists.comments[commentIndex]
+    this.commentService.likeComment(comment.id).subscribe((response: CommentLikedResponseModel) => {
+      if (response) {
+        this.postList.posts[postIndex].commentLists.comments[commentIndex].isLiked = response.isLiked
+        this.postList.posts[postIndex].commentLists.comments[commentIndex].liked = response.liked
+      }
+    })
   }
 }

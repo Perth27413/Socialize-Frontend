@@ -1,11 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-<<<<<<< Updated upstream
     "analytics": "913469a4-4765-4a1a-a986-39018b7fb55a"
-=======
-    "analytics": "150dac9c-2481-4cf9-89e4-3e02c49e751a"
->>>>>>> Stashed changes
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -55,7 +51,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           },

@@ -3,7 +3,7 @@
   $side-bar-width: 250px;
   #navBox {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     top: 0;
     left: 0;
     width: 100vw;
@@ -18,11 +18,12 @@
     #sideBarBox {
       background-color: #ffffff;
       width: $side-bar-width;
+      z-index: 2;
     }
     #mainBox {
       width: calc(100vw - #{$side-bar-width});
       height: calc(100vh - #{$nav-height});
-      overflow-y: auto;
+      overflow-y: hidden;
       background-color: #f1f1f1;
     }
     @media screen and (max-width: 1080px) {

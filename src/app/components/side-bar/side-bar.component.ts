@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import SideBarMenuModel from 'src/app/models/SideBarMenuModel';
+import UserModel from 'src/app/models/User/UserModel';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -6,48 +10,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {
-  menuList: {icon: string, name: string, isActive: boolean}[] = [
-    {icon: 'fas fa-home', name: 'Home', isActive: true},
-    {icon: 'fas fa-users', name: 'Follows', isActive: false},
-    {icon: 'fas fa-star', name: 'Favorites', isActive: false}
+ 
+  userDetails!: UserModel
+  menuList: Array<SideBarMenuModel> = [
+    {icon: 'fas fa-home', name: 'Home', isActive: false, path: '/'},
+    {icon: 'fas fa-users', name: 'Follows', isActive: false, path: ''},
+    {icon: 'fas fa-star', name: 'Favorites', isActive: false, path: ''}
   ]
 
-  constructor() { }
-  ngOnInit(): void {}
+  constructor(private userService: UserService, private router: Router) { }
 
-  selectMenu(index: number) {
-    console.log(index)
-    switch (index) {
-      case 0:
-        this.menuList[0].isActive = true;
-        this.menuList[1].isActive = false;
-        this.menuList[2].isActive = false;
-        break;
-      case 1:
-        this.menuList[0].isActive = false;
-        this.menuList[1].isActive = true;
-        this.menuList[2].isActive = false;
-        break;
-      case 2:
-        this.menuList[0].isActive = false;
-        this.menuList[1].isActive = false;
-        this.menuList[2].isActive = true;
-        break;
-      default:
-        this.menuList[0].isActive = true;
-        this.menuList[1].isActive = false;
-        this.menuList[2].isActive = false;
-        break;
-    }
+  ngOnInit(): void {
+    this.userDetails = this.userService.getUserDetails()
+    this.checkPath()
   }
 
-  cardActive(index: number) {
-
-    return {
-      'card-active' : this.menuList[index].isActive,
-      'text-active' : this.menuList[index].isActive
-    }
+  private checkPath(): void {
+    this.menuList.forEach((item: SideBarMenuModel) => {
+      if (item.path === window.location.pathname) {
+        item.isActive = true
+      }
+    })
   }
-  
 
+  public selectMenu(index: number): void {
+    this.router.navigateByUrl(this.menuList[index].path)
+    this.menuList.forEach(item => item.isActive = false)
+    this.menuList[index].isActive = true
+  }
+
+  public logout(): void {
+    this.userService.setLogout()
+    this.router.navigateByUrl('/login')
+  }
+
+  public onProfileClick(): void {
+    this.router.navigateByUrl('/profile/' + this.userDetails.id)
+    this.menuList.forEach(item => item.isActive = false)
+  }
 }

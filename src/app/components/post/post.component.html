@@ -1,95 +1,82 @@
-<div id="post" *ngFor="let post of postList, let i = index">
-    <div id="content-container">
-        <div class="profile-content">
-            <div class="image-div">
-                <img class="profile" src={{post.imageProfile}} alt="profile">
-            </div>
-            <div class="profile-text">
-                <p class="profile-name">{{post.name}}</p>
-                <p class="description">{{post.decs}}</p>
-            </div>
-            <div class="more-icon">
-                <i class="fas fa-ellipsis-h"></i>
-            </div>
-        </div>
-        <div class="text-content">
-            <label class="text-desc">{{post.textContent}}</label>
-        </div>
-        <div class="photo-content" [ngClass]="gridPhotoLayout(i)">
-            <div class="photo-grid photo-grid-3" *ngFor="let photo of post.photoContent" [ngClass]="gridPhotoLayout(i)">
-                <img class="photo" src={{photo.photo}} alt="photo" [ngClass]="gridPhotoLayout(i)">
-            </div>
-        </div>
-        <div class="like-container">
-            <div class="heart">
-                <div class="icon-heart"><i class="fas fa-heart"></i></div>
-                <div class="text-like">3</div>
-            </div>
-            <div class="comment">
-                <div class="icon-comment" (click)="toggleShowComment()"><i class="fas fa-comment"></i></div>
-                <div class="text-comment">4</div>
-            </div>
-            <div class="date">
-                <label class="text-date">27 OCT 2021</label>
-            </div>
-            <div class="view">
-                <div class="icon-view"><i class="fas fa-eye"></i></div>
-                <div class="text-view">12K</div>
-            </div>
-        </div>
-    </div>
-    <div id="comment-container" *ngIf="isShowComment">
-        <div class="show-comment">
-            <div class="comment-item">
-                <div class="image-profile">
-                    <img class="profile" src="https://www.biography.com/.image/t_share/MTQyMDA0NDgwMzUzNzcyNjA2/mark-zuckerberg_gettyimages-512304736jpg.jpg" alt="profile">
-                </div>
-                <div class="coment-div">
-                    <div class="commenter-name">Mark Zuckerberg</div>
-                    <div class="content-coment"><label class="text-comment">Cool, I like it!</label></div>
-                </div>
-                <div class="time-like">
-                    <div class="time-ago">8 hours ago</div>
-                    <div class="like-comment">
-                        <div class="like-icon"><i class="fas fa-heart"></i></div>
-                        <div class="number-like">150</div>
-                    </div>
-                </div>
-            </div>
-            <div class="comment-item">
-                <div class="image-profile">
-                    <img class="profile" src="https://www.biography.com/.image/t_share/MTQyMDA0NDgwMzUzNzcyNjA2/mark-zuckerberg_gettyimages-512304736jpg.jpg" alt="profile">
-                </div>
-                <div class="coment-div">
-                    <div class="commenter-name">Mark Zuckerberg</div>
-                    <div class="content-coment"><label class="text-comment">
-                        Cool, I like it! Cool, I like it! 
-                        Cool, I like it! Cool, I like it! 
-                        Cool, I like it! Cool, I like it! Cool, I like it! Cool, I like it! 
-                        Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it!  Cool, I like it! 
-                    </label></div>
-                </div>
-                <div class="time-like">
-                    <div class="time-ago">8 hours ago</div>
-                    <div class="like-comment">
-                        <div class="like-icon"><i class="fas fa-heart"></i></div>
-                        <div class="number-like">150</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="write-comment">
-            <div class="image">
-                <img class="my-image" src="../../../assets/image/profile.jpg" alt="profile">
-            </div>
-            <div class="input-comment">
-                <div class="input">
-                    <input class="input-text" type="text" placeholder="Write a comment...">
-                </div>
-                <div class="icon-camera">
-                    <i class="fas fa-camera"></i> 
-                </div>
-            </div>
-        </div>
-    </div>
+<div id="postMain">
+  <div id="postBox">
+		<div id="post" *ngFor="let post of postList.posts, let i = index">
+			<div id="content-container">
+				<div class="profile-content">
+					<div class="image-div">
+						<img class="profile" src={{post.owner.profilePicture}} alt="profile">
+					</div>
+					<div class="profile-text">
+						<p class="profile-name">{{post.owner.firstName}} {{post.owner.lastName}}</p>
+						<p class="description">{{post.owner.details || 'Hello World'}}</p>
+					</div>
+					<div class="more-icon">
+						<i class="fas fa-ellipsis-h"></i>
+					</div>
+				</div>
+				<div class="text-content">
+					<label class="text-desc">{{post.contents}}</label>
+				</div>
+				<div class="photo-content">
+					<div class="photo-grid" [ngClass]="getPhotoLayoutClassName(post.picture.length)">
+						<img class="photo" *ngFor="let photo of post.picture, let index = index"
+							[ngClass]="getPhotoClassName(index)" src={{photo}} alt="photo">
+					</div>
+				</div>
+				<div class="like-container">
+					<div class="heart">
+						<div class="icon-heart" [ngClass]="{'liked': post.isLiked}" (click)="likePost(i)">
+							<i class="fas fa-heart" aria-hidden="true"></i>
+						</div>
+						<div class="text-like">{{post.liked}}</div>
+					</div>
+					<div class="comment">
+						<div class="icon-comment" [ngClass]="{'isShow': post.showComment}" (click)="toggleShowComment(i)"><i class="fas fa-comment"></i></div>
+					</div>
+					<div class="date">
+						<label class="text-date">{{post.date | date: 'dd/MM/yyyy'}}</label>
+					</div>
+					<div class="view">
+						<div class="icon-view"><i class="fas fa-eye"></i></div>
+						<div class="text-view">{{post.viewed}}</div>
+					</div>
+				</div>
+			</div>
+			<div id="comment-container" *ngIf="post.showComment">
+				<div class="show-comment">
+					<div class="comment-item" *ngFor="let comment of post.commentLists.comments; index as commentIndex">
+						<div class="main-comment">
+							<div class="image-profile">
+								<img class="profile"
+									src="{{comment.owner.profilePicture}}"
+									alt="profile">
+							</div>
+							<div class="coment-div">
+								<div class="commenter-name">{{comment.owner.firstName}} {{comment.owner.lastName}}</div>
+								<div class="content-coment"><label class="text-comment">{{comment.contents}}</label></div>
+							</div>
+						</div>
+						<div class="time-like">
+							<div class="time-ago">{{comment.date | date: 'MMM d, y, h:mm:ss a'}}</div>
+							<div class="like-comment">
+								<div class="like-icon" (click)="likeComment(i, commentIndex)" [ngClass]="{'liked': comment.isLiked}"><i class="fas fa-heart"></i></div>
+								<div class="number-like">{{comment.liked}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="write-comment">
+					<div class="image">
+						<img class="my-image" src="{{userDetails.profilePicture}}" alt="profile">
+					</div>
+					<div class="input-comment">
+						<div class="input">
+							<input class="input-text" type="text" (keyup.enter)="onCommentEnter(i)" [(ngModel)]="comment.contents" placeholder="Write a comment...">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<app-lazy-loading *ngIf="isPostLoading"></app-lazy-loading>
+	</div>
 </div>

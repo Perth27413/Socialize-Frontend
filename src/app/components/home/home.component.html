@@ -1,3 +1,8 @@
-<p>PPPPPPPPPPPPPPPPP</p>
-<app-post></app-post>
-
+<div id="homeMain" #home (scroll)="onScroll($event)">
+  <div id="homePost">
+    <app-post [homeRef]="homeRef"></app-post>
+  </div>
+  <div id="homePopular">
+    <app-popular-people></app-popular-people>
+  </div>
+</div>
