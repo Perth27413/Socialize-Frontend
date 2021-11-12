@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 
 
 @Component({
@@ -7,10 +7,10 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./story.component.scss']
 })
 export class StoryComponent implements AfterViewInit {
-
   @ViewChild('storyBox') public scroll!: ElementRef<HTMLElement>;
   leftScroll: boolean = false
   rightScroll: boolean = true
+  scrollSlide: number = 320
 
   constructor() {
   }
@@ -18,29 +18,23 @@ export class StoryComponent implements AfterViewInit {
   ngAfterViewInit(): void {
   }
 
+  private showScrollCheck(currentScroll: number): void {
+    let maxScroll: number = this.scroll.nativeElement.scrollWidth - this.scroll.nativeElement.clientWidth
+    this.leftScroll = currentScroll <= 0 ? false : true
+    this.rightScroll = currentScroll >= (maxScroll * 0.9) ? false : true
+  }
+
 
   public async leftArrow() {
-    let maxScroll = this.scroll.nativeElement.scrollWidth - this.scroll.nativeElement.clientWidth
-    this.scroll.nativeElement.scrollLeft = this.scroll.nativeElement.scrollLeft - 160
-    await new Promise(f => setTimeout(f, 100));
-    if (this.scroll.nativeElement.scrollLeft <= 0) {
-      this.leftScroll = false
-    }
-    else if (this.scroll.nativeElement.scrollLeft < maxScroll) {
-      this.rightScroll = true
-    }
+    let currentScroll: number = this.scroll.nativeElement.scrollLeft - this.scrollSlide
+      this.scroll.nativeElement.scrollLeft = this.scroll.nativeElement.scrollLeft - this.scrollSlide
+      this.showScrollCheck(currentScroll)
   }
 
   public async rightArrow() {
-    let maxScroll = this.scroll.nativeElement.scrollWidth - this.scroll.nativeElement.clientWidth
-    this.scroll.nativeElement.scrollLeft = this.scroll.nativeElement.scrollLeft + 160
-    await new Promise(f => setTimeout(f, 100));
-    if (this.scroll.nativeElement.scrollLeft >= maxScroll) {
-      this.rightScroll = false
-    }
-    else if (this.scroll.nativeElement.scrollLeft > 0) {
-      this.leftScroll = true
-    }
+    let currentScroll = this.scroll.nativeElement.scrollLeft + this.scrollSlide
+    this.scroll.nativeElement.scrollLeft = this.scroll.nativeElement.scrollLeft + this.scrollSlide
+    this.showScrollCheck(currentScroll)
   }
 
   storyList: { user: string, image: string, isActive: boolean }[] = [
