@@ -6,16 +6,13 @@ import { Component, AfterViewInit, ViewChild, ElementRef, HostListener } from '@
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.scss']
 })
-export class StoryComponent implements AfterViewInit {
+export class StoryComponent {
   @ViewChild('storyBox') public scroll!: ElementRef<HTMLElement>;
   leftScroll: boolean = false
   rightScroll: boolean = true
   scrollSlide: number = 320
 
   constructor() {
-  }
-
-  ngAfterViewInit(): void {
   }
 
   private showScrollCheck(currentScroll: number): void {
