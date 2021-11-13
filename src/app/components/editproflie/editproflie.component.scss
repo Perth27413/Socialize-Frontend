@@ -96,9 +96,17 @@
     }
     @media screen and (max-width: 980px) {
         width: 100%;
+        .input-item {
+            display: flex;
+            flex-direction: column;
+        }
     }
     @media screen and (max-width: 380px) {
         width: 100%;
         padding: 0;
+            .input-item {
+                display: flex;
+                flex-direction: column;
+            }
     }
 }
