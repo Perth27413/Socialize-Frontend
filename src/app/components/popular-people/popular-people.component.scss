@@ -14,6 +14,7 @@
     }
     #headerText {
       margin-left: 10px;
+      font-weight: bold;
     }
   }
   #rankingPeople {
@@ -24,18 +25,15 @@
       margin-bottom: 5px;
       height: 50px;
       border-radius: 5px;
-      &:hover {
-        background-color: #E1F2FF;
+      #iconRanking1 {
+      display: flex;
+      justify-content: flex-start;
+      width: 18%;
+      #image {
+        height: 41px;
+        width: 41px;
+        border-radius: 10px;
       }
-        #iconRanking1 {
-        display: flex;
-        justify-content: flex-start;
-        width: 18%;
-        #image {
-          height: 41px;
-          width: 41px;
-          border-radius: 10px;
-        }
       }
       #detail {
         display: flex;
@@ -59,13 +57,16 @@
         justify-content: flex-end;
         #follow {
           background-color: #ffffff;
-          border-radius: 10px;
+          border-radius: 5px;
           border: 1px solid #4db8ff;
           height: 25px;
-          width: 66px;
           font-size: 14px;
           cursor: pointer;
           color: #4db8ff;
+          &:hover {
+            background-color: #4db8ff;
+            color: #ffffff;
+          }
         }
       }
     }

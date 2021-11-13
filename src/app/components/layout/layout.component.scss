@@ -3,7 +3,7 @@
   $side-bar-width: 250px;
   #navBox {
     position: absolute;
-    z-index: 3;
+    z-index: 6;
     top: 0;
     left: 0;
     width: 100vw;
@@ -18,7 +18,7 @@
     #sideBarBox {
       background-color: #ffffff;
       width: $side-bar-width;
-      z-index: 2;
+      z-index: 5;
     }
     #mainBox {
       width: calc(100vw - #{$side-bar-width});
