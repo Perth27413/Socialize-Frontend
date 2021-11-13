@@ -12,7 +12,7 @@
 										<div class="option-box">
 												<div class="icon-box">
 														<label for="FileInput" id="fileInput"><i class="fas fa-image input-icon" aria-hidden="true"></i></label>
-														<input class="uploadFile" #fileUpload type="file" id="FileInput" multiple (change)="countMutifile($event)" />
+														<input class="uploadFile" #fileUpload type="file" accept="image/png, image/jpeg" id="FileInput" multiple (change)="countMutifile($event)" />
 												</div>
 												<div class="icon-image" *ngIf="files.length">
 														<div class="icon-bg">
