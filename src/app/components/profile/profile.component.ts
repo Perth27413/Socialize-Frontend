@@ -16,8 +16,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDetails = this.userService.getUserDetails()
-    console.log(this.userDetails);
-    
   }
 
 }

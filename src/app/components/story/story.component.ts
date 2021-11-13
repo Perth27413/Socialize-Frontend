@@ -24,8 +24,8 @@ export class StoryComponent {
 
   public async leftArrow() {
     let currentScroll: number = this.scroll.nativeElement.scrollLeft - this.scrollSlide
-      this.scroll.nativeElement.scrollLeft = this.scroll.nativeElement.scrollLeft - this.scrollSlide
-      this.showScrollCheck(currentScroll)
+    this.scroll.nativeElement.scrollLeft = this.scroll.nativeElement.scrollLeft - this.scrollSlide
+    this.showScrollCheck(currentScroll)
   }
 
   public async rightArrow() {

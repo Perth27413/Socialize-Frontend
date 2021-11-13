@@ -1,31 +1,37 @@
 <div id=profileMain>
     <div class="bannerBox">
         <div class="imgBanner">
-            <img src="https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80" alt="banner-image">
+            <img id="backgroundImage" src="https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80" alt="banner-image">
         </div>
     </div>
-    <div class="profileBox">
-        <div class="imgProfile">
-            <img src="{{userDetails?.profilePicture != null ? userDetails?.profilePicture : userProfile}}" alt="userProfile">
-        </div>
-        <div class="nameBox">
-            <label class="textName">{{userDetails.firstName}} {{userDetails.lastName}}</label>
-            <label class="textDetails">{{userDetails?.details ? userDetails?.details : "-"}}</label>
-        </div>
-        <div class="alertBox">
-            <div class="alert">
-                <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
-                <label class="alertName">POST</label>
+    <div id="profileBoxBackground">
+        <div class="profileBox">
+            <div id="userDetailsBox">
+                <div class="imgProfile">
+                    <img id="profileImage" src="{{userDetails?.profilePicture ? userDetails?.profilePicture : userProfile}}" alt="userProfile">
+                </div>
+                <div class="nameBox">
+                    <label class="textName">{{userDetails.firstName}} {{userDetails.lastName}}</label>
+                    <label class="textDetails">{{userDetails.details ? userDetails.details : 'Hello World!!!'}}</label>
+                </div>
             </div>
-                <div class="lineBox"></div>
-            <div class="alert">
-                <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
-                <label class="alertName">FOLLOWERS</label>
-            </div>
-                <div class="lineBox"></div>
-            <div class="alert">
-                <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
-                <label class="alertName">FOLLOWING</label>
+            <div id="contactBox">
+                <div class="alertBox">
+                    <div class="alert">
+                        <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
+                        <label class="alertName">POST</label>
+                    </div>
+                        <div class="lineBox"></div>
+                    <div class="alert">
+                        <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
+                        <label class="alertName">FOLLOWERS</label>
+                    </div>
+                        <div class="lineBox"></div>
+                    <div class="alert">
+                        <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
+                        <label class="alertName">FOLLOWING</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
