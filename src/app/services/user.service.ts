@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import ProfileModel from '../models/Profile/ProfileModel';
 import LoginRequestModel from '../models/User/LoginRequestModel';
 import RegisterRequestModel from '../models/User/RegisterRequestModel';
+import EditRequestModel from '../models/User/EditProfileRequestModel';
 import UserModel from '../models/User/UserModel';
 
 @Injectable({
@@ -37,5 +39,13 @@ export class UserService {
 
   public register(request: RegisterRequestModel) {
     return this.http.post<UserModel>(`${this.path}/register`, request)
+  }
+
+  public editProfile(request: EditRequestModel) {
+    return this.http.post<UserModel>(`${this.path}/update`, request)
+  }
+  
+  public getProfileById(userId: number) {
+    return this.http.get<ProfileModel>(`${this.path}/profile?userId=${userId}`)
   }
 }

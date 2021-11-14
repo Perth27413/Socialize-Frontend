@@ -1,8 +1,13 @@
 <div id="homeMain" #home (scroll)="onScroll($event)">
-  <div id="mainPost">
-    <app-story></app-story>
-    <app-post [homeRef]="homeRef"></app-post>
+  <div id="homeLoading" *ngIf="isLoading; else noLoading">
+    <app-lazy-loading></app-lazy-loading>
   </div>
+  <ng-template #noLoading>
+    <div id="mainPost">
+      <app-story></app-story>
+      <app-post [homeRef]="homeRef"></app-post>
+    </div>
+  </ng-template>
   <div id="homePopular">
     <app-popular-people></app-popular-people>
   </div>

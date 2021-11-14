@@ -10,14 +10,17 @@
 						<p class="profile-name">{{post.owner.firstName}} {{post.owner.lastName}}</p>
 						<p class="description">{{post.owner.details || 'Hello World'}}</p>
 					</div>
-					<div class="more-icon">
-						<i class="fas fa-ellipsis-h"></i>
+					<div class="more-icon" *ngIf="showMenuIcon()">
+						<div class="dots-icon" (click)="toggleShowMenu(i)"><i class="fas fa-ellipsis-h"></i></div>
+						<div class="more-menu" *ngIf="post.showMenu">
+							<div class="menu-item" (click)="removePost(i)">remove post</div>
+						</div>
 					</div>
 				</div>
 				<div class="text-content">
-					<label class="text-desc">{{post.contents}}</label>
+					<pre class="text-desc">{{post.contents}}</pre>
 				</div>
-				<div class="photo-content">
+				<div class="photo-content" *ngIf="post.picture[0]">
 					<div class="photo-grid" [ngClass]="getPhotoLayoutClassName(post.picture.length)">
 						<img class="photo" *ngFor="let photo of post.picture, let index = index"
 							[ngClass]="getPhotoClassName(index)" src={{photo}} alt="photo">

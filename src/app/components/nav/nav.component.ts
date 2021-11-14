@@ -20,4 +20,8 @@ export class NavComponent implements OnInit {
   public toggleSidebar(): void {
     this.showSideBarChange.emit(!this.showSideBar)
   }
+
+  public onlogoClick(): void {
+    window.location.href = '/'
+  }
 }

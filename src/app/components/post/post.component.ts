@@ -19,6 +19,7 @@ import { UserService } from 'src/app/services/user.service';
 export class PostComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   @Input() public homeRef!: ElementRef
+  @Input() public isCurrent: boolean = false
   
   isBottom: boolean = false
   isShowComment: boolean = false
@@ -31,12 +32,8 @@ export class PostComponent implements OnInit {
   constructor(private postService: PostService, private userService: UserService, private commentService: CommentService) { }
 
   ngOnInit(): void {
-    this.isPostLoading = true
-    setTimeout(() => {
-      this.isPostLoading = false
-      this.getPost(1)
-    }, 2000)
     this.userDetails = this.userService.getUserDetails()
+    this.getPost(1)
   }
   
   ngAfterViewChecked() {
@@ -47,7 +44,7 @@ export class PostComponent implements OnInit {
     try {
       let currentScroll: number = this.homeRef.nativeElement.scrollTop + this.homeRef.nativeElement.offsetHeight
       let maxScroll: number = this.homeRef.nativeElement.scrollHeight
-      if (currentScroll >= (maxScroll * 0.85) && !this.isBottom && (this.currentPage !== this.postList.totalPage)) {
+      if (currentScroll >= (maxScroll * 0.85) && !this.isBottom && (this.currentPage !== this.postList.totalPage && this.postList.totalPage !== 0)) {
         this.isBottom = true
         this.isPostLoading = true
         setTimeout(() => {
@@ -60,11 +57,17 @@ export class PostComponent implements OnInit {
   }
 
   private getPost(page: number): void {
-    this.postService.getPost(page).subscribe((response: PostPageModel) => {
+    let userId: number = this.userDetails.id
+    if (this.isCurrent) {
+      const path: Array<string> =  window.location.pathname.split('/')
+      userId = Number(path[path.length - 1])
+    }
+    this.postService.getPost(page, userId, this.isCurrent).subscribe((response: PostPageModel) => {
       this.postList = this.mapPostListFromResonse(response)
       this.currentPage = response.currentPage
       this.postList.posts.forEach((item: PostModel) => {
         item.showComment = false
+        item.showMenu = false
         item.commentLists = new CommentPageModel
       })
     })
@@ -106,6 +109,19 @@ export class PostComponent implements OnInit {
     }
   }
 
+  public showMenuIcon(): boolean {
+    if (this.isCurrent) {
+      const path: Array<string> =  window.location.pathname.split('/')
+      const profileId: number = Number(path[path.length - 1])
+      return profileId === this.userDetails.id
+    }
+    return false
+  }
+
+  public toggleShowMenu(index: number) {
+    this.postList.posts[index].showMenu = !this.postList.posts[index].showMenu
+  }
+
   public onCommentEnter(index: number) {
     const postId: number = this.postList.posts[index].id
     if (this.comment.contents.length > 0) {
@@ -129,6 +145,15 @@ export class PostComponent implements OnInit {
       if (response) {
         this.postList.posts[postIndex].commentLists.comments[commentIndex].isLiked = response.isLiked
         this.postList.posts[postIndex].commentLists.comments[commentIndex].liked = response.liked
+      }
+    })
+  }
+
+  public removePost(index: number): void {
+    let post: PostModel = this.postList.posts[index]
+    this.postService.deletePost(post.id).subscribe((item: string) => {
+      if (item) {
+        this.postList.posts.splice(index, 1)
       }
     })
   }
