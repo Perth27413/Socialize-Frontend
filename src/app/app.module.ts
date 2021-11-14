@@ -25,6 +25,7 @@ import { GraphComponent } from './components/graph/graph.component';
 import {ChartModule} from 'primeng/chart';
 import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
 import { FollowsComponent } from './components/follows/follows.component';
+import { StoryPopupComponent } from './components/story/story-popup/story-popup.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FollowsComponent } from './components/follows/follows.component';
     StoryComponent,
     GraphComponent,
     ProfileLayoutComponent,
-    FollowsComponent
+    FollowsComponent,
+    StoryPopupComponent
   ],
   imports: [
     HttpClientModule,
