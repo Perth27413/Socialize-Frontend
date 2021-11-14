@@ -8,27 +8,25 @@
         <div class="profileBox">
             <div id="userDetailsBox">
                 <div class="imgProfile">
-                    <img id="profileImage" src="{{userDetails?.profilePicture ? userDetails?.profilePicture : userProfile}}" alt="userProfile">
+                    <img id="profileImage" src="{{profileDetails.profilePicture || userProfile}}" alt="userProfile">
                 </div>
                 <div class="nameBox">
-                    <label class="textName">{{userDetails.firstName}} {{userDetails.lastName}}</label>
-                    <label class="textDetails">{{userDetails.details ? userDetails.details : 'Hello World!!!'}}</label>
+                    <label class="textName">{{profileDetails.firstName}} {{profileDetails.lastName}}</label>
+                    <label class="textDetails">{{profileDetails.details || 'Hello World!!!'}}</label>
                 </div>
             </div>
             <div id="contactBox">
                 <div class="alertBox">
                     <div class="alert">
-                        <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
+                        <label class="alertNumber">{{profileDetails.post}}</label>
                         <label class="alertName">POST</label>
                     </div>
-                        <div class="lineBox"></div>
                     <div class="alert">
-                        <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
+                        <label class="alertNumber">{{profileDetails.followers}}</label>
                         <label class="alertName">FOLLOWERS</label>
                     </div>
-                        <div class="lineBox"></div>
                     <div class="alert">
-                        <label class="alertNumber">{{1 != null ? 0 : 0}}</label>
+                        <label class="alertNumber">{{profileDetails.following}}</label>
                         <label class="alertName">FOLLOWING</label>
                     </div>
                 </div>
