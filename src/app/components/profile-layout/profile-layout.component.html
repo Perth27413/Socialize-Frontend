@@ -1,9 +1,9 @@
-<div id="profileLayout">
+<div id="profileLayout" #profileLayout>
   <div id="profileHeader">
     <app-profile></app-profile>
   </div>
   <div id="profileBody">
-    <app-view-profile *ngIf="!isEdit; else onEdit"></app-view-profile>
+    <app-view-profile [profileRef]="profileRef" *ngIf="!isEdit; else onEdit"></app-view-profile>
     <ng-template #onEdit>
       <app-editproflie></app-editproflie>
     </ng-template>

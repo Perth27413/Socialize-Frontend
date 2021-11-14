@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-profile-layout',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-layout.component.scss']
 })
 export class ProfileLayoutComponent implements OnInit {
+  @ViewChild('profileLayout') public profileRef!: ElementRef
   public isEdit: boolean = false
   constructor() { }
 

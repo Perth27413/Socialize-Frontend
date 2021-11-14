@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NotifyService } from 'src/app/services/notify.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { NotifyService } from 'src/app/services/notify.service';
   styleUrls: ['./view-profile.component.scss']
 })
 export class ViewProfileComponent implements OnInit {
-
+  @Input() public profileRef!: ElementRef
   @ViewChild('fileUpload') fileInputRef!: ElementRef
   files: Array<File> = []
 
@@ -26,8 +26,8 @@ export class ViewProfileComponent implements OnInit {
     const totalFiles: number = this.files.length + fileLists.length
     if (totalFiles <= 4) {
       for (let i = 0; i < fileLists.length; i++) {    
-        let test =  fileLists.item(i)?.type
-        if(test != 'image/jpeg' && 'image/png' ) {
+        let type =  fileLists.item(i)?.type
+        if(type != 'image/jpeg' && 'image/png' ) {
           await this.notifyService.sweetWarning('Invalid file type Please check the JPG or PNG file extension.')
         } else {
           this.files.push(fileLists[i])
