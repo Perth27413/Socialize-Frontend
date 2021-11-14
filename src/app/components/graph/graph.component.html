@@ -1,0 +1,30 @@
+<div id="mainGraph">
+    <div id="main">
+        <div id="textTopic">All Users</div>
+        <div id="socailContainer">
+            <div class="socail-item" *ngFor="let socail of socailLogin, let i = index" [ngClass]="colorSocailContainer(i)">
+                <div class="logo" [ngClass]="colorSocailContainer(i)">
+                    <i class={{socail.icon}}></i>
+                </div>
+                <div class="detail">
+                    <div class="quantity-user">
+                        <label class="text-quantity">{{socail.quantity}}</label>
+                        <label class="unit">users</label>
+                    </div>
+                    <div class="quantity-percent">
+                        <label class="text-quantity">{{socail.percent}}%</label>
+                        <label class="unit">of all users</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="graphContainer">
+            <div class="card">
+                <p-chart type="line" width="100%" height="360" [data]="basicData"></p-chart>
+            </div>
+            <div class="card">
+                <p-chart type="doughnut" width="100%" height="360" [data]="dataSource"></p-chart>
+            </div>
+        </div>
+    </div>
+</div>
