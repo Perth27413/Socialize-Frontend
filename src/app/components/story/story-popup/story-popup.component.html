@@ -16,8 +16,11 @@
           </div>
         </ng-template>
         <div id="userDetail">
-          <div id="userIcon">
+          <div id="userIcon" *ngIf="isCreate">
             <img id="userImage" [src]="userDetails.profilePicture" />
+          </div>
+          <div id="userIcon" *ngIf="!isCreate">
+            <img id="userImage" [src]="childMessage.user" />
           </div>
           <div id="detail">
             <div id="name" *ngIf="isCreate">{{userDetails.userName}}</div>
