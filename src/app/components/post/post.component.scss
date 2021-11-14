@@ -69,6 +69,36 @@
             color: #AEAEAE;
             font-size: 22px;
             font-weight: bold;
+            position: relative;
+            &:hover {
+              color: #56bbff;
+              cursor: pointer;
+            }
+            .more-menu {
+              $menu-width: 110px;
+              position: absolute;
+              color: #AEAEAE;
+              background-color: #ffffff;
+              width: $menu-width;
+              left: calc(100% - #{$menu-width});
+              border-radius: 5px;
+              box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+              .menu-item {
+                border-radius: 5px;
+                font-size: 0.9rem;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: background-color 0.15s;
+                &:hover {
+                  background-color: #E1F2FF;
+                  cursor: pointer;
+                  color: #56bbff;
+                  transition: background-color 0.15s;
+                }
+              }
+            }
           }
         }
         .text-content {
@@ -394,7 +424,7 @@
     }
     @media screen and (max-width: 380px) {
       width: 100%;
-      padding: 0;
+      padding: 0 5px;
     }
   }
 }
