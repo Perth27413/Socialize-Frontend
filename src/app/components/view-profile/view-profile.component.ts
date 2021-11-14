@@ -56,7 +56,9 @@ export class ViewProfileComponent implements OnInit {
         this.postService.postImageApi(item).subscribe((item: ImageModel) => {
           this.addPostRequest.picture.push(item.data.url)
           if (index === (this.imageBase64List.length - 1)) {
-            this.addPost()
+            setTimeout(() => {
+              this.addPost()
+            }, 2000)
           }
         })
       }
