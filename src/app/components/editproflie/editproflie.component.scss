@@ -1,17 +1,16 @@
 #editMain {
     display: flex;
     padding: 1.8rem 0;
-    display: flex;
     justify-content: center;
     #edit-container {
-        height: 857px;
+        height: 550px;
         width: 630px;
-        padding: 20px;
+        padding: 20px 25px 20px 25px;
         background-color: white;
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         border-radius: 15px;
         #information {
-            margin-top: 10px;
+            margin-top: 15px;
             .topic-con {
                 border-bottom: 2px solid #CFD0D2;
                 margin: 0;
@@ -31,7 +30,7 @@
                 .input-item {
                     display: flex;
                     width: 100%;
-                    margin-bottom: 15px;
+                    margin-bottom: 20px;
                     .input-details-div {
                         width: 100%;
                         padding-left: 5px;
@@ -71,18 +70,7 @@
                 align-items: center;
                 padding-left: 5px;
                 padding-right: 5px;
-                margin-bottom: 40px;
-                .button-cancel {
-                    background-color: #E15963;
-                    color: white;
-                    font-size: 16px;
-                    font-weight: bold;
-                    height: 35px;
-                    width: 105px;
-                    border-radius: 5px;
-                    border: none;
-                    margin-right: 10px;
-                }
+                margin-top: 25px;
                 .button-save-change {
                     background-color: #2DABFF;
                     color: white;
@@ -92,10 +80,19 @@
                     width: 160px;
                     border-radius: 5px;
                     border: none;
+                    transition: 0.6s;
+                    &:hover {
+                        cursor: pointer;
+                        background-color: #ffff;
+                        color: #2DABFF;
+                        border: 1px solid #2DABFF;
+                    }
+                    &:active {
+                        transform: scale(0.97);
+                    }
                 }
             }
         }
-        
     }
     @media screen and (max-width: 980px) {
         width: 100%;

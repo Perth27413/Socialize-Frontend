@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import EditPassModel from 'src/app/models/User/EditPassModel';
 import EditRequestModel from 'src/app/models/User/EditProfileRequestModel';
 import EditProfileValidateModel from 'src/app/models/Validate/EditProfileValidateModel';
 import { NotifyService } from 'src/app/services/notify.service';
+import { UserService } from 'src/app/services/user.service';
+import UserModel from 'src/app/models/User/UserModel';
 
 @Component({
   selector: 'app-editproflie',
@@ -12,82 +13,77 @@ import { NotifyService } from 'src/app/services/notify.service';
 export class EditproflieComponent implements OnInit {
   birthDate!: Date
   editUserRequest: EditRequestModel = new EditRequestModel
-  editPassRequest: EditPassModel = new EditPassModel
   validate: EditProfileValidateModel = new EditProfileValidateModel
+  userDetails: UserModel = new UserModel
 
-  constructor(private notifyService: NotifyService) { }
+  constructor(private notifyService: NotifyService, private userService: UserService) { }
 
   ngOnInit(): void {
-
+    this.userDetails = this.userService.getUserDetails()
+    this.birthDate = new Date(this.userDetails.birthday)
+    console.log(this.userDetails)
   }
 
   onSaveChangedetails() {
-    this.validateFields()
+    try {
+      if (this.validateFields()) {
+        this.userDetails.birthday = this.birthDate
+        this.userService.editProfile(this.userDetails).subscribe((response: UserModel) => {
+          setTimeout(async () => {
+            if (response) {
+              await this.notifyService.sweetSuccess('Change information Successfully')
+              this.userService.setLogin(response)
+            } else {
+              this.notifyService.sweetWarning('Change information failed')
+            }
+          }, 1000)
+        })
+      } else {
+        
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  onSaveChangePassword() {
-    this.validateFieldsPassword()
-  }
-
-  public validateOnInputDetails(key: string): void {
+  public validateOnInputDetails(key: string): boolean {
+    let isValid: boolean = false
     switch (key) {
-      case 'email':
-        this.validate.emailIsValid = this.checkEmailFormat(this.editUserRequest['email'])
-        break
       case 'firstName':
-        this.validate.firstNameIsValid = this.editUserRequest['firstName'].length >= 3 ? true : false
+        this.validate.firstNameIsValid = this.userDetails['firstName'].length >= 3 ? true : false
+        isValid = this.validate.firstNameIsValid
         break
       case 'lastName':
-        this.validate.lastNameIsValid = this.editUserRequest['lastName'].length >= 3 ? true : false
+        this.validate.lastNameIsValid = this.userDetails['lastName'].length >= 3 ? true : false
+        isValid = this.validate.lastNameIsValid
         break
       case 'details':
-        this.validate.detailsIsValid = this.editUserRequest['details'].length >= 3 ? true : false
+        this.validate.detailsIsValid = this.userDetails['details'].length >= 3 ? true : false
+        isValid = this.validate.detailsIsValid
+        break
+      case 'email':
+        this.validate.emailIsValid = this.checkEmailFormat(this.userDetails['email'])
+        isValid = this.validate.emailIsValid
         break
       case 'phoneNumber':
-        this.validate.phoneIsValid = this.editUserRequest['phoneNumber'].length == 10 ? true : false
+        this.validate.phoneIsValid = this.userDetails.phoneNumber.length === 10 ? true : false
+        isValid = this.validate.phoneIsValid
         break
       case 'birthDay':
         this.validate.birthDayIsValid = this.birthDate ? true : false
+        isValid = this.validate.birthDayIsValid
         break
       default:
         break
-    }
-  }
-
-  public validateOnInputPassword(key: string): void {
-    switch (key) {
-      case 'currentPassword':
-        this.validate.currentPassIsValid = this.editPassRequest['currentPassword'].length >= 8 ? true : false
-        break
-      case 'retryPassword':
-        this.validate.retryPassIsValid = this.editPassRequest['retryPassword'].length >= 8 ? true : false
-        break
-      case 'newPassword':
-        this.validate.newPassIsValid = this.editPassRequest['newPassword'].length >= 8 ? true : false
-        break
-      default:
-        break
-    }
-  }
-
-  private validateFields(): boolean {
-    let isValid = true
-    for (const [key, value] of Object.entries(this.editUserRequest)) {
-      if (!value) {
-        this.validateOnInputDetails(key)
-        this.notifyService.warning(`${this.formatToCapitalCase(key)} is invalid`)
-        isValid = false
-      }
     }
     return isValid
   }
 
-  private validateFieldsPassword(): boolean {
+  private validateFields(): boolean {
     let isValid = true
-    for (const [key, value] of Object.entries(this.editPassRequest)) {
-      if (!value) {
-        this.validateOnInputPassword(key)
-        this.notifyService.warning(`${this.formatToCapitalCase(key)} is invalid`)
+    for (const [key, value] of Object.entries(this.userDetails)) {
+      this.notifyService.warning(`${this.formatToCapitalCase(key)} is invalid`)
+      if (!this.validateOnInputDetails(key)) {
         isValid = false
       }
     }

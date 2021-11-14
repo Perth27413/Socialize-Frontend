@@ -1,3 +1,5 @@
+declare type Nullable<T> = T | null
+
 class EditProfileModel {
     public email: string = String()
     public details: string = String()

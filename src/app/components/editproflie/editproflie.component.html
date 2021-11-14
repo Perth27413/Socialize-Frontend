@@ -13,7 +13,7 @@
                         <div class="input-div">
                             <input class="input" type="text" 
                             (input)="validateOnInputDetails('firstName')"
-                            [(ngModel)]="editUserRequest.firstName">
+                            [(ngModel)]="userDetails.firstName">
                         </div>
                     </div>
                     <div class="input-details-div">
@@ -23,7 +23,7 @@
                         <div class="input-div">
                             <input class="input" type="text"
                             (input)="validateOnInputDetails('lastName')"
-                            [(ngModel)]="editUserRequest.lastName">
+                            [(ngModel)]="userDetails.lastName">
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         <div class="input-div">
                             <input class="input" type="text"
                             (input)="validateOnInputDetails('details')"
-                            [(ngModel)]="editUserRequest.details">
+                            [(ngModel)]="userDetails.details">
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                         <div class="input-div">
                             <input class="input" type="text"
                             (input)="validateOnInputDetails('email')"
-                            [(ngModel)]="editUserRequest.email">
+                            [(ngModel)]="userDetails.email">
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <div class="input-div">
                             <input class="input" type="text"
                             (input)="validateOnInputDetails('phoneNumber')"
-                            [(ngModel)]="editUserRequest.phoneNumber"
+                            [(ngModel)]="userDetails.phoneNumber"
                             (keypress)="numberOnly($event)"
                             maxlength="10">
                         </div>
@@ -76,7 +76,7 @@
                                 [inputStyle]="{'height':'33px', 'fontSize': '14px', 'fontWeight': '500', 'color': '#8B8B8B', 'border-radius': '5px 0px 0px 5px', 'border': '1px solid #ECECEC'}"
                                 [showIcon]="true" 
                                 (onSelect)="validateOnInputDetails('birthDay')"
-                                [(ngModel)]="editUserRequest.birthday">
+                                [(ngModel)]="birthDate">
                             </p-calendar>
                         </div>
                     </div>
@@ -84,52 +84,6 @@
             </div>
             <div class="button-con">
                 <button class="button-save-change" type="button" (click)="onSaveChangedetails()">Save Changes</button>
-            </div>
-        </div>
-        <div id="information">
-            <div class="topic-con">
-                <label class="topic">CHANGE PASSWORD</label>
-            </div>
-            <div class="input-details-con">
-                <div class="input-item">
-                    <div class="input-details-div">
-                        <div class="name">
-                            <label class="text-name">Current Password</label>
-                        </div>
-                        <div class="input-div">
-                            <input class="input" type="password" 
-                            (input)="validateOnInputPassword('currentPassword')"
-                            [(ngModel)]="editPassRequest.currentPassword">
-                        </div>
-                    </div>
-                </div>
-                <div class="input-item">
-                    <div class="input-details-div">
-                        <div class="name">
-                            <label class="text-name">New Password</label>
-                        </div>
-                        <div class="input-div">
-                            <input class="input" type="password" 
-                            (input)="validateOnInputPassword('newPassword')"
-                            [(ngModel)]="editPassRequest.newPassword">
-                        </div>
-                    </div>
-                </div>
-                <div class="input-item">
-                    <div class="input-details-div">
-                        <div class="name">
-                            <label class="text-name">Retry Password</label>
-                        </div>
-                        <div class="input-div">
-                            <input class="input" type="password" (input)="validateOnInputPassword('retryPassword')"
-                            [(ngModel)]="editPassRequest.retryPassword">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="button-con">
-                <button class="button-cancel" type="button">Cancel</button>
-                <button class="button-save-change" type="button" (click)="onSaveChangePassword()">Save Changes</button>
             </div>
         </div>
     </div>
