@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'login', component: SignInComponent },
   { path: 'register', component: SignUpComponent },
   { path: 'profile/:id', component: ProfileLayoutComponent },
-  { path: 'profile/:id/edit', component: EditproflieComponent }
+  { path: 'profile/:id/edit', component: ProfileLayoutComponent }
 ]
 
 @NgModule({
