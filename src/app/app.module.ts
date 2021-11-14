@@ -23,6 +23,7 @@ import { LazyLoadingComponent } from './components/lazy-loading/lazy-loading.com
 import { StoryComponent } from './components/story/story.component';
 import { GraphComponent } from './components/graph/graph.component';
 import {ChartModule} from 'primeng/chart';
+import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {ChartModule} from 'primeng/chart';
     PopularPeopleComponent,
     LazyLoadingComponent,
     StoryComponent,
-    GraphComponent
+    GraphComponent,
+    ProfileLayoutComponent
   ],
   imports: [
     HttpClientModule,
