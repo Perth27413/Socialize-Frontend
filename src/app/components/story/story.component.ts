@@ -37,7 +37,6 @@ export class StoryComponent {
     let maxScroll: number = this.scroll.nativeElement.scrollWidth - this.scroll.nativeElement.clientWidth
     this.leftScroll = currentScroll <= 0 ? false : true
     this.rightScroll = currentScroll >= (maxScroll * 0.9) ? false : true
-    console.log("current: " + currentScroll + " left: " + this.leftScroll + " right: " + this.rightScroll + " max: " + maxScroll)
   }
 
   public async leftArrow() {
