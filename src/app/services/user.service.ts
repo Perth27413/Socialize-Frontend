@@ -43,6 +43,8 @@ export class UserService {
 
   public editProfile(request: EditRequestModel) {
     return this.http.post<UserModel>(`${this.path}/update`, request)
+  }
+  
   public getProfileById(userId: number) {
     return this.http.get<ProfileModel>(`${this.path}/profile?userId=${userId}`)
   }
