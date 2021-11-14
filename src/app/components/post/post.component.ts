@@ -32,8 +32,8 @@ export class PostComponent implements OnInit {
   constructor(private postService: PostService, private userService: UserService, private commentService: CommentService) { }
 
   ngOnInit(): void {
-    this.getPost(1)
     this.userDetails = this.userService.getUserDetails()
+    this.getPost(1)
   }
   
   ngAfterViewChecked() {
@@ -67,6 +67,7 @@ export class PostComponent implements OnInit {
       this.currentPage = response.currentPage
       this.postList.posts.forEach((item: PostModel) => {
         item.showComment = false
+        item.showMenu = false
         item.commentLists = new CommentPageModel
       })
     })
@@ -108,6 +109,19 @@ export class PostComponent implements OnInit {
     }
   }
 
+  public showMenuIcon(): boolean {
+    if (this.isCurrent) {
+      const path: Array<string> =  window.location.pathname.split('/')
+      const profileId: number = Number(path[path.length - 1])
+      return profileId === this.userDetails.id
+    }
+    return false
+  }
+
+  public toggleShowMenu(index: number) {
+    this.postList.posts[index].showMenu = !this.postList.posts[index].showMenu
+  }
+
   public onCommentEnter(index: number) {
     const postId: number = this.postList.posts[index].id
     if (this.comment.contents.length > 0) {
@@ -131,6 +145,15 @@ export class PostComponent implements OnInit {
       if (response) {
         this.postList.posts[postIndex].commentLists.comments[commentIndex].isLiked = response.isLiked
         this.postList.posts[postIndex].commentLists.comments[commentIndex].liked = response.liked
+      }
+    })
+  }
+
+  public removePost(index: number): void {
+    let post: PostModel = this.postList.posts[index]
+    this.postService.deletePost(post.id).subscribe((item: string) => {
+      if (item) {
+        this.postList.posts.splice(index, 1)
       }
     })
   }

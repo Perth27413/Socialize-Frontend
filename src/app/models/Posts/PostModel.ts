@@ -13,6 +13,7 @@ class PostModel {
   public owner: PostOwnerModel = new PostOwnerModel
   public showComment: boolean = false
   public commentLists: CommentPageModel = new CommentPageModel
+  public showMenu: boolean = Boolean()
 }
 
 export default PostModel

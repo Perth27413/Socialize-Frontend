@@ -108,17 +108,31 @@
 										width: 40%;
 										color: #FFFFFF;
 										font-weight: bold;
-										cursor: pointer;
 										.post-bg {
-											background-color: #0099FE;
+											background-color: #5dbeff;
 											border-radius: 10px;
 											height: 100%;
-											padding: 0 15px;
+											width: 90px;
 											display: flex;
 											justify-content: center;
 											align-items: center;
+											cursor: pointer;
 											.icon-post {
 												font-size: 0.9rem;
+											}
+											&:hover, &.loading {
+												background-color: #0099ff;
+												cursor: pointer;
+											}
+											&.loading {
+												cursor: wait;
+												.icon-post {
+													font-size: 1.1rem;
+												}
+											}
+											&.disable {
+												background-color: #b0dfff;
+												cursor: no-drop;
 											}
 										}
 								}

@@ -3,7 +3,7 @@
 				<div class="postLayout">
 						<div class="postBox">
 								<div class="postInput">
-										<textarea class="postText" placeholder="What are you thinking ?"></textarea>
+										<textarea class="postText" [(ngModel)]="addPostRequest.contents" placeholder="What are you thinking ?"></textarea>
 								</div>
 								<div class="options">
 										<div class="option-box">
@@ -17,7 +17,7 @@
 																		<label><i class="fas fa-image input-icon" aria-hidden="true"></i></label>
 																</div>
 																<div class="icon-count">
-																		<label>{{files.length}} photos</label>
+																		<label>{{files.length}}/4 photos</label>
 																</div>
 																<div class="icon-count" (click)="clearPicture()">
 																		<label class="dis-icons"><i class="fas fa-times input-icon" aria-hidden="true"></i></label>
@@ -26,11 +26,22 @@
 												</div>
 										</div>
 										<div class="post-box">
-												<div class="post-bg">
+												<div class="post-bg "
+													[ngClass]="{'disable': !imageBase64List.length && !addPostRequest.contents.length}" 
+													(click)="onAddPostClick()"
+													*ngIf="!isLoading; else whenLoading"
+													>
 														<div class="icon-post">
-																<label>Add post</label>
+																Add post
 														</div>
 												</div>
+												<ng-template #whenLoading>
+													<div class="post-bg loading">
+														<div class="icon-post">
+																<i class="fa fa-spinner fa-spin"></i>
+														</div>
+												</div>
+												</ng-template>
 										</div>
 								</div>
 						</div>
