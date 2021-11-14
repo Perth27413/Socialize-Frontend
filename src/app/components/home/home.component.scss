@@ -6,7 +6,7 @@
   height: calc(100vh - #{$nav-height});
   overflow: overlay;
   #homeLoading {
-    width: 100%;
+    width: calc(100% - #{$popular-width});
     display: flex;
     justify-content: center;
   }

@@ -7,7 +7,6 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 })
 export class HomeComponent implements OnInit {
   @ViewChild('home') public homeRef!: ElementRef
-
   isLoading: boolean = true
   isBottom: boolean = false
 

@@ -19,6 +19,7 @@ import { UserService } from 'src/app/services/user.service';
 export class PostComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   @Input() public homeRef!: ElementRef
+  @Input() public isCurrent: boolean = false
   
   isBottom: boolean = false
   isShowComment: boolean = false
@@ -43,7 +44,7 @@ export class PostComponent implements OnInit {
     try {
       let currentScroll: number = this.homeRef.nativeElement.scrollTop + this.homeRef.nativeElement.offsetHeight
       let maxScroll: number = this.homeRef.nativeElement.scrollHeight
-      if (currentScroll >= (maxScroll * 0.85) && !this.isBottom && (this.currentPage !== this.postList.totalPage)) {
+      if (currentScroll >= (maxScroll * 0.85) && !this.isBottom && (this.currentPage !== this.postList.totalPage && this.postList.totalPage !== 0)) {
         this.isBottom = true
         this.isPostLoading = true
         setTimeout(() => {
@@ -56,7 +57,12 @@ export class PostComponent implements OnInit {
   }
 
   private getPost(page: number): void {
-    this.postService.getPost(page).subscribe((response: PostPageModel) => {
+    let userId: number = this.userDetails.id
+    if (this.isCurrent) {
+      const path: Array<string> =  window.location.pathname.split('/')
+      userId = Number(path[path.length - 1])
+    }
+    this.postService.getPost(page, userId, this.isCurrent).subscribe((response: PostPageModel) => {
       this.postList = this.mapPostListFromResonse(response)
       this.currentPage = response.currentPage
       this.postList.posts.forEach((item: PostModel) => {

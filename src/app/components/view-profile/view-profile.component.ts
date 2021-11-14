@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NotifyService } from 'src/app/services/notify.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -10,10 +11,12 @@ export class ViewProfileComponent implements OnInit {
   @Input() public profileRef!: ElementRef
   @ViewChild('fileUpload') fileInputRef!: ElementRef
   files: Array<File> = []
+  isCurrent: boolean = false
 
-  constructor(private notifyService: NotifyService) { }
+  constructor(private notifyService: NotifyService, private userService: UserService) { }
 
   ngOnInit(): void {
+    
   }
   
   ngAfterViewInit() {

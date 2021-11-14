@@ -14,11 +14,11 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  public getPost(page: number) {
-    const userDetails: UserModel = JSON.parse(window.localStorage.getItem('user')!)
+  public getPost(page: number, userId: number, isCurrent: boolean) {
     const request: PostRequestModel = {
       page: page,
-      userId: userDetails.id
+      userId: userId,
+      isCurrent: isCurrent
     }
     return this.http.post<PostPageModel>(`${this.path}/`, request)
   }
