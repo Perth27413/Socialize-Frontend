@@ -6,6 +6,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { EditproflieComponent } from './components/editproflie/editproflie.component';
 import { GraphComponent } from './components/graph/graph.component';
 import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
+import { FollowsComponent } from './components/follows/follows.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'register', component: SignUpComponent },
   { path: 'graph', component: GraphComponent },
   { path: 'profile/:id', component: ProfileLayoutComponent },
-  { path: 'profile/:id/edit', component: ProfileLayoutComponent }
+  { path: 'profile/:id/edit', component: ProfileLayoutComponent },
+  { path: 'follows', component: FollowsComponent }
 ]
 
 @NgModule({
