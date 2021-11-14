@@ -123,6 +123,7 @@
             grid-gap: 8px;
             .photo {
               border-radius: 10px;
+              object-fit: cover;
             }
             &.grid-1 {
               .photo {
