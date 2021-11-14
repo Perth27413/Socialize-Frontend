@@ -8,7 +8,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     #cardBox {
-        height: 280px;
+        height: 270px;
         width: 230px;
         border: 2px solid rgb(0, 0, 0);
         border-radius: 3px;
@@ -87,11 +87,13 @@
                 width: 100%;
                 font-size: 16px;
                 font-weight: bold;
-                background-color: #E1F2FF;
-                color: #0099FE;
-                border-color: #E1F2FF;
+                background-color: #ffffff;
+                border: 1px solid #4db8ff;
+                color: #4db8ff;
+                border-radius: 5px;
                 &:hover {
-                    background: #bfe8f5;
+                    background-color: #4db8ff;
+                    color: #ffffff;
                 }
             }
         }
