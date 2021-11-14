@@ -1,5 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
-
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-story',
@@ -7,20 +6,39 @@ import { Component, AfterViewInit, ViewChild, ElementRef, HostListener } from '@
   styleUrls: ['./story.component.scss']
 })
 export class StoryComponent {
+
   @ViewChild('storyBox') public scroll!: ElementRef<HTMLElement>;
   leftScroll: boolean = false
   rightScroll: boolean = true
   scrollSlide: number = 320
+  popupShow: boolean = false
+  createStory: boolean = false
+  parentMessage!: test
 
   constructor() {
+  }
+
+  public createPopup() {
+    this.createStory = !this.createStory
+    this.popupShow = !this.popupShow
+  }
+
+  public closePopup(e: boolean) {
+    this.popupShow = e
+    this.createStory = false
+  }
+
+  public showPopup(list: test) {
+    this.popupShow = !this.popupShow
+    this.parentMessage = list
   }
 
   private showScrollCheck(currentScroll: number): void {
     let maxScroll: number = this.scroll.nativeElement.scrollWidth - this.scroll.nativeElement.clientWidth
     this.leftScroll = currentScroll <= 0 ? false : true
     this.rightScroll = currentScroll >= (maxScroll * 0.9) ? false : true
+    console.log("current: " + currentScroll + " left: " + this.leftScroll + " right: " + this.rightScroll + " max: " + maxScroll)
   }
-
 
   public async leftArrow() {
     let currentScroll: number = this.scroll.nativeElement.scrollLeft - this.scrollSlide
@@ -50,3 +68,11 @@ export class StoryComponent {
   ]
 
 }
+
+class test {
+  public user: string = String()
+  public image: string = String()
+  public isActive: boolean = Boolean()
+}
+
+export default test

@@ -1,0 +1,55 @@
+<div id="storyPopupMain" *ngIf="popup">
+    <div id="backgroundPopup" (click)="closePopup(false)"></div>
+    <div id="storyBox">
+      <div id="popupBox">
+        <div *ngIf="isCreate;then create else story"></div>
+        <ng-template #story>
+          <div id="storyImage">
+            <img id="image" [src]="childMessage.image" />
+          </div>
+        </ng-template>
+        <ng-template #create>
+          <div id="iconBox">
+            <div id="createIcon">
+              <i class="fas fa-plus" id="create"></i>
+            </div>
+          </div>
+        </ng-template>
+        <div id="userDetail">
+          <div id="userIcon">
+            <img id="userImage" [src]="userDetails.profilePicture" />
+          </div>
+          <div id="detail">
+            <div id="name" *ngIf="isCreate">{{userDetails.userName}}</div>
+            <div id="name" *ngIf="!isCreate">Wasan Senkha</div>
+            <div id="positionLabel">
+              <div id="position">Software Engineer</div>
+              <div id="view" *ngIf="!isCreate">
+                <div id="icon-view"><i class="fas fa-eye"></i></div>
+                <div id="text-view">12k</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="isCreate;then inputText else contentText"></ng-container>
+        <ng-template #contentText>
+          <div id="storyContent">
+            wasan11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+          </div>
+        </ng-template>
+        <ng-template #inputText>
+          <div id="textBox">
+            <textarea type="text" id="text" placeholder="What are you thinking ?"></textarea>
+          </div>
+        </ng-template>
+        <div id="createStoryBox" *ngIf="isCreate">
+          <div id="create">
+            Create Story
+          </div>
+        </div>
+      </div>
+      <div id="closeStory" (click)="closePopup(false)">
+        <i id="close" class="fas fa-times"></i>
+      </div>
+    </div>
+  </div>
