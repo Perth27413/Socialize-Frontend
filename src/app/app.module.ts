@@ -21,6 +21,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { PopularPeopleComponent } from './components/popular-people/popular-people.component';
 import { LazyLoadingComponent } from './components/lazy-loading/lazy-loading.component';
 import { StoryComponent } from './components/story/story.component';
+import { GraphComponent } from './components/graph/graph.component';
+import {ChartModule} from 'primeng/chart';
 import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
 
 @NgModule({
@@ -39,6 +41,7 @@ import { ProfileLayoutComponent } from './components/profile-layout/profile-layo
     PopularPeopleComponent,
     LazyLoadingComponent,
     StoryComponent,
+    GraphComponent,
     ProfileLayoutComponent
   ],
   imports: [
@@ -48,7 +51,8 @@ import { ProfileLayoutComponent } from './components/profile-layout/profile-layo
     AppRoutingModule,
     CalendarModule,
     FormsModule,
-    SliderModule
+    SliderModule,
+    ChartModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
