@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import ProfileModel from 'src/app/models/Profile/ProfileModel';
 import { UserService } from 'src/app/services/user.service';
+import UserModel from 'src/app/models/User/UserModel';
+import PopularResponseModel from 'src/app/models/Follow/PopularResponseModel';
 
 @Component({
   selector: 'app-popular-people',
@@ -8,14 +9,15 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./popular-people.component.scss'],
 })
 export class PopularPeopleComponent implements OnInit {
-  popularPeople: ProfileModel = new ProfileModel
+  popularPeople!: Array<PopularResponseModel>
+  userDetails: UserModel = new UserModel
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    const path: Array<string> =  window.location.pathname.split('/')
-    const profileId: number = Number(path[path.length - 1])
-    this.userService.getPopularPeopleById(4).subscribe((item: ProfileModel) => {
+    this.userDetails = this.userService.getUserDetails();
+    // this.popularPeople = this.userService.getPopularPeopleById(this.userDetails.id);
+    this.userService.getPopularPeopleById(this.userDetails.id).subscribe((item: Array<PopularResponseModel>) => {
       this.popularPeople = item
       console.log('poppular')
       console.log("popular" + this.popularPeople)
