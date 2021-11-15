@@ -17,7 +17,8 @@ export class PopularPeopleComponent implements OnInit {
     const profileId: number = Number(path[path.length - 1])
     this.userService.getPopularPeopleById(4).subscribe((item: ProfileModel) => {
       this.popularPeople = item
-      console.log(this.popularPeople)
+      console.log('poppular')
+      console.log("popular" + this.popularPeople)
     });
   }
 }
