@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import CommentAddRequestModel from 'src/app/models/Comments/CommentAddRequestModel';
 import CommentLikedResponseModel from 'src/app/models/Comments/CommentLikedResponseModel';
 import CommentModel from 'src/app/models/Comments/CommentModel';
@@ -31,7 +31,7 @@ export class PostComponent implements OnInit {
   isPostLoading: boolean = false
   paramId: number = 0
 
-  constructor(private postService: PostService, private userService: UserService, private commentService: CommentService,  private route: ActivatedRoute) { }
+  constructor(private postService: PostService, private userService: UserService, private commentService: CommentService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.setParamUserId()
@@ -163,5 +163,9 @@ export class PostComponent implements OnInit {
         this.postList.posts.splice(index, 1)
       }
     })
+  }
+
+  public onProfileNameClick(userId: number): void {
+    window.location.href = '/profile/' + userId
   }
 }
