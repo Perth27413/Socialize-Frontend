@@ -14,7 +14,10 @@
                     <div id="nameTextBox">
                         <div id="mainNameBox">
                             <label id="textName">{{profileDetails.firstName}} {{profileDetails.lastName}}</label>
-                            <button id="followButton" class="followed">Follow</button>
+                            <button id="followButton"
+                            [ngClass]="{'followed': profileDetails.isFollow}"
+                            *ngIf="!isOwner"
+                            >{{profileDetails.isFollow ? 'Followed' : 'Follow'}}</button>
                         </div>
                         <label id="textDetails">{{profileDetails.details || 'Hello World!!!'}}</label>
                     </div>

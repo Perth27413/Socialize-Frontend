@@ -46,6 +46,7 @@ export class UserService {
   }
   
   public getProfileById(userId: number) {
-    return this.http.get<ProfileModel>(`${this.path}/profile?userId=${userId}`)
+    const userDetails: UserModel = this.getUserDetails()
+    return this.http.get<ProfileModel>(`${this.path}/profile?userId=${userId}&currentUserId=${userDetails.id}`)
   }
 }

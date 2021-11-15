@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ImageModel } from 'src/app/models/Image/ImageModel';
 import PostAddRequestModel from 'src/app/models/Posts/PostAddRequestModel';
 import UserModel from 'src/app/models/User/UserModel';
@@ -21,10 +22,12 @@ export class ViewProfileComponent implements OnInit {
   public imageBase64List: Array<string> = []
   public isLoading: boolean = false
   public isOwner: boolean = false
+  public paramId: number = 0
 
-  constructor(private notifyService: NotifyService, private userService: UserService, private postService: PostService) { }
+  constructor(private notifyService: NotifyService, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.setParamUserId()
     this.userDetails = this.userService.getUserDetails()
     this.checkIsOwner()
   }
@@ -32,11 +35,15 @@ export class ViewProfileComponent implements OnInit {
   ngAfterViewInit() {
 
   }
+  
+  private setParamUserId(): void {
+    this.route.params.subscribe(params => {
+      this.paramId = Number(params.id)
+    })
+  }
 
   private checkIsOwner(): void {
-    const path: Array<string> = window.location.pathname.split('/')
-    const profileId: number = Number(path[path.length - 1])
-    if (profileId === this.userDetails.id) {
+    if (this.paramId === this.userDetails.id) {
       this.isOwner = true
     }
   }
