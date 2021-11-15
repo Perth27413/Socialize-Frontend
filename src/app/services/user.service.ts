@@ -51,6 +51,10 @@ export class UserService {
     return this.http.get<ProfileModel>(`${this.path}/profile?userId=${userId}&currentUserId=${userDetails.id}`)
   }
 
+  public updateProfilePicture(request: UserModel) {
+    return this.http.post<UserModel>(`${this.path}/update/profile`, request)
+  }
+
   public follow(followingId: number) {
     const userDetails: UserModel = this.getUserDetails()
     const request: FollowRequestModel = {

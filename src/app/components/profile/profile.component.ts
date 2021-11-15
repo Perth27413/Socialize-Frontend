@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ImageModel } from 'src/app/models/Image/ImageModel';
 import ProfileModel from 'src/app/models/Profile/ProfileModel';
 import UserModel from 'src/app/models/User/UserModel';
+import { NotifyService } from 'src/app/services/notify.service';
+import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,8 +18,9 @@ export class ProfileComponent implements OnInit {
   profileDetails!: ProfileModel
   isOwner: boolean = false
   paramId: number = 0
+  imageBase64: string = ''
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private notifyService: NotifyService, private postService: PostService) { }
 
   ngOnInit(): void {
     this.setParamUserId()
@@ -46,6 +50,41 @@ export class ProfileComponent implements OnInit {
   private getProfileDetails(): void {
     this.userService.getProfileById(this.paramId).subscribe((item: ProfileModel) => {
       this.profileDetails = item
+    })
+  }
+
+  public async onImageSelect(events: Event): Promise<void> {
+    const target = events.target as HTMLInputElement
+    const file: File = target.files?.item(0)!
+    const type: string = file.type
+    if(type !== 'image/jpeg' && type !== 'image/png' ) {
+      await this.notifyService.sweetWarning('Invalid file type Please check the JPG or PNG file extension.')
+    } else {
+      this.imageToBase64(file, type.split('/')[1])
+    }
+  }
+
+  private imageToBase64(image: File, type: string): void {
+    let reader: FileReader = new FileReader()
+    reader.readAsDataURL(image)
+    reader.onload = (event => {
+      this.imageBase64 = String(event.target?.result).replace(`data:image/${type};base64,`, '')
+      this.postImageApi()
+    })
+  }
+
+  private postImageApi(): void {
+    this.postService.postImageApi(this.imageBase64).subscribe((item: ImageModel) => {
+      this.userDetails = this.userService.getUserDetails()
+      this.userDetails.profilePicture = item.data.url
+      this.updateProfileApi()
+    })
+  }
+
+  private updateProfileApi(): void {
+    this.userService.updateProfilePicture(this.userDetails).subscribe((item: UserModel) => {
+      this.userService.setLogin(item)
+      window.location.reload()
     })
   }
 

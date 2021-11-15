@@ -8,7 +8,13 @@
         <div class="profileBox">
             <div id="userDetailsBox">
                 <div class="imgProfile">
-                    <img id="profileImage" src="{{profileDetails.profilePicture || userProfile}}" alt="userProfile">
+                    <div id="imageProfileBox">
+                        <img id="profileImage" src="{{profileDetails.profilePicture || userProfile}}" alt="userProfile">
+                        <div id="editButtonBox">
+                            <button id="editButton" (click)="fileUpload.click()">Edit</button>
+                            <input id="uploadFile" #fileUpload type="file" accept="image/png, image/jpeg" (change)="onImageSelect($event)"/>
+                        </div>
+                    </div>
                 </div>
                 <div id="nameBox">
                     <div id="nameTextBox">
