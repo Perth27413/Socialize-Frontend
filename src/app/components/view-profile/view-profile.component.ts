@@ -14,26 +14,35 @@ import { UserService } from 'src/app/services/user.service';
 export class ViewProfileComponent implements OnInit {
   @Input() public profileRef!: ElementRef
   @ViewChild('fileUpload') fileInputRef!: ElementRef
-  files: Array<File> = []
-  isCurrent: boolean = false
-  userDetails: UserModel = new UserModel
-  addPostRequest: PostAddRequestModel = new PostAddRequestModel
-  imageBase64List: Array<string> = []
-  isLoading: boolean = false
+  public files: Array<File> = []
+  public isCurrent: boolean = false
+  public userDetails: UserModel = new UserModel
+  public addPostRequest: PostAddRequestModel = new PostAddRequestModel
+  public imageBase64List: Array<string> = []
+  public isLoading: boolean = false
+  public isOwner: boolean = false
 
   constructor(private notifyService: NotifyService, private userService: UserService, private postService: PostService) { }
 
   ngOnInit(): void {
     this.userDetails = this.userService.getUserDetails()
+    this.checkIsOwner()
   }
   
   ngAfterViewInit() {
 
   }
 
+  private checkIsOwner(): void {
+    const path: Array<string> = window.location.pathname.split('/')
+    const profileId: number = Number(path[path.length - 1])
+    if (profileId === this.userDetails.id) {
+      this.isOwner = true
+    }
+  }
+
   public addPost(): void {
     this.postService.addPost(this.addPostRequest).subscribe((item: string) => {
-      console.log(item)
       setTimeout(() => {
         this.isLoading = false
         window.location.reload()
