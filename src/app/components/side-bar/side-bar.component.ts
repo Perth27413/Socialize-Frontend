@@ -14,7 +14,7 @@ export class SideBarComponent implements OnInit {
   userDetails!: UserModel
   menuList: Array<SideBarMenuModel> = [
     {icon: 'fas fa-home', name: 'Home', isActive: false, path: '/'},
-    {icon: 'fas fa-users', name: 'Follows', isActive: false, path: ''},
+    {icon: 'fas fa-users', name: 'Follows', isActive: false, path: '/follows'},
     {icon: 'fas fa-star', name: 'Favorites', isActive: false, path: ''}
   ]
 
