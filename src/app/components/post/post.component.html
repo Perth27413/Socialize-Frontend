@@ -7,7 +7,7 @@
 						<img class="profile" src={{post.owner.profilePicture}} alt="profile">
 					</div>
 					<div class="profile-text">
-						<p class="profile-name">{{post.owner.firstName}} {{post.owner.lastName}}</p>
+						<p class="profile-name" (click)="onProfileNameClick(post.owner.id)">{{post.owner.firstName}} {{post.owner.lastName}}</p>
 						<p class="description">{{post.owner.details || 'Hello World'}}</p>
 					</div>
 					<div class="more-icon" *ngIf="showMenuIcon()">

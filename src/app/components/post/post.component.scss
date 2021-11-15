@@ -55,6 +55,10 @@
               color: #534F4F;
               margin: 0;
               padding: 0;
+              &:hover {
+                cursor: pointer;
+                color: #56bbff;
+              }
             }
             .description {
               font-size: 11px;

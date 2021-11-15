@@ -10,9 +10,18 @@
                 <div class="imgProfile">
                     <img id="profileImage" src="{{profileDetails.profilePicture || userProfile}}" alt="userProfile">
                 </div>
-                <div class="nameBox">
-                    <label class="textName">{{profileDetails.firstName}} {{profileDetails.lastName}}</label>
-                    <label class="textDetails">{{profileDetails.details || 'Hello World!!!'}}</label>
+                <div id="nameBox">
+                    <div id="nameTextBox">
+                        <div id="mainNameBox">
+                            <label id="textName">{{profileDetails.firstName}} {{profileDetails.lastName}}</label>
+                            <button id="followButton"
+                            (click)="onFollowClick()"
+                            [ngClass]="{'followed': profileDetails.isFollow}"
+                            *ngIf="!isOwner"
+                            >{{profileDetails.isFollow ? 'Following' : 'Follow'}}</button>
+                        </div>
+                        <label id="textDetails">{{profileDetails.details || 'Hello World!!!'}}</label>
+                    </div>
                 </div>
             </div>
             <div id="contactBox">
