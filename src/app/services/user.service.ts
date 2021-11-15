@@ -59,4 +59,9 @@ export class UserService {
     }
     return this.http.post<ProfileModel>(`${this.path}/follow`, request)
   }
+
+  public getfollowById() {
+    const userDetails: UserModel = this.getUserDetails()
+    return this.http.post<Array<ProfileModel>>(`${this.path}/following?userId=${userDetails.id}`, '')
+  }
 }
