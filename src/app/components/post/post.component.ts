@@ -99,6 +99,7 @@ export class PostComponent implements OnInit {
   private addComment(index: number): void {
     this.commentService.addComment(this.comment).subscribe((response: CommentPageModel) => {
       this.postList.posts[index].commentLists = response
+      this.postList.posts[index].comment = response.comments.length
       this.comment = new CommentAddRequestModel
     })
   }

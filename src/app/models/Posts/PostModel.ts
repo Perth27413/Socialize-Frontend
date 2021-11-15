@@ -14,6 +14,7 @@ class PostModel {
   public showComment: boolean = false
   public commentLists: CommentPageModel = new CommentPageModel
   public showMenu: boolean = Boolean()
+  public comment: number = Number()
 }
 
 export default PostModel

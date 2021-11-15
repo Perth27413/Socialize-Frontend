@@ -35,6 +35,7 @@
 					</div>
 					<div class="comment">
 						<div class="icon-comment" [ngClass]="{'isShow': post.showComment}" (click)="toggleShowComment(i)"><i class="fas fa-comment"></i></div>
+						<div class="text-comment">{{post.comment}}</div>
 					</div>
 					<div class="date">
 						<label class="text-date">{{post.date | date: 'dd/MM/yyyy'}}</label>
