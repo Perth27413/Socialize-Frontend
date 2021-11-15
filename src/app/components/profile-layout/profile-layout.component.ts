@@ -20,7 +20,6 @@ export class ProfileLayoutComponent implements OnInit {
     if (path[path.length - 1] === 'edit') {
       this.isEdit = true
     }
-    console.log(this.isEdit)
   }
 
   onScroll(event: Event) {
