@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import ProfileModel from 'src/app/models/Profile/ProfileModel';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-popular-people',
@@ -6,30 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./popular-people.component.scss'],
 })
 export class PopularPeopleComponent implements OnInit {
-  constructor() {}
+  popularPeople: ProfileModel = new ProfileModel
 
-  ngOnInit(): void {}
+  constructor(private userService: UserService) {}
 
-  popular: { icon: string, name: string, position: string }[] = [
-    {
-      icon: 'https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80',
-      name: 'Praew Aphinya',
-      position: 'Quality Assurance Engineer'
-    },
-    {
-      icon: 'https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80',
-      name: 'Pindy Pindy',
-      position: 'Quality Assurance Engineer'
-    },
-    {
-      icon: 'https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80',
-      name: 'Moo Moo',
-      position: 'Quality Assurance Engineer'
-    },
-    {
-      icon: 'https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80',
-      name: 'Pudding',
-      position: 'Quality Assurance Engineer'
-    },
-  ];
+  ngOnInit(): void {
+    const path: Array<string> =  window.location.pathname.split('/')
+    const profileId: number = Number(path[path.length - 1])
+    this.userService.getPopularPeopleById(4).subscribe((item: ProfileModel) => {
+      this.popularPeople = item
+      console.log(this.popularPeople)
+    });
+  }
 }

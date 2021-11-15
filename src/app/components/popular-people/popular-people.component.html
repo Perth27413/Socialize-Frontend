@@ -8,17 +8,17 @@
     </div>
   </div>
   <div id="rankingPeople">
-    <div id="rowranking"  *ngFor="let pop of popular">
+    <div id="rowranking"  *ngFor="let popular of popularPeople">
       <div id="iconRanking1">
         <img
           id="image"
-          [src]="pop.icon"
-          alt=""
+          [src]="Popular.profilePicture"
+          alt="profile"
         />
       </div>
       <div id="detail">
-        <div id="name">{{pop.name}}</div>
-        <div id="position">{{pop.position}}</div>
+        <div id="name">{{popular.firstName}} {{popular.lastName}}</div>
+        <div id="position">{{popular.details}}</div>
       </div>
       <div id="button">
         <button id="follow">Follow</button>

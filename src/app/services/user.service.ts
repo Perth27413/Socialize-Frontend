@@ -48,4 +48,8 @@ export class UserService {
   public getProfileById(userId: number) {
     return this.http.get<ProfileModel>(`${this.path}/profile?userId=${userId}`)
   }
+
+  public getPopularPeopleById(userId: number) {
+    return this.http.get<ProfileModel>(`${this.path}/popular?userId=${userId}`)
+  }
 }
