@@ -8,7 +8,7 @@
     </div>
   </div>
   <div id="rankingPeople">
-    <div id="rowranking"  *ngFor="let popular of popularPeople">
+    <div id="rowranking" *ngFor="let popular of popularPeople" (click)="onProfileNameClick(popular.userId)">
       <div id="iconRanking1">
         <img
           id="image"
@@ -17,11 +17,8 @@
         />
       </div>
       <div id="detail">
-        <div id="name">{{popular.firstName}} {{popular.lastName}}</div>
+        <div id="name" >{{popular.firstName}} {{popular.lastName}}</div>
         <div id="position">{{popular.details}}</div>
-      </div>
-      <div id="button">
-        <button id="follow">Follow</button>
       </div>
     </div>
   </div>

@@ -16,11 +16,15 @@ export class PopularPeopleComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDetails = this.userService.getUserDetails();
-    // this.popularPeople = this.userService.getPopularPeopleById(this.userDetails.id);
     this.userService.getPopularPeopleById(this.userDetails.id).subscribe((item: Array<PopularResponseModel>) => {
       this.popularPeople = item
       console.log('poppular')
       console.log("popular" + this.popularPeople)
     });
   }
+
+  public onProfileNameClick(userId: number): void {
+    window.location.href = '/profile/' + userId
+  }
+
 }
