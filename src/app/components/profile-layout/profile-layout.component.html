@@ -1,6 +1,6 @@
 <div id="profileLayout" #profileLayout (scroll)="onScroll($event)">
   <div id="profileHeader">
-    <app-profile></app-profile>
+    <app-profile [isEdit]="isEdit"></app-profile>
   </div>
   <div id="profileBody">
     <app-view-profile [profileRef]="profileRef" *ngIf="!isEdit; else onEdit"></app-view-profile>
