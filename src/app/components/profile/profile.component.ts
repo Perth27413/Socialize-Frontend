@@ -21,7 +21,11 @@ export class ProfileComponent implements OnInit {
 
   private getProfileDetails(): void {
     const path: Array<string> =  window.location.pathname.split('/')
-    const profileId: number = Number(path[path.length - 1])
+    let index: number = 1
+    if (path.length === 4) {
+      index = 2
+    }
+    const profileId: number = Number(path[path.length - index])
     this.userService.getProfileById(profileId).subscribe((item: ProfileModel) => {
       this.profileDetails = item
     })
