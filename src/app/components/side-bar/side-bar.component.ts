@@ -45,7 +45,6 @@ export class SideBarComponent implements OnInit {
   }
 
   public onProfileClick(): void {
-    this.router.navigateByUrl('/profile/' + this.userDetails.id)
-    this.menuList.forEach(item => item.isActive = false)
+    window.location.href = '/profile/' + this.userDetails.id
   }
 }

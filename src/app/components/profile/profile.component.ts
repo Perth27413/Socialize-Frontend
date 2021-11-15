@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ImageModel } from 'src/app/models/Image/ImageModel';
 import ProfileModel from 'src/app/models/Profile/ProfileModel';
 import UserModel from 'src/app/models/User/UserModel';
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   paramId: number = 0
   imageBase64: string = ''
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private notifyService: NotifyService, private postService: PostService) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private notifyService: NotifyService, private postService: PostService) { }
 
   ngOnInit(): void {
     this.setParamUserId()
@@ -87,6 +87,10 @@ export class ProfileComponent implements OnInit {
       this.userService.setLogin(item)
       window.location.reload()
     })
+  }
+
+  public goToEditPage(): void {
+    window.location.href = `/profile/${this.userDetails.id}/edit`
   }
 
 }

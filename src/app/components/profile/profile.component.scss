@@ -6,6 +6,26 @@
     .bannerBox {
         $banner-height: 250px;
         height: $banner-height;
+        position: relative;
+        #goToEditBox {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 10px 10px 0 0;
+            #goToEditButton {
+                border: none;
+                outline: none;
+                background-color: transparent;
+                color: #ffffff;
+                font-size: 20px;
+                transition: transform 0.2s;
+                &:hover {
+                    transform: scale(1.2);
+                    transition: transform 0.2s;
+                    cursor: pointer;
+                }
+            }
+        }
         .imgBanner {
             #backgroundImage {
                 width: 100%;
