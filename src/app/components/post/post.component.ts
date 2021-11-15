@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import CommentAddRequestModel from 'src/app/models/Comments/CommentAddRequestModel';
 import CommentLikedResponseModel from 'src/app/models/Comments/CommentLikedResponseModel';
 import CommentModel from 'src/app/models/Comments/CommentModel';
@@ -28,16 +29,25 @@ export class PostComponent implements OnInit {
   comment: CommentAddRequestModel = new CommentAddRequestModel
   currentPage: number = 1
   isPostLoading: boolean = false
+  paramId: number = 0
 
-  constructor(private postService: PostService, private userService: UserService, private commentService: CommentService) { }
+  constructor(private postService: PostService, private userService: UserService, private commentService: CommentService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.setParamUserId()
     this.userDetails = this.userService.getUserDetails()
     this.getPost(1)
+    
   }
   
   ngAfterViewChecked() {
     this.onScroll()
+  }
+
+  private setParamUserId(): void {
+    this.route.params.subscribe(params => {
+      this.paramId = Number(params.id)
+    })
   }
 
   private onScroll(): void {
@@ -59,8 +69,7 @@ export class PostComponent implements OnInit {
   private getPost(page: number): void {
     let userId: number = this.userDetails.id
     if (this.isCurrent) {
-      const path: Array<string> =  window.location.pathname.split('/')
-      userId = Number(path[path.length - 1])
+      userId = this.paramId
     }
     this.postService.getPost(page, userId, this.isCurrent).subscribe((response: PostPageModel) => {
       this.postList = this.mapPostListFromResonse(response)
@@ -111,9 +120,7 @@ export class PostComponent implements OnInit {
 
   public showMenuIcon(): boolean {
     if (this.isCurrent) {
-      const path: Array<string> =  window.location.pathname.split('/')
-      const profileId: number = Number(path[path.length - 1])
-      return profileId === this.userDetails.id
+      return this.paramId === this.userDetails.id
     }
     return false
   }
@@ -156,5 +163,9 @@ export class PostComponent implements OnInit {
         this.postList.posts.splice(index, 1)
       }
     })
+  }
+
+  public onProfileNameClick(userId: number): void {
+    window.location.href = '/profile/' + userId
   }
 }
