@@ -6,6 +6,7 @@ import LoginRequestModel from '../models/User/LoginRequestModel';
 import RegisterRequestModel from '../models/User/RegisterRequestModel';
 import EditRequestModel from '../models/User/EditProfileRequestModel';
 import UserModel from '../models/User/UserModel';
+import FollowRequestModel from '../models/Follow/FollowRequestModel';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,16 @@ export class UserService {
   }
   
   public getProfileById(userId: number) {
-    return this.http.get<ProfileModel>(`${this.path}/profile?userId=${userId}`)
+    const userDetails: UserModel = this.getUserDetails()
+    return this.http.get<ProfileModel>(`${this.path}/profile?userId=${userId}&currentUserId=${userDetails.id}`)
+  }
+
+  public follow(followingId: number) {
+    const userDetails: UserModel = this.getUserDetails()
+    const request: FollowRequestModel = {
+      following: followingId,
+      followed: userDetails.id
+    }
+    return this.http.post<ProfileModel>(`${this.path}/follow`, request)
   }
 }

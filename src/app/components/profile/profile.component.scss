@@ -2,6 +2,7 @@
     width: 100%;
     height: 100%;
     position: relative;
+    padding: 0 0 1.8rem;
     .bannerBox {
         $banner-height: 250px;
         height: $banner-height;
@@ -32,7 +33,7 @@
             max-width: 1200px;
             min-height: 90px;
             #userDetailsBox {
-                width: 50%;
+                width: 55%;
                 display: flex;
                 .imgProfile {
                     position: relative;
@@ -49,28 +50,68 @@
                         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
                     }
                 }
-                .nameBox {
+                #nameBox {
                     height: 100%;
                     width: 60%;
                     display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: flex-start;
-                    .textName {
-                        font-size: 28px;
-                        font-weight: bold;
-                        color: #534F4F;
+                    #nameTextBox {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-start;
+                        #mainNameBox {
+                            display: flex;
+                            #textName {
+                                font-size: 28px;
+                                font-weight: bold;
+                                color: #534F4F;
+                            }
+                            #followButton {
+                                outline: none;
+                                border-radius: 5px;
+                                margin: 0 0 0 10px;
+                                padding: 0 10px;
+                                background-color: #ffffff;
+                                color: #44b4ff;
+                                border: 1px solid #44b4ff;
+                                font-weight: bold;
+                                font-size: 0.85rem;
+                                &:hover {
+                                    background-color: #0099FE;
+                                    border-color: #0099FE;
+                                    color: #ffffff;
+                                    cursor: pointer;
+                                }
+                                &.followed {
+                                    background-color: #44b4ff;
+                                    border-color: #44b4ff;
+                                    color: #ffffff;
+                                    &:hover {
+                                        background-color: #0099FE;
+                                        border-color: #0099FE;
+                                    }
+                                }
+                            }
+                        }
+                        #textDetails {
+                            font-size: 16px;
+                            color: #939393;
+                        }
                     }
-                    .textDetails {
-                        font-size: 16px;
-                        color: #939393;
+                    #followButtonBox {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        #followButton {
+
+                        }
                     }
                 }
             }
             #contactBox {
                 height: 100%;
                 display: flex;
-                width: 50%;
+                width: 45%;
                 align-items: center;
                 .alertBox {
                     display: flex;
@@ -103,7 +144,7 @@
                     }
                 }
             }
-            @media screen and (max-width: 1100px) {
+            @media screen and (max-width: 1400px) {
                 flex-flow: column;
                 padding: 0 0 20px;
                 #userDetailsBox {
@@ -119,11 +160,12 @@
                             height: $image-size;
                         }
                     }
-                    .nameBox {
-                        .textName {
+                    #nameBox {
+                        margin: 5px 0 0;
+                        #textName {
                             font-size: 24px;
                         }
-                        .textDetails {
+                        #textDetails {
                             font-size: 16px;
                         }
                     }
@@ -134,22 +176,43 @@
                     margin: 40px 0 0;
                 }
             }
+            @media screen and (max-width: 900px) {
+                #userDetailsBox {
+                    display: flex;
+                    flex-flow: column;
+                    .imgProfile {
+                        width: 100%;
+                        height: calc(150px / 2);
+                        margin: 0 0 10px;
+                        #profileImage {
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+                    }
+                    #nameBox {
+                        width: 100%;
+                        justify-content: center;
+                    }
+                }
+                #contactBox {
+                    margin: 10px 0 0;
+                }
+            }
             @media screen and (max-width: 420px) {
                 #userDetailsBox {
                     .imgProfile {
+                        height: calc(110px / 2);
                         $image-size: 110px;
                         #profileImage {
-                            top: calc((#{$image-size}/(-2)));
-                            left: calc(100% - (#{$image-size} + 10px));
                             width: $image-size;
                             height: $image-size;
                         }
                     }
-                    .nameBox {
-                        .textName {
+                    #nameBox {
+                        #textName {
                             font-size: 20px;
                         }
-                        .textDetails {
+                        #textDetails {
                             font-size: 14px;
                         }
                     }
