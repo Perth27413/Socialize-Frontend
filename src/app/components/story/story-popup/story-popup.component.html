@@ -1,58 +1,56 @@
 <div id="storyPopupMain" *ngIf="popup">
-    <div id="backgroundPopup" (click)="closePopup(false)"></div>
-    <div id="storyBox">
-      <div id="popupBox">
-        <div *ngIf="isCreate;then create else story"></div>
-        <ng-template #story>
-          <div id="storyImage">
-            <img id="image" [src]="childMessage.image" />
+  <div id="backgroundPopup" (click)="closePopup(false)"></div>
+  <div id="storyBox">
+    <div id="popupBox">
+      <div *ngIf="isCreate;then Create else Story"></div>
+      <ng-template #Story>
+        <div id="storyImage">
+          <img id="image" [src]="story.picture" />
+        </div>
+      </ng-template>
+      <ng-template #Create>
+        <div id="iconBox">
+          <div id="createIcon">
+            <label for="uploadImage" id="create">
+              <i class="fas fa-plus"></i>
+            </label>
+            <input type="file" accept="image/png, image/jpeg" id="uploadImage" (change)="checkImage($event)">
           </div>
-        </ng-template>
-        <ng-template #create>
-          <div id="iconBox">
-            <div id="createIcon">
-              <i class="fas fa-plus" id="create"></i>
-            </div>
-          </div>
-        </ng-template>
-        <div id="userDetail">
-          <div id="userIcon" *ngIf="isCreate">
-            <img id="userImage" [src]="userDetails.profilePicture" />
-          </div>
-          <div id="userIcon" *ngIf="!isCreate">
-            <img id="userImage" [src]="childMessage.user" />
-          </div>
-          <div id="detail">
-            <div id="name" *ngIf="isCreate">{{userDetails.userName}}</div>
-            <div id="name" *ngIf="!isCreate">Wasan Senkha</div>
-            <div id="positionLabel">
-              <div id="position">Software Engineer</div>
-              <div id="view" *ngIf="!isCreate">
-                <div id="icon-view"><i class="fas fa-eye"></i></div>
-                <div id="text-view">12k</div>
-              </div>
-            </div>
+          <div id="convertImg">
+            <img [src]="convertImg" id="conImg" [ngStyle]="{'opacity': popup && selectImage ? 0.7 : 0}">
           </div>
         </div>
-        <ng-container *ngIf="isCreate;then inputText else contentText"></ng-container>
-        <ng-template #contentText>
-          <div id="storyContent">
-            wasan11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-          </div>
-        </ng-template>
-        <ng-template #inputText>
-          <div id="textBox">
-            <textarea type="text" id="text" placeholder="What are you thinking ?"></textarea>
-          </div>
-        </ng-template>
-        <div id="createStoryBox" *ngIf="isCreate">
-          <div id="create">
-            Create Story
+      </ng-template>
+      <div id="userDetail">
+        <div id="userIcon">
+          <img id="userImage" [src]="checkUserImage(isCreate)"/>
+        </div>
+        <div id="detail">
+          <div id="name">{{checkUser(isCreate)}}</div>
+          <div id="positionLabel">
+            <div id="position">Software Engineer</div>
           </div>
         </div>
       </div>
-      <div id="closeStory" (click)="closePopup(false)">
-        <i id="close" class="fas fa-times"></i>
+      <ng-container *ngIf="isCreate;then inputText else contentText"></ng-container>
+      <ng-template #contentText>
+        <div id="storyContent">
+          {{story.contents}}
+        </div>
+      </ng-template>
+      <ng-template #inputText>
+        <div id="textBox">
+          <textarea type="text" id="text" [(ngModel)]="request.contents" placeholder="What on you mind?"></textarea>
+        </div>
+      </ng-template>
+      <div id="createStoryBox" *ngIf="isCreate">
+        <div id="create" (click)="createStory()">
+          Create Story
+        </div>
       </div>
     </div>
+    <div id="closeStory" (click)="closePopup(false)">
+      <i id="close" class="fas fa-times"></i>
+    </div>
   </div>
+</div>
