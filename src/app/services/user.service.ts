@@ -64,4 +64,9 @@ export class UserService {
   public getPopularPeopleById(userId: number) {
     return this.http.get<Array<PopularResponseModel>>(`${this.path}/popular?userId=${userId}`)
   }
+
+  public getfollowById() {
+    const userDetails: UserModel = this.getUserDetails()
+    return this.http.post<Array<ProfileModel>>(`${this.path}/following?userId=${userDetails.id}`, '')
+  }
 }
