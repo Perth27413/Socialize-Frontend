@@ -22,7 +22,6 @@ export class StoryComponent implements OnInit {
   public user!: UserModel
   public maxScroll!: number
 
-
   constructor(private storyService: StoryService, private userService: UserService) {
   }
 

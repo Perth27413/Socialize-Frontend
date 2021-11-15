@@ -94,18 +94,21 @@ export class StoryPopupComponent implements OnInit {
   }
 
   public createStory() {
-    this.request = {
-      contents: this.request.contents,
-      picture: this.convertImg,
-      ownerId: this.user.id
+    let img = this
+    img.request = {
+      contents: img.request.contents,
+      picture: img.convertImg,
+      ownerId: img.user.id
     }
-    let req: StoryRequestModel = this.request
-    this.storyService.createStory(req).subscribe(() => {
+    let req: StoryRequestModel = img.request
+    img.storyService.createStory(req).subscribe(() => {
       setTimeout(() => {
-        window.location.reload()
-      }, 1000)
+        img.cleanData()
+        img.notifyService.sweetSuccess('Create Story Sompletely')
+      }, 2000)
+      window.location.reload()
+    }, function (error) {
+      img.notifyService.sweetError(error.message)
     })
-    this.cleanData()
   }
-
 }
