@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import UserModel from 'src/app/models/User/UserModel';
+import PopularResponseModel from 'src/app/models/Follow/PopularResponseModel';
 
 @Component({
   selector: 'app-popular-people',
@@ -6,30 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./popular-people.component.scss'],
 })
 export class PopularPeopleComponent implements OnInit {
-  constructor() {}
+  popularPeople!: Array<PopularResponseModel>
+  userDetails: UserModel = new UserModel
 
-  ngOnInit(): void {}
+  constructor(private userService: UserService) {}
 
-  popular: { icon: string, name: string, position: string }[] = [
-    {
-      icon: 'https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80',
-      name: 'Praew Aphinya',
-      position: 'Quality Assurance Engineer'
-    },
-    {
-      icon: 'https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80',
-      name: 'Pindy Pindy',
-      position: 'Quality Assurance Engineer'
-    },
-    {
-      icon: 'https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80',
-      name: 'Moo Moo',
-      position: 'Quality Assurance Engineer'
-    },
-    {
-      icon: 'https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80',
-      name: 'Pudding',
-      position: 'Quality Assurance Engineer'
-    },
-  ];
+  ngOnInit(): void {
+    this.userDetails = this.userService.getUserDetails();
+    this.userService.getPopularPeopleById(this.userDetails.id).subscribe((item: Array<PopularResponseModel>) => {
+      this.popularPeople = item
+      console.log('poppular')
+      console.log("popular" + this.popularPeople)
+    });
+  }
+
+  public onProfileNameClick(userId: number): void {
+    window.location.href = '/profile/' + userId
+  }
+
 }

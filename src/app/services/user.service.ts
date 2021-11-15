@@ -7,6 +7,7 @@ import RegisterRequestModel from '../models/User/RegisterRequestModel';
 import EditRequestModel from '../models/User/EditProfileRequestModel';
 import UserModel from '../models/User/UserModel';
 import FollowRequestModel from '../models/Follow/FollowRequestModel';
+import PopularResponseModel from '../models/Follow/PopularResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +59,10 @@ export class UserService {
       followed: userDetails.id
     }
     return this.http.post<ProfileModel>(`${this.path}/follow`, request)
+  }
+
+  public getPopularPeopleById(userId: number) {
+    return this.http.get<Array<PopularResponseModel>>(`${this.path}/popular?userId=${userId}`)
   }
 
   public getfollowById() {
