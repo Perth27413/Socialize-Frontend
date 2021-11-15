@@ -104,7 +104,7 @@ export class StoryPopupComponent implements OnInit {
     img.storyService.createStory(req).subscribe(() => {
       setTimeout(() => {
         img.cleanData()
-        img.notifyService.sweetSuccess('Create Story Sompletely')
+        img.notifyService.sweetSuccess('Create Story Completely')
       }, 2000)
       window.location.reload()
     }, function (error) {
