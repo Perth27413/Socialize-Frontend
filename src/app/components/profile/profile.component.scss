@@ -176,13 +176,34 @@
                     margin: 40px 0 0;
                 }
             }
+            @media screen and (max-width: 900px) {
+                #userDetailsBox {
+                    display: flex;
+                    flex-flow: column;
+                    .imgProfile {
+                        width: 100%;
+                        height: calc(150px / 2);
+                        margin: 0 0 10px;
+                        #profileImage {
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+                    }
+                    #nameBox {
+                        width: 100%;
+                        justify-content: center;
+                    }
+                }
+                #contactBox {
+                    margin: 10px 0 0;
+                }
+            }
             @media screen and (max-width: 420px) {
                 #userDetailsBox {
                     .imgProfile {
+                        height: calc(110px / 2);
                         $image-size: 110px;
                         #profileImage {
-                            top: calc((#{$image-size}/(-2)));
-                            left: calc(100% - (#{$image-size} + 10px));
                             width: $image-size;
                             height: $image-size;
                         }
