@@ -18,7 +18,7 @@ export class StoryPopupComponent implements OnInit {
   @Output() close = new EventEmitter<boolean>();
   @Input() user!: UserModel
   public storyImage!: Array<File>
-  public convertImg!: any
+  public convertImg!: string
   public request: StoryRequestModel =new StoryRequestModel
   public content!: string
   public selectImage: boolean = false
@@ -70,7 +70,7 @@ export class StoryPopupComponent implements OnInit {
     reader.readAsDataURL(file[0])
     reader.onload = function () {
       img.selectImage = !img.selectImage
-      img.convertImg = reader.result
+      img.convertImg = reader.result as string
     };
     reader.onerror = function () {
       img.notifyService.sweetError('Error to convert image to base64')
