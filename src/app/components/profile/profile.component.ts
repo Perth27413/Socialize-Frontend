@@ -25,6 +25,12 @@ export class ProfileComponent implements OnInit {
     this.checkIsOwner()
   }
 
+  public onFollowClick(): void {
+    this.userService.follow(this.paramId).subscribe((item: ProfileModel) => {
+      this.profileDetails = item
+    })
+  }
+
   private setParamUserId(): void {
     this.route.params.subscribe(params => {
       this.paramId = Number(params.id)
