@@ -1,7 +1,7 @@
 <div id="cardMain">
     <div id="cardBox" *ngFor="let menu of cardProfile, let i = index">
         <div class="cardImage">
-          <img id="imgProfile" src="https://sv1.picz.in.th/images/2021/11/14/uFnmU1.jpg" alt="norslim">
+          <img id="imgProfile" src={{menu.pathUrl}} alt="norslim">
         </div>
         <div class="cardBox">
             <div class="cardName">
