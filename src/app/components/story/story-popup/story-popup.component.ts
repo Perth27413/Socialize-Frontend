@@ -1,6 +1,8 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { NotifyService } from 'src/app/services/notify.service';
 import { StoryService } from 'src/app/services/story.service';
+import { PostService } from 'src/app/services/post.service';
+import { ImageModel } from 'src/app/models/Image/ImageModel';
 import StoryModel from 'src/app/models/Story/StoryModel';
 import UserModel from 'src/app/models/User/UserModel';
 import StoryRequestModel from 'src/app/models/Story/StoryRequestModel'
@@ -19,18 +21,24 @@ export class StoryPopupComponent implements OnInit {
   @Input() user!: UserModel
   public storyImage!: Array<File>
   public convertImg!: string
-  public request: StoryRequestModel =new StoryRequestModel
-  public content!: string
+  public request: StoryRequestModel = new StoryRequestModel
   public selectImage: boolean = false
 
-  constructor(private notifyService: NotifyService, private storyService: StoryService) { }
+  constructor(private notifyService: NotifyService, private storyService: StoryService, private postService: PostService) { }
 
-  ngOnInit() { this.request.contents = '' }
+  ngOnInit() { }
+
 
   public closePopup(bool: boolean): void {
-    this.storyImage = []
+    this.cleanData()
     this.selectImage = false
     this.close.emit(bool)
+  }
+
+  public cleanData() {
+    this.storyImage = []
+    this.convertImg = ''
+    this.request = new StoryRequestModel
   }
 
   public checkUser(bool: boolean) {
@@ -68,28 +76,36 @@ export class StoryPopupComponent implements OnInit {
     let file = this.storyImage
     let reader = new FileReader()
     reader.readAsDataURL(file[0])
+    console.log(reader.result as string)
     reader.onload = function () {
-      img.selectImage = !img.selectImage
+      img.selectImage = true
       img.convertImg = reader.result as string
+      img.postImage(img.convertImg)
     };
     reader.onerror = function () {
       img.notifyService.sweetError('Error to convert image to base64')
     };
   }
 
+  public postImage(imgBase64: string) {
+    this.postService.postImageApi(imgBase64).subscribe((img: ImageModel) => {
+      this.convertImg = img.data.url
+    })
+  }
+
   public createStory() {
     this.request = {
-      contents:  this.request.contents,
-      picture: this.convertImg as string,
+      contents: this.request.contents,
+      picture: this.convertImg,
       ownerId: this.user.id
     }
     let req: StoryRequestModel = this.request
-    this.storyService.createStory(req).subscribe(data =>{
+    this.storyService.createStory(req).subscribe(() => {
       setTimeout(() => {
         window.location.reload()
       }, 1000)
     })
-    this.request = new StoryRequestModel
+    this.cleanData()
   }
 
 }

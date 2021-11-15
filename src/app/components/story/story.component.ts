@@ -33,7 +33,6 @@ export class StoryComponent implements OnInit {
         this.storyList = data
       }
     )
-
   }
 
   ngAfterViewChecked() {
