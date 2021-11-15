@@ -90,7 +90,6 @@ export class ViewProfileComponent implements OnInit {
     if (totalFiles <= 4) {
       for (let i = 0; i < fileLists.length; i++) {    
         let type: string =  fileLists.item(i)?.type!
-        console.log(type)
         if(type !== 'image/jpeg' && type !== 'image/png' ) {
           await this.notifyService.sweetWarning('Invalid file type Please check the JPG or PNG file extension.')
         } else {

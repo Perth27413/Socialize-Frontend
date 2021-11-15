@@ -6,6 +6,26 @@
     .bannerBox {
         $banner-height: 250px;
         height: $banner-height;
+        position: relative;
+        #goToEditBox {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 10px 10px 0 0;
+            #goToEditButton {
+                border: none;
+                outline: none;
+                background-color: transparent;
+                color: #ffffff;
+                font-size: 20px;
+                transition: transform 0.2s;
+                &:hover {
+                    transform: scale(1.2);
+                    transition: transform 0.2s;
+                    cursor: pointer;
+                }
+            }
+        }
         .imgBanner {
             #backgroundImage {
                 width: 100%;
@@ -38,16 +58,49 @@
                 .imgProfile {
                     position: relative;
                     width: 40%;
-                    #profileImage {
+                    #imageProfileBox {
                         top: calc((150px/(-2)));
                         left: calc(100% - 160px);
                         position: absolute;
                         width: 150px;
                         height: 150px;
-                        border-radius: 50%;
-                        border: 5px solid #FFFFFF;
-                        box-sizing: border-box;
-                        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                        #profileImage {
+                            object-fit: cover;
+                            position: absolute;
+                            width: 150px;
+                            height: 150px;
+                            border-radius: 50%;
+                            border: 5px solid #FFFFFF;
+                            box-sizing: border-box;
+                            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                        }
+                        #editButtonBox {
+                            z-index: 2;
+                            position: absolute;
+                            width: 40px;
+                            height: 40px;
+                            bottom: 0;
+                            right: 0;
+                            #editButton {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                                outline: none;
+                                background-color: #ecf7ff;
+                                border: 2px solid #5DAAEB;
+                                color: #5DAAEB;
+                                font-size: 14px;
+                                font-weight: 500;
+                                &:hover {
+                                    background-color: #5DAAEB;
+                                    color: #ffffff;
+                                    cursor: pointer;
+                                }
+                            }
+                            #uploadFile {
+                                display: none;
+                            }
+                        }
                     }
                 }
                 #nameBox {
@@ -153,11 +206,15 @@
                         $image-size: 130px;
                         position: relative;
                         width: 40%;
-                        #profileImage {
+                        #imageProfileBox {
                             top: calc((#{$image-size}/(-2)));
                             left: calc(100% - (#{$image-size} + 10px));
                             width: $image-size;
                             height: $image-size;
+                            #profileImage {
+                                width: $image-size;
+                                height: $image-size;
+                            }
                         }
                     }
                     #nameBox {
@@ -184,9 +241,11 @@
                         width: 100%;
                         height: calc(150px / 2);
                         margin: 0 0 10px;
-                        #profileImage {
+                        #imageProfileBox {
                             left: 50%;
                             transform: translateX(-50%);
+                            #profileImage {
+                            }
                         }
                     }
                     #nameBox {
@@ -203,9 +262,13 @@
                     .imgProfile {
                         height: calc(110px / 2);
                         $image-size: 110px;
-                        #profileImage {
+                        #imageProfileBox {
                             width: $image-size;
                             height: $image-size;
+                            #profileImage {
+                                width: $image-size;
+                                height: $image-size;
+                            }
                         }
                     }
                     #nameBox {

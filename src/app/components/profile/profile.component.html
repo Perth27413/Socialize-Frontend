@@ -1,6 +1,9 @@
 <div id=profileMain>
     <div class="bannerBox">
         <div class="imgBanner">
+            <div id="goToEditBox" *ngIf="!isEdit && isOwner" (click)="goToEditPage()">
+                <button id="goToEditButton"><i class="fas fa-cog"></i></button>
+            </div>
             <img id="backgroundImage" src="https://images.unsplash.com/photo-1635462048348-ff5f320cb0cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80" alt="banner-image">
         </div>
     </div>
@@ -8,7 +11,13 @@
         <div class="profileBox">
             <div id="userDetailsBox">
                 <div class="imgProfile">
-                    <img id="profileImage" src="{{profileDetails.profilePicture || userProfile}}" alt="userProfile">
+                    <div id="imageProfileBox">
+                        <img id="profileImage" src="{{profileDetails.profilePicture || userProfile}}" alt="userProfile">
+                        <div id="editButtonBox" *ngIf="isOwner && isEdit">
+                            <button id="editButton" (click)="fileUpload.click()">Edit</button>
+                            <input id="uploadFile" #fileUpload type="file" accept="image/png, image/jpeg" (change)="onImageSelect($event)"/>
+                        </div>
+                    </div>
                 </div>
                 <div id="nameBox">
                     <div id="nameTextBox">
