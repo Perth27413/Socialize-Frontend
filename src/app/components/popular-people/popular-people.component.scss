@@ -1,45 +1,57 @@
 #popularPeopleMain {
   width: 100%;
   background-color: #ffffff;
-  border-radius: 15px;
-  padding: 15px;
+  border-radius: 10px;
+  padding: 16px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   #popularPeople {
     display: flex;
-    border-bottom: 1px solid #dadada;
+    border-bottom: 1.5px solid #dadada;
     height: 25px;
+    margin-top: 5px;
     margin-bottom: 10px;
+    padding-bottom: 8px;
+    align-items: center;
     #icon {
       color: #4db8ff;
+      font-size: 18px;
+      font-weight: normal;
     }
     #headerText {
       margin-left: 10px;
+      font-size: 18px;
       font-weight: bold;
+      color: #4CB8FF;
     }
   }
   #rankingPeople {
+    margin: 0;
+    padding: 0;
     #rowranking {
+      background-color: #ffff;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       margin-bottom: 5px;
       height: 50px;
-      border-radius: 5px;
+      border-radius: 7px;
+      padding: 5px;
       #iconRanking1 {
-      display: flex;
-      justify-content: flex-start;
-      width: 18%;
-      #image {
-        height: 41px;
-        width: 41px;
-        border-radius: 10px;
-      }
+        display: flex;
+        justify-content: flex-start;
+        width: 18%;
+        #image {
+          height: 41px;
+          width: 41px;
+          border-radius: 10px;
+          object-fit: cover;
+        }
       }
       #detail {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 62%;
+        width: 82%;
         cursor: pointer;
         #name {
           color: #534f4f;
@@ -48,26 +60,13 @@
         }
         #position {
           color: #838383;
-          font-size: 10px;
+          font-size: 11px;
+          font-weight: normal;
         }
       }
-      #button {
-        display: flex;
-        width: 20%;
-        justify-content: flex-end;
-        #follow {
-          background-color: #ffffff;
-          border-radius: 5px;
-          border: 1px solid #4db8ff;
-          height: 25px;
-          font-size: 14px;
-          cursor: pointer;
-          color: #4db8ff;
-          &:hover {
-            background-color: #4db8ff;
-            color: #ffffff;
-          }
-        }
+      &:hover {
+        background-color: #E1F2FF;
+        cursor: pointer;
       }
     }
   }

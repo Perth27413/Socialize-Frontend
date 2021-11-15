@@ -4,24 +4,21 @@
       <i class="fas fa-user"></i>
     </div>
     <div id="headerText">
-      <label class="topic">Popular People</label>
+      <label class="topic">People You May Know</label>
     </div>
   </div>
   <div id="rankingPeople">
-    <div id="rowranking"  *ngFor="let pop of popular">
+    <div id="rowranking" *ngFor="let popular of popularPeople" (click)="onProfileNameClick(popular.userId)">
       <div id="iconRanking1">
         <img
           id="image"
-          [src]="pop.icon"
-          alt=""
+          [src]="popular.profilePicture"
+          alt="profile"
         />
       </div>
       <div id="detail">
-        <div id="name">{{pop.name}}</div>
-        <div id="position">{{pop.position}}</div>
-      </div>
-      <div id="button">
-        <button id="follow">Follow</button>
+        <div id="name" >{{popular.firstName}} {{popular.lastName}}</div>
+        <div id="position">{{popular.details}}</div>
       </div>
     </div>
   </div>
