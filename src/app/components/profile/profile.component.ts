@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   isOwner: boolean = false
   paramId: number = 0
   imageBase64: string = ''
+  isLoading: boolean = false
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private notifyService: NotifyService, private postService: PostService) { }
 
@@ -55,6 +56,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public async onImageSelect(events: Event): Promise<void> {
+    this.isLoading = true
     const target = events.target as HTMLInputElement
     const file: File = target.files?.item(0)!
     const type: string = file.type
@@ -85,6 +87,7 @@ export class ProfileComponent implements OnInit {
   private updateProfileApi(): void {
     this.userService.updateProfilePicture(this.userDetails).subscribe((item: UserModel) => {
       this.userService.setLogin(item)
+      this.isLoading = false
       window.location.reload()
     })
   }

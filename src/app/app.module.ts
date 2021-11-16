@@ -30,6 +30,8 @@ import { SlideshowImagesComponent } from './components/slideshow-images/slidesho
 import {GalleriaModule} from 'primeng/galleria';
 import {DropdownModule} from 'primeng/dropdown';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LoadingImageComponent } from './components/loading-image/loading-image.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     ProfileLayoutComponent,
     FollowsComponent,
     StoryPopupComponent,
-    SlideshowImagesComponent
+    SlideshowImagesComponent,
+    LoadingComponent,
+    LoadingImageComponent
   ],
   imports: [
     HttpClientModule,

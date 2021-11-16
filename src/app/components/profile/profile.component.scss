@@ -65,6 +65,7 @@
                         width: 150px;
                         height: 150px;
                         #profileImage {
+                            background-color: #f0f8ff;
                             object-fit: cover;
                             position: absolute;
                             width: 150px;
@@ -244,13 +245,14 @@
                         #imageProfileBox {
                             left: 50%;
                             transform: translateX(-50%);
-                            #profileImage {
-                            }
                         }
                     }
                     #nameBox {
                         width: 100%;
                         justify-content: center;
+                        #nameTextBox {
+                            align-items: center;
+                        }
                     }
                 }
                 #contactBox {
