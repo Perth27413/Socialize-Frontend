@@ -97,7 +97,7 @@ export class SignInComponent implements OnInit {
   private validateFields(): boolean {
     let isValid: boolean = true
     for (const [key, value] of Object.entries(this.loginRequest)) {
-      if (!value) {
+      if (!value && key !== 'typeId') {
         this.validateOnInput(key)
         isValid = false
         this.notifyService.warning(`${key} is invalid !!!`)

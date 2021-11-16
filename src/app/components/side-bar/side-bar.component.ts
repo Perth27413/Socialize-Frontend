@@ -41,7 +41,7 @@ export class SideBarComponent implements OnInit {
 
   public logout(): void {
     this.userService.setLogout()
-    this.router.navigateByUrl('/login')
+    window.location.href = '/login'
   }
 
   public onProfileClick(): void {
