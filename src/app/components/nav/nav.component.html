@@ -6,4 +6,19 @@
   <div id="sideBtn" [ngClass]="{'active': showSideBar}" (click)="toggleSidebar()">
     <i class="fas fa-bars" aria-hidden="true"></i>
   </div>
+  <div id="searchBox">
+    <div id="iconSearch">
+      <i class="fas fa-search"></i>
+    </div>
+    <p-autoComplete
+      [style]="{'height': '30px', 'border-radius': '10px'}"
+      [inputStyle]="{'font-size': '14px', 'padding': '0 0 0 30px'}"
+      [minLength]="1"
+      field="name"
+      [suggestions]="result" 
+      (completeMethod)="search($event)"
+      placeholder="Search on Socialize"
+      (onSelect)="onSelect($event)"
+    ></p-autoComplete>
+  </div>
 </div>

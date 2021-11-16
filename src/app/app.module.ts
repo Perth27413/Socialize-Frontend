@@ -28,6 +28,8 @@ import { FollowsComponent } from './components/follows/follows.component';
 import { StoryPopupComponent } from './components/story/story-popup/story-popup.component';
 import { SlideshowImagesComponent } from './components/slideshow-images/slideshow-images.component';
 import {GalleriaModule} from 'primeng/galleria';
+import {DropdownModule} from 'primeng/dropdown';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import {GalleriaModule} from 'primeng/galleria';
     FormsModule,
     SliderModule,
     ChartModule,
-    GalleriaModule
+    GalleriaModule,
+    DropdownModule,
+    AutoCompleteModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
