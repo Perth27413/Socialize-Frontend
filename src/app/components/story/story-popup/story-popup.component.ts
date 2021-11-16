@@ -31,7 +31,6 @@ export class StoryPopupComponent implements OnInit {
   ngOnInit() {
   }
 
-
   public closePopup(bool: boolean): void {
     this.cleanData()
     this.selectImage = false
