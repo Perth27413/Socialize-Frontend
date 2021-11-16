@@ -56,7 +56,7 @@ export class StoryComponent implements OnInit {
 
   private showScrollCheck(currentScroll: number): void {
     this.leftScroll = currentScroll <= 0 ? false : true
-    this.rightScroll = currentScroll >= (this.maxScroll * 0.9) ? false : true
+    this.rightScroll = currentScroll >= (this.maxScroll * 0.98) ? false : true
   }
 
   public async leftArrow() {
