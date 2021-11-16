@@ -26,6 +26,8 @@ import {ChartModule} from 'primeng/chart';
 import { ProfileLayoutComponent } from './components/profile-layout/profile-layout.component';
 import { FollowsComponent } from './components/follows/follows.component';
 import { StoryPopupComponent } from './components/story/story-popup/story-popup.component';
+import { SlideshowImagesComponent } from './components/slideshow-images/slideshow-images.component';
+import {GalleriaModule} from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { StoryPopupComponent } from './components/story/story-popup/story-popup.
     GraphComponent,
     ProfileLayoutComponent,
     FollowsComponent,
-    StoryPopupComponent
+    StoryPopupComponent,
+    SlideshowImagesComponent
   ],
   imports: [
     HttpClientModule,
@@ -56,7 +59,8 @@ import { StoryPopupComponent } from './components/story/story-popup/story-popup.
     CalendarModule,
     FormsModule,
     SliderModule,
-    ChartModule
+    ChartModule,
+    GalleriaModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
