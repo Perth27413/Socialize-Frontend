@@ -9,14 +9,14 @@ import PopularResponseModel from 'src/app/models/Follow/PopularResponseModel';
   styleUrls: ['./popular-people.component.scss'],
 })
 export class PopularPeopleComponent implements OnInit {
-  popularPeople!: Array<PopularResponseModel>
+  popularPeople!: Array<UserModel>
   userDetails: UserModel = new UserModel
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.userDetails = this.userService.getUserDetails();
-    this.userService.getPopularPeopleById(this.userDetails.id).subscribe((item: Array<PopularResponseModel>) => {
+    this.userService.getPopularPeopleById(this.userDetails.id).subscribe((item: Array<UserModel>) => {
       this.popularPeople = item
     })
   }
