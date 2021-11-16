@@ -48,4 +48,16 @@
       display: flex;
     }
   }
+  #searchBox {
+    position: relative;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    #iconSearch {
+      position: absolute;
+      z-index: 7;
+      margin: 0 0 0 5px;
+      color: #7e7e7e;
+    }
+  }
 }
