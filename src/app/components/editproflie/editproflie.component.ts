@@ -15,7 +15,7 @@ export class EditproflieComponent implements OnInit {
   editUserRequest: EditRequestModel = new EditRequestModel
   validate: EditProfileValidateModel = new EditProfileValidateModel
   userDetails: UserModel = new UserModel
-  isLoading: boolean = true
+  isLoading: boolean = false
 
   constructor(private notifyService: NotifyService, private userService: UserService) { }
 
@@ -26,11 +26,13 @@ export class EditproflieComponent implements OnInit {
 
   onSaveChangedetails() {
     try {
+      this.isLoading = true
       if (this.validateFields()) {
         this.userDetails.birthday = this.birthDate
         this.userService.editProfile(this.userDetails).subscribe((response: UserModel) => {
           setTimeout(async () => {
             if (response) {
+              this.isLoading = false
               await this.notifyService.sweetSuccess('Change information Successfully')
               this.userService.setLogin(response)
               window.location.reload()
