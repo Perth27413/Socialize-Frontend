@@ -54,43 +54,56 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  public validateOnInput(key: string): void {
+  public validateOnInput(key: string): boolean {
+    let isValid: boolean = false
     switch (key) {
       case 'username':
         this.validate.userIsValid = this.registerRequest['username'].length > 3 ? true : false
+        isValid = this.validate.userIsValid
         break
       case 'password':
         this.validate.passIsValid = this.registerRequest['password'].length >= 8 ? true : false
+        isValid = this.validate.passIsValid
         break
       case 'email':
         this.validate.emailIsValid = this.checkEmailFormat(this.registerRequest['email'])
+        isValid = this.validate.emailIsValid
         break
       case 'firstName':
         this.validate.firstNameIsValid = this.registerRequest['firstName'].length >= 3 ? true : false
+        isValid = this.validate.firstNameIsValid
         break
       case 'lastName':
         this.validate.lastNameIsValid = this.registerRequest['lastName'].length >= 3 ? true : false
+        isValid = this.validate.lastNameIsValid
         break
       case 'phoneNumber':
         this.validate.phoneIsValid = this.registerRequest['phoneNumber'].length == 10 ? true : false
+        isValid = this.validate.phoneIsValid
         break
       case 'birthDay':
         this.validate.birthDayIsValid = this.birthDate ? true : false
+        isValid = this.validate.birthDayIsValid
         break
       default:
         break
     }
+    return isValid
   }
 
   private validateFields(): boolean {
     let isValid = true
-    for (const [key, value] of Object.entries(this.registerRequest)) {
-      if (!value) {
-        this.validateOnInput(key)
-        this.notifyService.warning(`${this.formatToCapitalCase(key)} is invalid`)
-        isValid = false
+    let validate: Array<string> = ['username', 'password', 'email', 'firstName', 'lastName', 'phoneNumber', 'birthDay']
+    validate.forEach((item: string) => {
+      for (const [key, value] of Object.entries(this.registerRequest)) {
+        if (item === key) {
+          if (!this.validateOnInput(key)) {
+            this.notifyService.warning(`${this.formatToCapitalCase(key)} is invalid`)
+            isValid = false
+          }  
+        }
       }
-    }
+    })
     return isValid
   }
 
