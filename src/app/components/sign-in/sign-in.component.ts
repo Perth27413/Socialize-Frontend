@@ -7,8 +7,9 @@ import { NotifyService } from 'src/app/services/notify.service';
 import { UserService } from 'src/app/services/user.service';
 import {Md5} from 'ts-md5/dist/md5'
 import Swal from 'sweetalert2'
-import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { GoogleUserModel } from 'src/app/models/User/OAuth/GoogleUserModel';
+import { FacebookUserModel } from 'src/app/models/User/Facebook/FacebookUserModel';
 
 @Component({
   selector: 'app-sign-in',
@@ -36,6 +37,20 @@ export class SignInComponent implements OnInit {
         username: user.email,
         password: '',
         typeId: 2
+      }
+      this.socialLogin(request)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  public async loginWithFacebook(): Promise<void> {
+    try {
+      const user: FacebookUserModel = await this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+      const request: LoginRequestModel = {
+        username: user.email,
+        password: '',
+        typeId: 3
       }
       this.socialLogin(request)
     } catch (error) {
