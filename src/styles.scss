@@ -5,6 +5,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+img {
+  object-fit: cover;
+}
+
 /* width */
 ::-webkit-scrollbar {
 	height: 5px;

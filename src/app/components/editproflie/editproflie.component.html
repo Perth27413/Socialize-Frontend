@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="button-con">
-                <button class="button-save-change" type="button" (click)="onSaveChangedetails()">Save Changes</button>
+                <button class="button-save-change" [ngClass]="{'disable': !validateCanChange()}" type="button" (click)="validateCanChange() ? onSaveChangedetails() : undefined" >Save Changes</button>
             </div>
         </div>
     </div>
