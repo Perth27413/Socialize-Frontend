@@ -10,7 +10,7 @@
         font-size: 21px;
         font-weight: bold;
         padding: 0;
-        margin: 40px 100px 0 100px;
+        margin: 40px 100px 10px 100px;
         }
         @media only screen and (max-width: 1200px )and (min-width: 752px) {
             width: 100%;
@@ -79,12 +79,12 @@
                             flex-direction: column;
                             align-items: flex-end;
                             border-right: 2px solid #ffff;
-                            width: 50%;
+                            width: 40%;
                             padding-right: 10px;
                             margin: 0;
                             .text-quantity {
                                 color: #ffff;
-                                font-size: 2rem;
+                                font-size: 1.8rem;
                                 font-weight: bold;
                                 margin: 0;
                             }
@@ -98,12 +98,12 @@
                         .quantity-percent {
                         display: flex;
                         flex-direction: column;
-                        width: 50%;
+                        width: 60%;
                         align-items: flex-start;
                         padding-left: 10px;
                             .text-quantity {
                                 color: #ffff;
-                                font-size: 2rem;
+                                font-size: 1.8rem;
                                 font-weight: bold;
                                 margin: 0;
                             }

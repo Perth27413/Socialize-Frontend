@@ -103,18 +103,14 @@
           font-size: 16px;
           font-weight: bold;
           &:hover {
-            text-decoration-line: underline;
             cursor: pointer;
             color: #0099fe;
           }
         }
-        #positionLabel {
-          display: flex;
-          #position {
-            color: #838383;
-            font-size: 10px;
-            width: 50%;
-          }
+        #detail {
+          color: #838383;
+          font-size: 10px;
+          width: 50%;
         }
       }
       #storyContent {

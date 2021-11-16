@@ -1,7 +1,7 @@
 <div id="storyMain">
   <div id="popup" [ngStyle]="{'z-index': popupShow ? 6 : -1}">
-    <app-story-popup [story]="story" [popup]="popupShow" [isCreate]="createStory"
-      (close)="closePopup($event)" [user]="user">
+    <app-story-popup [story]="story" [popup]="popupShow" [isCreate]="createStory" (close)="closePopup($event)"
+      [user]="user">
     </app-story-popup>
   </div>
   <div id="storyContent">
@@ -20,7 +20,7 @@
         <div id="userIcon">
           <img id="image" [src]="story.owner.profilePicture" />
         </div>
-        <img id="storyImage" [src]="story.picture" (click)="showPopup(story)"/>
+        <img id="storyImage" [src]="story.picture" (click)="showPopup(story)" />
       </div>
     </div>
     <div id="arrowBox" [ngStyle]="{'opacity': maxScroll > 0 ? 1 : 1}">

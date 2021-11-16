@@ -52,6 +52,15 @@ export class StoryPopupComponent implements OnInit {
     return userName
   }
 
+  public checkUserDetail(bool: boolean) {
+    let userDetail!: string
+    if (bool)
+      userDetail = this.user.details
+    else
+      userDetail = this.story.owner.details
+    return userDetail
+  }
+
   public checkUserImage(bool: boolean) {
     let userPic!: string
     if (bool)
@@ -114,5 +123,18 @@ export class StoryPopupComponent implements OnInit {
     }, (error) => {
       this.notifyService.sweetError(error.message)
     })
+  }
+
+  public checkUserId(bool: boolean) {
+    let userId!: number
+    if (bool)
+      userId = this.user.id
+    else
+      userId = this.story.owner.id
+    return userId
+  }
+
+  public onProfileNameClick(userId: number): void {
+    window.location.href = '/profile/' + userId
   }
 }
