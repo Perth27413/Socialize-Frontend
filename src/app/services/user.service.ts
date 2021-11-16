@@ -35,6 +35,10 @@ export class UserService {
     return JSON.parse(window.localStorage.getItem('user')!)
   }
 
+  public getAllUser() {
+    return this.http.get<Array<UserModel>>(`${this.path}/all`)
+  }
+
   public login(request: LoginRequestModel) {
     return this.http.post<UserModel>(`${this.path}/login`, request)
   }
