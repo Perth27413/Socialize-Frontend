@@ -1,4 +1,5 @@
 <div id="profileLayout" #profileLayout (scroll)="onScroll($event)">
+  <app-loading *ngIf="isLoading"></app-loading>
   <div id="profileHeader">
     <app-profile [isEdit]="isEdit"></app-profile>
   </div>

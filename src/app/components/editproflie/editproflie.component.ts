@@ -15,13 +15,13 @@ export class EditproflieComponent implements OnInit {
   editUserRequest: EditRequestModel = new EditRequestModel
   validate: EditProfileValidateModel = new EditProfileValidateModel
   userDetails: UserModel = new UserModel
+  isLoading: boolean = true
 
   constructor(private notifyService: NotifyService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.userDetails = this.userService.getUserDetails()
     this.birthDate = new Date(this.userDetails.birthday)
-    console.log(this.userDetails)
   }
 
   onSaveChangedetails() {
@@ -33,6 +33,7 @@ export class EditproflieComponent implements OnInit {
             if (response) {
               await this.notifyService.sweetSuccess('Change information Successfully')
               this.userService.setLogin(response)
+              window.location.reload()
             } else {
               this.notifyService.sweetWarning('Change information failed')
             }

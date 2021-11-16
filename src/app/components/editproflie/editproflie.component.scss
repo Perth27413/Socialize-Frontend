@@ -82,7 +82,7 @@
                     background-color: #ffff;
                     color: #2DABFF;
                     border: 1px solid #2DABFF;
-                    &:hover {
+                    &:hover, &.loading {
                         cursor: pointer;
                         background-color: #2DABFF;
                         color: white;
@@ -92,6 +92,10 @@
                         cursor: no-drop;
                         color: #b0dfff;
                         border-color: #b0dfff;
+                    }
+                    &.loading {
+                        cursor: wait;
+                        font-size: 18px;
                     }
                 }
             }

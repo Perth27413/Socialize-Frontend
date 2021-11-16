@@ -13,12 +13,20 @@ export class FollowsComponent implements OnInit {
   profileDetails!: Array<ProfileModel>
   isOwner: boolean = false
   paramId: number = 0
+  isLoading: boolean = true
 
   constructor(private userService: UserService) { 
   }
 
   ngOnInit(): void {
     this.getFollowDetails()
+    this.setLoading()
+  }
+
+  private setLoading(): void {
+    setTimeout(() => {
+      this.isLoading = false
+    }, 1500)
   }
 
   private getFollowDetails(): void {

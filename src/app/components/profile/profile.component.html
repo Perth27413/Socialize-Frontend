@@ -12,6 +12,7 @@
             <div id="userDetailsBox">
                 <div class="imgProfile">
                     <div id="imageProfileBox">
+                        <app-loading-image *ngIf="isLoading"></app-loading-image>
                         <img id="profileImage" src="{{profileDetails.profilePicture || userProfile}}" 
                         onerror="this.src='/assets/image/not_found.jpg'"
                         alt="userProfile">

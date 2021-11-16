@@ -9,10 +9,18 @@ export class ProfileLayoutComponent implements OnInit {
   @ViewChild('profileLayout') public profileRef!: ElementRef
   public isEdit: boolean = false
   public isBottom: boolean = false
+  public isLoading: boolean = true
   constructor() { }
 
   ngOnInit(): void {
     this.checkPathIsEdit()
+    this.setLoading()
+  }
+
+  private setLoading(): void {
+    setTimeout(() => {
+      this.isLoading = false
+    }, 1500)
   }
 
   private checkPathIsEdit(): void {

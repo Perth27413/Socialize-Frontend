@@ -83,7 +83,10 @@
                 </div>
             </div>
             <div class="button-con">
-                <button class="button-save-change" [ngClass]="{'disable': !validateCanChange()}" type="button" (click)="validateCanChange() ? onSaveChangedetails() : undefined" >Save Changes</button>
+                <button class="button-save-change" [ngClass]="{'disable': !validateCanChange()}" type="button" (click)="validateCanChange() ? onSaveChangedetails() : undefined" *ngIf="!isLoading; else whenLoading">Save Changes</button>
+                <ng-template #whenLoading>
+                    <button class="button-save-change loading"><i class="fa fa-spinner fa-spin"></i></button>
+                </ng-template>
             </div>
         </div>
     </div>
