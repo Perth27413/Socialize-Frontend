@@ -87,7 +87,6 @@ export class EditproflieComponent implements OnInit {
         if (item === key) {
           if (!this.validateOnInputDetails(key)) {
             this.notifyService.warning(`${this.formatToCapitalCase(key)} is invalid`)
-            isValid = false
           }
         }
       }
