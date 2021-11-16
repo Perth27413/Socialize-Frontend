@@ -27,15 +27,12 @@
         </div>
         <div id="detail">
           <div id="name">{{checkUser(isCreate)}}</div>
-          <div id="positionLabel">
-            <div id="position">Software Engineer</div>
-          </div>
         </div>
       </div>
       <ng-container *ngIf="isCreate;then inputText else contentText"></ng-container>
       <ng-template #contentText>
         <div id="storyContent">
-          {{story.contents}}
+          <pre id="contents">{{story.contents}}</pre>
         </div>
       </ng-template>
       <ng-template #inputText>
@@ -44,7 +41,7 @@
         </div>
       </ng-template>
       <div id="createStoryBox" *ngIf="isCreate">
-        <div id="create" (click)="createStory()">
+        <div id="create" (click)="onCreateStoryClick()">
           Create Story
         </div>
       </div>
