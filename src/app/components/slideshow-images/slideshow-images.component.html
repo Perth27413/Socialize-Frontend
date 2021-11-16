@@ -1,0 +1,17 @@
+<div id="showImageMain">
+    <div id="showImageContainer" (click)="closeShowImage(false)">
+        <div id="cardImage">
+            <p-galleria [value]="images" [responsiveOptions]="responsiveOptions"
+                [containerStyle]="{'max-width': '600px', 'max-height': '550px'}" [numVisible]="4">
+                <ng-template pTemplate="item" let-item>
+                    <img [src]="item.link" style="width: 100%; display: block; height: 450px; object-fit: cover;" />
+                </ng-template>
+                <ng-template pTemplate="thumbnail" let-item>
+                    <div class="p-grid p-nogutter p-justify-center">
+                        <img [src]="item.link" style="width: 100%; display: block; height: 100px;" />
+                    </div>
+                </ng-template>
+            </p-galleria>
+        </div>
+    </div>
+</div>
