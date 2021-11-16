@@ -1,8 +1,9 @@
 <div id="showImageMain">
-    <div id="showImageContainer" (click)="closeShowImage(false)">
+    <div id="showImageBackBox" (click)="closeShowImage(false)"></div>
+    <div id="showImageContainer">
         <div id="cardImage">
             <p-galleria [value]="images" [responsiveOptions]="responsiveOptions"
-                [containerStyle]="{'max-width': '600px', 'max-height': '550px'}" [numVisible]="4">
+                [containerStyle]="{'max-width': '600px', 'width': '100%'}" [numVisible]="4">
                 <ng-template pTemplate="item" let-item>
                     <img [src]="item.link" style="width: 100%; display: block; height: 450px; object-fit: cover;" />
                 </ng-template>
