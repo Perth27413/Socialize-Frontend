@@ -7,6 +7,8 @@ import { NotifyService } from 'src/app/services/notify.service';
 import { UserService } from 'src/app/services/user.service';
 import {Md5} from 'ts-md5/dist/md5'
 import Swal from 'sweetalert2'
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { GoogleUserModel } from 'src/app/models/User/OAuth/GoogleUserModel';
 
 @Component({
   selector: 'app-sign-in',
@@ -21,10 +23,31 @@ export class SignInComponent implements OnInit {
     passIsValid: null
   }
 
-  constructor(private router: Router, private userService: UserService, private notifyService: NotifyService) { }
+  constructor(private authService: SocialAuthService, private router: Router, private userService: UserService, private notifyService: NotifyService) { }
 
   ngOnInit(): void {
     
+  }
+
+  public async loginWithGoogle(): Promise<void> {
+    try {
+      const user: GoogleUserModel = await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+      const request: LoginRequestModel = {
+        username: user.email,
+        password: '',
+        typeId: 2
+      }
+      this.socialLogin(request)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  private socialLogin(request: LoginRequestModel): void {
+    this.userService.login(request).subscribe((response: UserModel) => {
+      this.userService.setLogin(response)
+      this.router.navigateByUrl('/')
+    })
   }
 
   public goToSignUp(): void {
@@ -36,6 +59,7 @@ export class SignInComponent implements OnInit {
       if (this.validateFields()) {
         this.isLoading = true
         const newRequest: LoginRequestModel = {...this.loginRequest}
+        newRequest.typeId = 1
         newRequest.password = new Md5().appendStr(newRequest.password).end().toString()
         this.userService.login(newRequest).subscribe((response: UserModel) => {
           setTimeout(async () => {

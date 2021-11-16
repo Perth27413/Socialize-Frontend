@@ -32,6 +32,8 @@ import {DropdownModule} from 'primeng/dropdown';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingImageComponent } from './components/loading-image/loading-image.component';
+import { FacebookLoginProvider, SocialAuthService, SocialAuthServiceConfig, SocialLoginModule } from "angularx-social-login";
+import { GoogleLoginProvider } from "angularx-social-login";
 
 @NgModule({
   declarations: [
@@ -68,9 +70,29 @@ import { LoadingImageComponent } from './components/loading-image/loading-image.
     ChartModule,
     GalleriaModule,
     DropdownModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    SocialLoginModule
   ],
-  providers: [CookieService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [CookieService, SocialLoginModule,
+  {
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            '66566557868-acboo6tof3bi3395b2ps2u3chjjmot7r.apps.googleusercontent.com'
+          )
+        },
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider('clientId')
+        }
+      ]
+    } as SocialAuthServiceConfig,
+  }
+  ]
 })
 export class AppModule { }

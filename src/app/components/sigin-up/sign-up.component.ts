@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { GoogleUserModel } from 'src/app/models/User/OAuth/GoogleUserModel';
 import RegisterRequestModel from 'src/app/models/User/RegisterRequestModel';
 import UserModel from 'src/app/models/User/UserModel';
 import RegisterValidateModel from 'src/app/models/Validate/RegisterValidateModel';
@@ -18,9 +20,40 @@ export class SignUpComponent implements OnInit {
   registerRequest: RegisterRequestModel = new RegisterRequestModel
   validate: RegisterValidateModel = new RegisterValidateModel
 
-  constructor(private router: Router, private notifyService: NotifyService, private userService: UserService) { }
+  constructor(private router: Router, private notifyService: NotifyService, private userService: UserService, private authService: SocialAuthService) { }
 
   ngOnInit(): void {
+  }
+
+  public loginWithGoogle(): void {
+    try {
+      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then((response: GoogleUserModel) => {
+        const request: RegisterRequestModel = this.mapGoogleModelToRegisterRequestModel(response)
+        this.userService.register(request).subscribe((response: UserModel) => {
+          this.userService.setLogin(response)
+          this.router.navigateByUrl('/')
+        })
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  private mapGoogleModelToRegisterRequestModel(user: GoogleUserModel): RegisterRequestModel {
+    const newUser: RegisterRequestModel = {
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      pictureProfile: user.photoUrl,
+      typeId: 2,
+      birthDay: new Date().toISOString(),
+      username: '',
+      password: '',
+      phoneNumber: ''
+    }
+    console.log(newUser)
+    return newUser
   }
 
   public goToSignIn(): void {
