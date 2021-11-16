@@ -55,7 +55,7 @@ export class NavComponent implements OnInit {
           c.name.toLowerCase().includes(query.toLowerCase())
         )
       }
-    }, 1500)
+    }, 500)
   }
 
   public onSelect(value: SearchModel): void {
