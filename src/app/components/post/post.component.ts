@@ -57,13 +57,13 @@ export class PostComponent implements OnInit {
     try {
       let currentScroll: number = this.homeRef.nativeElement.scrollTop + this.homeRef.nativeElement.offsetHeight
       let maxScroll: number = this.homeRef.nativeElement.scrollHeight
-      if (currentScroll >= (maxScroll * 0.85) && !this.isBottom && (this.currentPage !== this.postList.totalPage && this.postList.totalPage !== 0)) {
+      if (currentScroll >= (maxScroll * 0.9) && !this.isBottom && (this.currentPage !== this.postList.totalPage && this.postList.totalPage !== 0)) {
         this.isBottom = true
         this.isPostLoading = true
         setTimeout(() => {
           this.isPostLoading = false
           this.getPost(this.currentPage + 1)
-        }, 4000)
+        }, 1500)
       }
     } catch (error) {
     }
