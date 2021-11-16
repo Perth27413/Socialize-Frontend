@@ -12,7 +12,9 @@
             <div id="userDetailsBox">
                 <div class="imgProfile">
                     <div id="imageProfileBox">
-                        <img id="profileImage" src="{{profileDetails.profilePicture || userProfile}}" alt="userProfile">
+                        <img id="profileImage" src="{{profileDetails.profilePicture || userProfile}}" 
+                        onerror="this.src='/assets/image/not_found.jpg'"
+                        alt="userProfile">
                         <div id="editButtonBox" *ngIf="isOwner && isEdit">
                             <button id="editButton" (click)="fileUpload.click()">Edit</button>
                             <input id="uploadFile" #fileUpload type="file" accept="image/png, image/jpeg" (change)="onImageSelect($event)"/>

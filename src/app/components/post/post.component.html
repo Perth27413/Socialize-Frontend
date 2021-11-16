@@ -4,7 +4,9 @@
 			<div id="content-container">
 				<div class="profile-content">
 					<div class="image-div">
-						<img class="profile" src={{post.owner.profilePicture}} alt="profile">
+						<img class="profile" src={{post.owner.profilePicture}} 
+						onerror="this.src='/assets/image/not_found.jpg'"
+						alt="profile">
 					</div>
 					<div class="profile-text">
 						<p class="profile-name" (click)="onProfileNameClick(post.owner.id)">{{post.owner.firstName}} {{post.owner.lastName}}</p>
@@ -23,6 +25,7 @@
 				<div class="photo-content" *ngIf="post.picture[0]">
 					<div class="photo-grid" [ngClass]="getPhotoLayoutClassName(post.picture.length)">
 						<img class="photo" *ngFor="let photo of post.picture, let index = index"
+							onerror="this.src='/assets/image/not_found.jpg'"
 							[ngClass]="getPhotoClassName(index)" src={{photo}} alt="photo" (click)="showSlideImages(i)">
 					</div>
 				</div>
@@ -53,6 +56,7 @@
 							<div class="image-profile">
 								<img class="profile"
 									src="{{comment.owner.profilePicture}}"
+									onerror="this.src='/assets/image/not_found.jpg'"
 									alt="profile">
 							</div>
 							<div class="coment-div">
