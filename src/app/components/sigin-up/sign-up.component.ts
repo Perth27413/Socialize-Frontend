@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { FacebookUserModel } from 'src/app/models/User/Facebook/FacebookUserModel';
 import { GoogleUserModel } from 'src/app/models/User/OAuth/GoogleUserModel';
 import RegisterRequestModel from 'src/app/models/User/RegisterRequestModel';
 import UserModel from 'src/app/models/User/UserModel';
@@ -38,6 +39,36 @@ export class SignUpComponent implements OnInit {
     } catch (error) {
       console.error(error)
     }
+  }
+
+  public loginWithFacebook(): void {
+    try {
+      this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+      .then((response: FacebookUserModel) => {
+        const request: RegisterRequestModel = this.mapFacebookModelToRegisterRequestModel(response)
+        this.userService.register(request).subscribe((response: UserModel) => {
+          this.userService.setLogin(response)
+          this.router.navigateByUrl('/')
+        })
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  private mapFacebookModelToRegisterRequestModel(user: FacebookUserModel): RegisterRequestModel {
+    const newUser: RegisterRequestModel = {
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      pictureProfile: user.photoUrl,
+      typeId: 3,
+      birthDay: new Date().toISOString(),
+      username: '',
+      password: '',
+      phoneNumber: ''
+    }
+    return newUser
   }
 
   private mapGoogleModelToRegisterRequestModel(user: GoogleUserModel): RegisterRequestModel {
