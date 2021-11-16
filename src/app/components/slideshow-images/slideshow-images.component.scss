@@ -1,0 +1,29 @@
+#showImageMain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    #showImageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        background-color: rgba(0,0,0,0.5);  
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        padding: 25px;
+        #cardImage {
+            width: 600px;
+            height: 550px;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}

@@ -23,7 +23,7 @@
 				<div class="photo-content" *ngIf="post.picture[0]">
 					<div class="photo-grid" [ngClass]="getPhotoLayoutClassName(post.picture.length)">
 						<img class="photo" *ngFor="let photo of post.picture, let index = index"
-							[ngClass]="getPhotoClassName(index)" src={{photo}} alt="photo">
+							[ngClass]="getPhotoClassName(index)" src={{photo}} alt="photo" (click)="showSlideImages(i)">
 					</div>
 				</div>
 				<div class="like-container">
@@ -82,4 +82,5 @@
 		</div>
 		<app-lazy-loading *ngIf="isPostLoading"></app-lazy-loading>
 	</div>
+	<app-slideshow-images *ngIf="isShowImages" [(isShowImages)]="isShowImages" [imageList]="imageList"></app-slideshow-images>
 </div>

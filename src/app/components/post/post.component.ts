@@ -22,6 +22,8 @@ export class PostComponent implements OnInit {
   @Input() public homeRef!: ElementRef
   @Input() public isCurrent: boolean = false
   
+  isShowImages: boolean = false
+
   isBottom: boolean = false
   isShowComment: boolean = false
   postList: PostPageModel = new PostPageModel
@@ -30,6 +32,7 @@ export class PostComponent implements OnInit {
   currentPage: number = 1
   isPostLoading: boolean = false
   paramId: number = 0
+  imageList: Array<string> = []
 
   constructor(private postService: PostService, private userService: UserService, private commentService: CommentService, private route: ActivatedRoute) { }
 
@@ -168,4 +171,14 @@ export class PostComponent implements OnInit {
   public onProfileNameClick(userId: number): void {
     window.location.href = '/profile/' + userId
   }
+
+  public showSlideImages(index: number) {
+    this.isShowImages = true;
+    this.imageList = this.postList.posts[index].picture
+  }
+  
+  public closeShowImage(event: boolean) {
+    this.isShowImages = event
+  }
+
 }
