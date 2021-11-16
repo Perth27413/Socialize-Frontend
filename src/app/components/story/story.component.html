@@ -1,14 +1,14 @@
 <div id="storyMain">
   <div id="popup" [ngStyle]="{'z-index': popupShow ? 6 : -1}">
-    <app-story-popup [childMessage]="parentMessage" [popup]="popupShow" [isCreate]="createStory"
-      (close)="closePopup($event)">
+    <app-story-popup [story]="story" [popup]="popupShow" [isCreate]="createStory"
+      (close)="closePopup($event)" [user]="user">
     </app-story-popup>
   </div>
   <div id="storyContent">
     <div id="storyBox" #storyBox>
       <div id="createStoryBox">
         <div id="userIcon">
-          <img id="image" src="../../../assets/image/profile.jpg" alt="prifile" />
+          <img id="image" [src]="user.profilePicture" alt="prifile" />
         </div>
         <div id="iconBox">
           <div id="createIcon" (click)="createPopup()">
@@ -18,12 +18,12 @@
       </div>
       <div class="StoryDay" id="{{i + 1}}" *ngFor="let story of storyList, let i = index">
         <div id="userIcon">
-          <img id="image" [src]="story.user" />
+          <img id="image" [src]="story.owner.profilePicture" />
         </div>
-        <img id="storyImage" [src]="story.image" (click)="showPopup(story)" />
+        <img id="storyImage" [src]="story.picture" (click)="showPopup(story)"/>
       </div>
     </div>
-    <div id="arrowBox">
+    <div id="arrowBox" [ngStyle]="{'opacity': maxScroll > 0 ? 1 : 1}">
       <div id="leftArrowBox">
         <div id="leftArrow" (click)="leftArrow()" [ngStyle]="{'opacity': leftScroll ? 1 : 0}">
           <i class="fas fa-arrow-left" id="arrow"></i>
