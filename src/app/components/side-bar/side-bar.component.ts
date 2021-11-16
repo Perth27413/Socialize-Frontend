@@ -15,7 +15,7 @@ export class SideBarComponent implements OnInit {
   menuList: Array<SideBarMenuModel> = [
     {icon: 'fas fa-home', name: 'Home', isActive: false, path: '/'},
     {icon: 'fas fa-users', name: 'Follows', isActive: false, path: '/follows'},
-    {icon: 'fas fa-star', name: 'Favorites', isActive: false, path: ''}
+    {icon: 'fas fa-chart-pie', name: 'Dashboard', isActive: false, path: '/graph'}
   ]
 
   constructor(private userService: UserService, private router: Router) { }
