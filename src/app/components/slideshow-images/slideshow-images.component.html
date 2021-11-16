@@ -3,9 +3,9 @@
     <div id="showImageContainer">
         <div id="cardImage">
             <p-galleria [value]="images" [responsiveOptions]="responsiveOptions"
-                [containerStyle]="{'max-width': '600px', 'width': '100%'}" [numVisible]="4">
+                [containerStyle]="{'max-width': '1200px', 'width': '100%'}" [numVisible]="4">
                 <ng-template pTemplate="item" let-item>
-                    <img [src]="item.link" style="width: 100%; display: block; height: 450px; object-fit: cover;" />
+                    <img [src]="item.link" style="width: 100%; display: block; height: 450px; object-fit: unset;" />
                 </ng-template>
                 <ng-template pTemplate="thumbnail" let-item>
                     <div class="p-grid p-nogutter p-justify-center">
