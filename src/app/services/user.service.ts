@@ -70,7 +70,7 @@ export class UserService {
   }
 
   public getPopularPeopleById(userId: number) {
-    return this.http.get<Array<PopularResponseModel>>(`${this.path}/popular?userId=${userId}`)
+    return this.http.get<Array<UserModel>>(`${this.path}/popular?userId=${userId}`)
   }
 
   public getfollowById() {
