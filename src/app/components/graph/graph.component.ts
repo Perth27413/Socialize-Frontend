@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class GraphComponent implements OnInit {
 
   socailLogin: { socailName: string, icon: string, quantity: number, percent: number }[] = [
-    { socailName: 'facebook', icon: 'fab fa-facebook-f', quantity: 500, percent: 13 },
-    { socailName: 'google', icon: 'fab fa-google', quantity: 500, percent: 13 },
-    { socailName: 'socailize', icon: 'fab fa-stripe-s', quantity: 500, percent: 13 },
+    { socailName: 'facebook', icon: 'fab fa-facebook-f', quantity: 103, percent: 25.69 },
+    { socailName: 'google', icon: 'fab fa-google', quantity: 98, percent: 24.44 },
+    { socailName: 'socailize', icon: 'fab fa-stripe-s', quantity: 200, percent: 49.88 },
   ]
   basicData: any;
   dataSource: any;
@@ -22,7 +22,7 @@ export class GraphComponent implements OnInit {
       labels: ['facebook', 'google', 'socailize'],
       datasets: [
         {
-          data: [300, 50, 100],
+          data: [this.socailLogin[0].quantity, this.socailLogin[1].quantity, this.socailLogin[2].quantity],
           backgroundColor: [
             "#FF6384",
             "#36A2EB",
@@ -40,14 +40,14 @@ export class GraphComponent implements OnInit {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
         {
-          label: 'First Dataset',
+          label: 'Posts',
           data: [65, 59, 80, 81, 56, 55, 40],
           fill: false,
           borderColor: '#42A5F5',
           tension: .4
         },
         {
-          label: 'Second Dataset',
+          label: 'Story',
           data: [28, 48, 40, 19, 86, 27, 90],
           fill: false,
           borderColor: '#FFA726',
