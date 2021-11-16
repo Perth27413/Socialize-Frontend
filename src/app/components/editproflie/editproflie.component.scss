@@ -72,23 +72,26 @@
                 padding-right: 5px;
                 margin-top: 25px;
                 .button-save-change {
-                    background-color: #2DABFF;
-                    color: white;
                     font-size: 16px;
                     font-weight: bold;
                     height: 35px;
                     width: 160px;
                     border-radius: 5px;
                     border: none;
-                    transition: 0.6s;
+                    transition: 0.25s;
+                    background-color: #ffff;
+                    color: #2DABFF;
+                    border: 1px solid #2DABFF;
                     &:hover {
                         cursor: pointer;
-                        background-color: #ffff;
-                        color: #2DABFF;
-                        border: 1px solid #2DABFF;
+                        background-color: #2DABFF;
+                        color: white;
                     }
-                    &:active {
-                        transform: scale(0.97);
+                    &.disable {
+                        background-color: #f8f8f8;
+                        cursor: no-drop;
+                        color: #b0dfff;
+                        border-color: #b0dfff;
                     }
                 }
             }

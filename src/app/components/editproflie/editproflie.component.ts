@@ -42,7 +42,7 @@ export class EditproflieComponent implements OnInit {
         
       }
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
@@ -81,12 +81,18 @@ export class EditproflieComponent implements OnInit {
 
   private validateFields(): boolean {
     let isValid = true
-    for (const [key, value] of Object.entries(this.userDetails)) {
-      this.notifyService.warning(`${this.formatToCapitalCase(key)} is invalid`)
-      if (!this.validateOnInputDetails(key)) {
-        isValid = false
+    let validate: Array<string> = ['firstName', 'lastName', 'details', 'email', 'phoneNumber', 'birthDay']
+    validate.forEach((item: string) => {
+      for (const [key, value] of Object.entries(this.userDetails)) {
+        if (item === key) {
+          if (!this.validateOnInputDetails(key)) {
+            this.notifyService.warning(`${this.formatToCapitalCase(key)} is invalid`)
+            isValid = false
+          }
+        }
       }
-    }
+    })
+    
     return isValid
   }
 
@@ -105,6 +111,11 @@ export class EditproflieComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  public validateCanChange(): boolean {
+    this.userDetails.birthday = this.birthDate
+    return JSON.stringify(this.userDetails) !== JSON.stringify(this.userService.getUserDetails())
   }
 
 }
