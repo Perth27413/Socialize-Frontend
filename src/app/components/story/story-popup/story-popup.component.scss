@@ -103,26 +103,21 @@
           font-size: 16px;
           font-weight: bold;
           &:hover {
-            text-decoration-line: underline;
             cursor: pointer;
             color: #0099fe;
           }
         }
-        #positionLabel {
-          display: flex;
-          #position {
-            color: #838383;
-            font-size: 10px;
-            width: 50%;
-          }
+        #detail {
+          color: #838383;
+          font-size: 10px;
+          width: 50%;
         }
       }
       #storyContent {
-        width: 300px;
+        width: 100%;
+        padding: 5px 10px;
         height: 150px;
-        margin-top: 1rem;
-        margin-left: 1rem;
-        overflow-y: scroll;
+        overflow-y: overlay;
         overflow-wrap: break-word;
       }
       #textBox {
@@ -144,6 +139,7 @@
           padding-left: 10px;
           display: flex;
           align-items: center;
+          resize: none;
           &:focus {
             outline: none;
             border: 1px solid #66c2ff;

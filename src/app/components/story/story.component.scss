@@ -13,9 +13,10 @@
       max-width: 600px;
       height: 215px;
       display: flex;
-      overflow-x: scroll;
+      overflow-x: hidden;
       position: relative;
       scroll-behavior: smooth;
+      border-radius: 5px;
       #createStoryBox {
         width: 160px;
         height: 100%;
