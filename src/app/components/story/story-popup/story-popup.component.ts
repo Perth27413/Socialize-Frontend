@@ -103,7 +103,8 @@ export class StoryPopupComponent implements OnInit {
   }
 
   public onCreateStoryClick() {
-    this.postImage()
+    if (!this.convertImg) { }
+    else { this.postImage() }
   }
 
   public createStory(imageLink: string): void {
@@ -116,9 +117,9 @@ export class StoryPopupComponent implements OnInit {
     this.storyService.createStory(req).subscribe(() => {
       setTimeout(() => {
         this.cleanData()
-        this.notifyService.sweetSuccess('Create Story Completely')
-      }, 2000)
-      window.location.reload()
+        window.location.reload()
+      }, 1000)
+      this.notifyService.success('Create Story Completely')
     }, (error) => {
       this.notifyService.sweetError(error.message)
     })
