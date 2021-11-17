@@ -5,7 +5,7 @@
       <div *ngIf="isCreate;then Create else Story"></div>
       <ng-template #Story>
         <div id="storyImage">
-          <img id="image" [src]="story.picture"/>
+          <img id="image" [src]="story.picture" />
         </div>
       </ng-template>
       <ng-template #Create>
@@ -23,7 +23,7 @@
       </ng-template>
       <div id="userDetail">
         <div id="userIcon">
-          <img id="userImage" [src]="checkUserImage(isCreate)"/>
+          <img id="userImage" [src]="checkUserImage(isCreate)" />
         </div>
         <div id="detail">
           <div id="name" (click)="onProfileNameClick(checkUserId(isCreate))">{{checkUser(isCreate)}}</div>
