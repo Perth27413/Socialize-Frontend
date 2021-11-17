@@ -26,7 +26,7 @@ export class SideBarComponent implements OnInit {
   }
 
   private checkIsAdmin(): void {
-    if (this.userDetails.typeId === 1) {
+    if (this.userDetails.roleId === 2) {
       this.menuList.push({icon: 'fas fa-chart-pie', name: 'Dashboard', isActive: false, path: '/graph'})
     }
   }

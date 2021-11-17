@@ -68,7 +68,7 @@ export class GraphComponent implements OnInit {
   }
 
   private checkIsNotAdmin(): void {
-    if (this.userDetails.typeId === 2) {
+    if (this.userDetails.roleId === 1) {
       this.route.navigateByUrl('/')
     }
   }
