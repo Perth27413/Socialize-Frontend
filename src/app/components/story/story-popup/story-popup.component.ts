@@ -45,9 +45,9 @@ export class StoryPopupComponent implements OnInit {
   public checkUser(bool: boolean) {
     let userName!: string
     if (bool)
-      userName = this.user.userName
+      userName = this.user.firstName + ' ' + this.user.lastName
     else
-      userName = this.story.owner.userName
+      userName = this.story.owner.firstName + ' ' + this.story.owner.lastName
     return userName
   }
 
