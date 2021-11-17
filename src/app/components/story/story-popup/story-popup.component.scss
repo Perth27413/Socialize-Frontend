@@ -162,6 +162,10 @@
           color: #ffffff;
           font-weight: bold;
           cursor: pointer;
+          &.disable {
+            background-color: #b0dfff;
+            cursor: no-drop;
+          }
         }
       }
     }

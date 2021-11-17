@@ -42,7 +42,7 @@
         </div>
       </ng-template>
       <div id="createStoryBox" *ngIf="isCreate">
-        <div id="create" (click)="onCreateStoryClick()">
+        <div id="create" (click)="onCreateStoryClick()" [ngClass]="{'disable': !convertImg}">
           Create Story
         </div>
       </div>
