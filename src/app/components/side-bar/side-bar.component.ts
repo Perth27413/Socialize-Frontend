@@ -15,7 +15,6 @@ export class SideBarComponent implements OnInit {
   menuList: Array<SideBarMenuModel> = [
     {icon: 'fas fa-home', name: 'Home', isActive: false, path: '/'},
     {icon: 'fas fa-users', name: 'Follows', isActive: false, path: '/follows'},
-    {icon: 'fas fa-chart-pie', name: 'Dashboard', isActive: false, path: '/graph'}
   ]
 
   constructor(private userService: UserService, private router: Router) { }
@@ -23,6 +22,13 @@ export class SideBarComponent implements OnInit {
   ngOnInit(): void {
     this.userDetails = this.userService.getUserDetails()
     this.checkPath()
+    this.checkIsAdmin()
+  }
+
+  private checkIsAdmin(): void {
+    if (this.userDetails.typeId === 1) {
+      this.menuList.push({icon: 'fas fa-chart-pie', name: 'Dashboard', isActive: false, path: '/graph'})
+    }
   }
 
   private checkPath(): void {
