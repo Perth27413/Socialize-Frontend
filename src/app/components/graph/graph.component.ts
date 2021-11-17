@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import UserModel from 'src/app/models/User/UserModel';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-graph',
@@ -15,9 +18,12 @@ export class GraphComponent implements OnInit {
   basicData: any;
   dataSource: any;
   options: any;
-  constructor() { }
+  private userDetails: UserModel = new UserModel
+  constructor(private userService: UserService, private route: Router) { }
 
   ngOnInit(): void {
+    this.userDetails = this.userService.getUserDetails()
+    this.checkIsNotAdmin()
     this.dataSource = {
       labels: ['facebook', 'google', 'socailize'],
       datasets: [
@@ -58,9 +64,14 @@ export class GraphComponent implements OnInit {
     this.options = {
       responsive: true,
       maintainAspectRatio: false
-    };
+    }
   }
 
+  private checkIsNotAdmin(): void {
+    if (this.userDetails.typeId === 2) {
+      this.route.navigateByUrl('/')
+    }
+  }
 
   colorSocailContainer(index: number) {
     return {

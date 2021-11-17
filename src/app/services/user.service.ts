@@ -24,6 +24,7 @@ export class UserService {
 
   public setLogout(): void {
     this.cookie.delete('isLogin')
+    this.cookie.deleteAll()
     window.localStorage.removeItem('user')
   }
 
