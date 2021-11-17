@@ -24,6 +24,7 @@ export class StoryPopupComponent implements OnInit {
   public request: StoryRequestModel = new StoryRequestModel
   public selectImage: boolean = false
   private imageForPost: string = ''
+  public isLoading: boolean = false
 
   constructor(private notifyService: NotifyService, private storyService: StoryService, private postService: PostService) { }
 
@@ -104,7 +105,10 @@ export class StoryPopupComponent implements OnInit {
 
   public onCreateStoryClick() {
     if (!this.convertImg) { }
-    else { this.postImage() }
+    else {
+      this.isLoading = true
+      this.postImage()
+    }
   }
 
   public createStory(imageLink: string): void {
@@ -117,6 +121,7 @@ export class StoryPopupComponent implements OnInit {
     this.storyService.createStory(req).subscribe(() => {
       setTimeout(() => {
         this.cleanData()
+        this.isLoading = false
         window.location.reload()
       }, 1000)
       this.notifyService.success('Create Story Completely')

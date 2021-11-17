@@ -42,9 +42,14 @@
         </div>
       </ng-template>
       <div id="createStoryBox" *ngIf="isCreate">
-        <div id="create" (click)="onCreateStoryClick()" [ngClass]="{'disable': !convertImg}">
+        <div id="create" (click)="onCreateStoryClick()" [ngClass]="{'disable': !convertImg}" *ngIf="!isLoading; else whenLoading">
           Create Story
         </div>
+        <ng-template #whenLoading>
+          <div id="create">
+            <i class="fa fa-spinner fa-spin"></i>
+          </div>
+        </ng-template>
       </div>
     </div>
     <div id="closeStory" (click)="closePopup(false)">
