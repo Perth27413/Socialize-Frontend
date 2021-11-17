@@ -6,7 +6,6 @@ import { ImageModel } from 'src/app/models/Image/ImageModel';
 import StoryModel from 'src/app/models/Story/StoryModel';
 import UserModel from 'src/app/models/User/UserModel';
 import StoryRequestModel from 'src/app/models/Story/StoryRequestModel'
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-story-popup',
@@ -26,7 +25,7 @@ export class StoryPopupComponent implements OnInit {
   public selectImage: boolean = false
   private imageForPost: string = ''
 
-  constructor(private userService: UserService, private notifyService: NotifyService, private storyService: StoryService, private postService: PostService) { }
+  constructor(private notifyService: NotifyService, private storyService: StoryService, private postService: PostService) { }
 
   ngOnInit() {
   }
